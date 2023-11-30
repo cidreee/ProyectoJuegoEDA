@@ -385,3 +385,435 @@ def bad_ending():
             time.sleep(1)
             sys.exit()
 
+
+# ----------------- Inicio del juego ------------------------------------------------------
+def start_game():
+    global myPlayer  # Indica que quieres utilizar la variable global
+
+    print('\nCargando el juego, esto puede tomar algunos segundos...')
+    time.sleep(2)
+    print('\n+----------------------------------------------------------------------------------------------------+')
+    print('\nHola, ¿cuál es tu nombre? ')
+    player_name = input('\n> ')
+    myPlayer = Player(name=player_name)
+    while not player_name:
+        time.sleep(1)
+        print('Por favor dime tu nombre: ')
+        player_name = input('\n> ')
+    time.sleep(1)
+    if player_name.lower() in ['samir']:
+        print(f'\n¡Así que eres {myPlayer.name}!\n\n'
+              f'¡No vas a poder jugar!\n')  # Easter Egg
+        sys.exit()
+    else:
+        print(f'\nEse es un grandioso nombre. ¡Bienvenido {myPlayer.name}!')
+    time.sleep(1)
+    while True:
+        print('\n¿Estás listo para comenzar (si/no)? ')
+        option = input('\n> ')
+        time.sleep(1)
+        if any(keyword in option.lower() for keyword in ['si', 'no']):
+            if option.lower() == 'si':
+                print('\n¡Esa es la actitud! Empecemos...\n')
+            elif option.lower() == 'no':
+                print('\n¡No me importa! Empecemos...\n')
+            break
+        else:
+            print('\nNo te escuche bien...')
+            time.sleep(1)
+
+    print('+----------------------------------------------------------------------------------------------------+\n')
+
+    prologo()
+
+
+# Introducción del juego donde conocerás el comienzo de la historia
+def prologo():
+    time.sleep(2)
+    print('\nCargando...\n')
+    time.sleep(2)
+    print('\n+----------------------------------------------------------------------------------------------------+')
+    print('''                                         ╔═╗╦═╗╔═╗╦  ╔═╗╔═╗╔═╗
+                                         ╠═╝╠╦╝║ ║║  ║ ║║ ╦║ ║
+                                         ╩  ╩╚═╚═╝╩═╝╚═╝╚═╝╚═╝''')
+    print('+----------------------------------------------------------------------------------------------------+\n')
+    print("""  \n
+                                     _____________ 
+                                    |             |  
+                   ,==.-------.     | *RING RING *|  
+                  (    ) ====  \    /_____________|    
+                  ||  | [][][] |
+                ,8||  | [][][] |
+                8 ||  | [][][] |
+                8 (    ) O O O /
+                '88`=='-------'            
+            \n
+
+            """ )
+    time.sleep(1.5)
+    text_to_display = (
+        f'\n\nEl teléfono suena con insistencia en la madrugada.\n\n'
+    )
+
+    for char in text_to_display:
+        print(char, end='', flush=True)
+        time.sleep(0.040)
+    
+
+    while True:
+        text = ('\n¿Quieres contestar (si/no)?\n')
+        for char in text:
+            print(char, end='', flush=True)
+            time.sleep(0.040)
+        option = input('\n> ')
+        if any(keyword in option.lower() for keyword in ['si', 'no']):
+            if option.lower() == 'si':
+                message = (
+                    f'\nUna voz ronca de una mujer suena del otro lado del teléfono en cuanto contestas.\n\n'
+                    f'- "¿Hola...? ¿Eres {myPlayer.name}, no?\n'
+                    f'   No sabes lo mucho que cuesta conseguir tu número. Bueno, como sea, esto es urgente, Te necesitamos\n'
+                    f'   en la oficina ahora."\n\n'
+                    f'Finaliza la llamada antes de que pudieras replicar.\n\n'
+                    f'...\n\n'
+                )
+                for char in message:
+                    print(char, end='', flush=True)
+                    time.sleep(0.025)
+
+                text = ('\n¿Irás a la oficina (si/no)?\n ')
+                for char in text:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+                option = input('\n> ')
+                while not any(keyword in option.lower() for keyword in ['si']):
+                    if any(keyword in option.lower() for keyword in ['no']):
+                        print('\n¿No? Parecía importante... ')
+                        option = input('\n> ')
+                    else:
+                        print('\nEsa respuesta no es válida.')
+                        print('\nTe pregunto de nuevo, ¿irás a la oficina (si/no)? ')
+                        option = input('\n> ')
+                message = (
+                    f'\nExcelente...\n\n'
+                    f'Será mejor ir ahora.\n\n'
+                )
+                for char in message:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+
+                time.sleep(1)
+
+                print('+----------------------------------------------------------------------------------------------------+\n')
+
+                oficina()
+                break
+
+            elif option.lower() == 'no':
+                message = (
+                    f'\nDejas sonando el teléfono hasta que suena el último pitido.\n\n'
+                )
+                for char in message:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+                message = (f'... \n\n')
+                for char in message:
+                    print(char, end='', flush=True)
+                    time.sleep(0.060)
+                message = (f'Oh, no. Parece que no puedes volver a conciliar el sueño.\n'
+                    f'Será mejor ir un rato a la cocina.\n'
+                    f'\n')
+                for char in message:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+                message = (f'.\n'
+                           f'.\n'
+                           f'.\n')
+                for char in message:
+                    print(char, end='', flush=True)
+                    time.sleep(0.070)
+                
+                
+                time.sleep(1.9)
+                print("""
+                        \n
+                        0================================================0
+                        |'.                    (|)                     .'|
+                        |  '.                   |                    .'  |
+                        |    '.                |O|                 .'    |
+                        |      '. ____________/===\_____________ .'      |
+                        |        :            `\"/`  ______     :     .. |
+                        |        :     mmmmmmm  V   |--%%--|    :   .'|| |
+                        |        :     |  |  |      |-%%%%-|    :  |  || |
+                        |        :     |--|--| @@@  |=_||_=|    :  I  || |
+                        |        :     |__|__|@@@@@ |_\__/_|    :  |  || |
+                        |        :             \|/   ____       :  |  || |
+                        |        :;;       .'``(_)```\__/````:  :  |  || |
+                        |        :||___   :================:'|  :  | 0+| |
+                        |        :||===)  | |              | |  :  |  || |
+                        |        ://``\\__|_|______________|_|__:  I  || |
+                        |      .'/'    \' | '              | '   '.|  || |
+                        |    .'           |                |       '. || |
+                        |  .'                                        '|| |
+                        |.'                                            '.|
+                        0================================================0
+                        \n
+                        """)
+                
+                time.sleep(1)
+
+
+                message = (
+
+                    f'\nComo siempre, no hay nada más que una pequeña televisión arrinconada junto a las frutas que están \n'
+                    f'en el punto antes de volverse malas.\n\n'
+                    f'...\n\n'
+                )
+                for char in message:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+
+                frutas = obtener_lista_frutas()
+
+                while True:
+                    text = ('\n¿Qué tienes ganas de hacer ahora...? \n')
+                    for char in text:
+                        print(char, end='', flush=True)
+                        time.sleep(0.040)
+                    option = input('\n> ')
+                    time.sleep(1)
+                    if any(keyword in option.lower() for keyword in ['fruta', 'nada', 'salir', 'encender', 'ver', 'dormir', 'levantarte', 'inspeccionar', 'comer', 'comerme', 'levantarme']):
+                        if any(fruta in option.lower() for fruta in frutas) or 'comer' in option.lower() or 'comerme' in option.lower():
+                            text = ('\n¡Wuacala, que asco!')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                            time.sleep(0.1)
+                            text = (f'Será mejor tirar la fruta antes de cualquier incidente...\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif 'nada' in option.lower():
+                            text = (f'\nEntiendo.., entonces no hay razón para estar en la cocina.\n'
+                                  f'\nSerá mejor ir a la habitación.\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif 'salir' in option.lower():
+                            text = ('\n¿Adónde vas...?\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif 'encender' in option.lower():
+                            text = ('\nBien, habrá que buscar el control remoto.\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif 'ver' in option.lower():
+                            text = ('\nBien, habrá que buscar el control remoto.\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif 'dormir' in option.lower():
+                            text = (f'\nEntendible...\n'
+                                  f'Será mejor ir a la habitación.\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif any(keyword in option.lower() for keyword in ['levantarse', 'levantarme']):
+                            text = ('\nBien.\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif 'inspeccionar' in option.lower():
+                            text = ('\nNo encontrarás mucho de todos modos.., pero está bien\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        break
+                    elif any(keyword in option.lower() for keyword in ['ayuda']):
+                        text = (f'\nLa verdad, no hay mucho que puedas hacer...\n\n'
+                                f'Siempre puedes aprovechar para inspeccionar tu alrededor, ver la TV o \n'
+                                f'comer una de las tantas frutas en tu cocina :)\n\n' )
+                        for char in text:
+                            print(char, end='', flush=True)
+                            time.sleep(0.040)
+                    else:
+                        text = ('\n(๏̯͡๏). Será mejor que hagas otra cosa...\n')
+                        for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        time.sleep(1)
+
+                note = (
+                    f'...\n\n'
+                )
+                for char in note:
+                    print(char, end='', flush=True)
+                    time.sleep(0.075)
+
+                time.sleep(1)
+                print("""
+                      \n
+                      \n
+                           \  /
+                            \/
+                    .====================.
+                    | .----------------. |
+                    | |                | |
+                    | | Encendiendo... | |
+                    | |                | |   
+                    | '----------------'o|  
+                    |====================|  
+                    |####################|  
+                    '===================='  
+                      
+                    \n
+                    \n  
+                      """)
+                
+                time.sleep(0.75)
+
+
+                note = (
+                    f'\n¡Oh! Parece que se ha encendido la televisión.\n' 
+                    f'\nEn cuanto intentaste levantarte has movido la mesa tirando el control.\n\n'
+                    f'\nEstán pasando las noticias.\n\n' 
+                    f'\nComo no es novedad, un crimen verdaderamente horrible se ha cometido en tu ciudad\n'
+                    f'\nEl nombre de la víctima está escrito justo en la parte inferior de la pantalla.\n'
+                    f'\n'
+                    f'\n'
+                    
+                )
+                for char in note:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+
+                time.sleep(1.8)
+                
+                text = ('               Martín Arriaga Pérez\n\n\n')
+                for char in text:
+                    print(char, end='', flush=True)
+                    time.sleep(0.1)
+                
+                time.sleep(1.5)
+                
+                text = (f'\n\n'
+                        f'Es el nombre de tu mejor amigo.\n\n'
+                        f'¿Cómo...?\n\n')
+                for char in text:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+
+                while True:
+                    text = (
+                        f'\n¿¿¿Qué harás ahora???\n'
+                        f'\nOpciones:'
+                        f'\n    - Nada'
+                        f'\n    - Correr a buscarlo'
+                        f'\n    - Llorar\n'
+                    )
+                    for char in text:
+                        print(char, end='', flush=True)
+                        time.sleep(0.040)
+
+                    option = input('\n> ')
+                    time.sleep(1)
+                    if any(keyword in option.lower() for keyword in ['nada', 'correr', 'llorar']):
+                        if 'nada' in option.lower():
+                            text = (
+                                f'\nAl poco tiempo caes en depresión y obtienes una dependencia a medicamentos.\n'
+                                f'Mueres de una sobredosis.\n\n'
+                                f'...\n\n'
+                            )
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.075)
+                            
+                            time.sleep(2)
+
+                            bad_ending()
+
+                        elif 'correr' in option.lower():
+                            text = (
+                                f'\nAbres la puerta sin preocuparte por cerrarla, está muy cerca de tu casa.\n'
+                                f'Sabes que la casa de tu amigo está muy cerca de ti.\n'
+                                f'\n'
+                                f'... Tiene que estar ahí.\n\n'
+                                f'En cuanto pones un pie fuera de la banqueta, una luz te deslumbra por completo para en seguida todo volverse negro.\n\n'
+                                f'\nEl 17/11/1986 moriste atropellado por un autobús.'
+                                f'...\n\n'
+                            )
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.075)
+                            
+                            time.sleep(2)
+
+                            bad_ending()
+
+                        elif 'llorar' in option.lower():
+                            text = (
+                                f'\nGran decisión.\n\n'
+                                f'...\n'
+                            )
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.025)
+                            time.sleep(1.8)
+                            text = (
+                                f'\nYa que ya te desahogaste...\n\n' )
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                            while True:
+                                text = ('¿Crees que sea conveniente llamar a la policía?\n ')
+                                for char in text:
+                                    print(char, end='', flush=True)
+                                    time.sleep(0.040)
+                                option = input('\n> ')
+                                if option.lower() == 'si':
+                                    text = (
+                                        f'\nDespués de llamar a la policía, prometieron hacer su trabajo. Sin embargo, después\n'
+                                        f'de unos meses dejaron de investigar el caso marcándolo como un suicidio.\n'
+                                        f'\n'
+                                        f'\n'
+                                        f'\n'
+                                        f'Al final, la depresión se apodera por completo de ti y terminas quitándote la vida el 03 de diciembre de 1987.\n\n'
+                                        f'...\n\n'
+                                    )
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.075)
+
+                                    bad_ending()
+
+                                elif option.lower() == 'no':
+                                    text = (
+                                        f'\nAl poco tiempo caes en depresión y obtienes una dependencia a medicamentos.\n'
+                                        f'\n'
+                                        f'Parece que al pasar los años no lograste sobrellevarlo\n'
+                                        f'\n'
+                                        f'\n...\n\n'
+                                        f'Mueres de una sobredosis el 17 de Julio de 1989.\n\n' 
+                                        # Agregar una imagen ascii de drogadictos
+                                        f'...\n\n'
+                                    )
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.075)
+                                    
+                                    time.sleep(1.8)
+
+                                    bad_ending()
+                                else:
+                                    print('\nTienes que tomar una decisión.\n')
+                                    time.sleep(1)
+                        break
+                    else:
+                        print('No creo que eso sea conveniente en este momento...\n\n')
+                        time.sleep(1)
+        else:
+            print('\nEl teléfono sigue sonando y es bastante molesto...\n')
+            time.sleep(1)
+
+
