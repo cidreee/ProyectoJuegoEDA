@@ -817,3 +817,385 @@ def prologo():
             time.sleep(1)
 
 
+
+
+# Continuación del prólogo, donde conoces el expediente del caso y escoges un compañero para la partida
+def oficina():
+    time.sleep(2)
+    print('\nCargando...\n')
+    time.sleep(2)
+    print('\n+----------------------------------------------------------------------------------------------------+')
+    print('''                                          ╔═╗╔═╗╦╔═╗╦╔╗╔╔═╗
+                                          ║ ║╠╣ ║║  ║║║║╠═╣
+                                          ╚═╝╚  ╩╚═╝╩╝╚╝╩ ╩''')
+    print('+----------------------------------------------------------------------------------------------------+\n')
+    time.sleep(1)
+    text = (
+        f'En cuanto llegas tu jefa te intercepta con tanta prisa que atropella a algunas personas \n'
+        f'en el breve trayecto que recorre hasta ti.\n')
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.025)
+    
+    time.sleep(1)
+
+    print(""" \n
+                                                    
+                                      ....-----...''_____      
+                                  .';'                     `.
+                                .'  ;                         `.
+                              .'   :                            `.
+                             ;     :                              `.
+                           .'      :                               `.
+                          ;        :                                `.
+                         .         :                                 .
+                        .'          :                                 ;
+                        :           :                                 :
+                       ;            `.   .~--------.._                 ;
+                      ;               ......_   ...  `.`.              `.
+                      .           .' .'      `. `. ; .``.               :
+                     ;          .'; :         `.  .` . `.;              :
+                    ;          .'.';           `.  `. ;.`.`.             :
+                    :        .'  :.'             `. `.`.`.`.             :
+                   :        .'  : :                :   : `.`.            :
+                   :       :    :.'                 `. `. `. `.          `.
+                   :      :     ::                   `. :  `. :           :
+                  : ..    :     ::                    `. :  `. :          :
+                  ::  `.  :    ::                      `.:   `. :         :
+                  ::   : .'    ::-._                    `.:    `:         :
+                  ::   `.:     ::   "-._                _.-----  :        :
+                  ::    `;     :  _.--.._""-.        _.-"..--._  :        :
+                  : :    `     '-"-"(("))\   `     .' /(("))"-"- :        :
+                  : :            `-.`-.-'_\   . .  . /_`-.-'.-'   :      :
+                  : `.                        : :  :        :      :
+                  `. `.                       . .  .              :      ;
+                   :  `.                      , .  .              :     :
+                    :   `._                   , ;  :              :    ;
+
+                      `.....:                 _    _              :   :
+                             :                 `--'             .';   ;
+                              :                                . ;   :
+                               :           ____    __         '  :  .'
+                               :`.           ------         .   .'   :.'
+                               `.`.                        '
+                                :  .                     .':
+                                :   `.                  .  :
+                                :     `.              .'   :
+                                :       `-._________.'     :
+                                :                          :
+                                ;                          :
+                              .'                            `.   
+                             .'                              `.
+                           .'                                  `.
+                                                                 
+                                                              \n   """)
+    
+    time.sleep(1)
+
+    print(f"""
+                   |\________________________________________________________             
+                   |                                                         |
+                   |   Es Martin, {myPlayer.name}, quería que te enteraras   
+                   |   antes de que saliera en las noticias.                 |
+                   |                                                        /   
+                    \______________________________________________________/                    
+          
+                                                                   """)
+    time.sleep(1.5)
+
+    text = ( f'\n ... \n\n'
+            f'Martin...¿tu mejor amigo..?\n'
+            f'Imposible\n\n\n')
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.090)
+    
+    time.sleep(1.5)
+    
+
+    print("""
+                   |\____________________________________________________________             
+                   |                                                             |
+                   |   Como se trata de alguien que era cercano a ti, más        |
+                   |   te vale que lo hagas bien y no te equivoques de nuevo.    |
+                   |                                                            /   
+                    \__________________________________________________________/   
+
+          
+                   |\___________________________________________________________             
+                   |                                                            | 
+                   |    Aquí tienes el folder con expediente del caso y los     |
+                   |    perfiles de 2 candidatos para que elijas a uno          |
+                   |    como compañero.                                        /   
+                    \_________________________________________________________/                    
+          
+                                                                   """)
+
+    time.sleep(4)
+
+    text =(
+        f' \n\n'
+        f'Miras el folder y después unos segundos de duda que parecieron eternos, decides abrirlo.\n\n'
+        f'Recuerda leer con atención los archivos dentro de este.\n\n'
+    )
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.040)
+
+    file_read = False
+    profile_read = False
+    letter_read = False
+    first_option = False
+    partner_choosen = False
+    letter_unlocked = False
+    seguir = True
+
+    text = ('¿Qué archivos del folder quieres leer primero?\n')
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.040)
+
+    opcion_e = input('\n> ')
+    while seguir:
+        if any(keyword in opcion_e.lower() for keyword in ['ayuda', 'help', 'ayudame']):
+            text = (f'\nRecuerda lo que tu jefe ha dicho:\n'
+                    f'El folder contiene el *expediente* del caso y los *perfiles* de dos compañeros.\n'
+                    f'\n¿Qué archivo del folder quieres leer?\n')
+            for char in text:
+                print(char, end='', flush=True)
+                time.sleep(0.040)
+            opcion_e = input('\n> ')
+
+        if any(keyword in opcion_e.lower() for keyword in ['expediente', 'reporte']):
+            first_option = True
+            if file_read:
+                text = ('\nPor ahora, ya has visto el expediente.\n')
+                for char in text:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+            else:
+                print('\n\nCargando expediente...')
+                time.sleep(2)
+                print('\n')
+                criminal_file()
+                time.sleep(1.8)
+                file_read = True
+                letter_unlocked = True
+                text = ('\n\nEl expediente ha sido guardado en items :)\n')
+                for char in text:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+                myPlayer.add_item(criminal_file)
+
+        elif any(keyword in opcion_e.lower() for keyword in ['perfil', 'perfiles', 'compañero', 'compañeros']):
+            first_option = True
+            if profile_read:
+                text = ('\nPor ahora, ya has visto los perfiles.\n')
+                for char in text:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+            else:
+                print('\n\nCargando perfiles...')
+                time.sleep(2)
+                print('\n')
+                partner()
+                time.sleep(1.8)
+                profile_read = True
+                text = ('\n\nAmbos perfiles han sido guardado en items:)\n')
+                for char in text:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+                myPlayer.add_item(partner)
+
+                while not partner_choosen:
+                    text = ('\n¿Con cuál de estas dos personas quieres trabajar?\n')
+                    for char in text:
+                        print(char, end='', flush=True)
+                        time.sleep(0.040)
+                    election_partner = input('\n> ')
+                    if any(keyword in election_partner.lower() for keyword in ['jose', 'pepe', 'paredes', 'pacheco', '1', 'primera', 'primer']):
+                        myPartner.jose = True
+                        partner_choosen = True
+                        text = (f'\n¡Excelente!\n'
+                                f'\nDurante el caso, José será tu compañero. Felicidades.\n' )
+                        for char in text:
+                            print(char, end='', flush=True)
+                            time.sleep(0.040)
+                    elif any(keyword in election_partner.lower() for keyword in ['marc', 'markus', 'davidson','2', 'segundo', 'segunda']):
+                        myPartner.marcus = True
+                        partner_choosen = True
+                        text = (f'\n¡Excelente!\n\n'
+                                f'\nDurante el caso, Marcus será tu compañero. Felicidades.\n' )
+                        for char in text:
+                            print(char, end='', flush=True)
+                            time.sleep(0.040)
+                    else:
+                        text=('\nElige una opción válida...\n')
+                        for char in text:
+                            print(char, end='',flush=True)
+                            time.sleep(0.040)
+
+        elif letter_unlocked and any(keyword in opcion_e.lower() for keyword in ['carta', 'papel', 'hoja']):
+            first_option = True
+            if letter_read:
+                text=('\nYa has leído la carta.\n')
+                for char in text:
+                    print(char, end='',flush=True)
+                    time.sleep(0.025)
+            else:
+                print('\n\nCargando carta...')
+                time.sleep(2)
+                print('\n')
+                letter()
+                time.sleep(1.8)
+                text = ('\n\nLa carta ha sido guardada en items :)\n')
+                letter_read = True
+                for char in text:
+                    print(char, end='', flush=True)
+                    time.sleep(0.025)
+                myPlayer.add_item(letter)
+
+        else:
+            text=('\nOpción inválida. Elige algo que te hayan entregado...\n')
+            for char in text:
+                print(char, end='',flush=True)
+                time.sleep(0.040)
+            opcion_e = input('\n> ')
+
+        if letter_read and profile_read and file_read:
+            text = ('\n¡Perfecto! Ya has leído todos los archivos del expediente.\n')
+            for char in text:
+                print(char, end='', flush=True)
+                time.sleep(0.040)
+            break
+
+        while first_option:
+            text=('\n\n¿Quieres leer alguna otra cosa en el folder (si/no)?\n')
+            for char in text:
+                print(char, end='',flush=True)
+                time.sleep(0.040)
+            opcion_sino = input('\n> ')
+
+            if any(keyword in opcion_sino.lower() for keyword in ['si']):
+                text=('\n¿Qué quieres leer?\n')
+                for char in text:
+                    print(char, end='',flush=True)
+                    time.sleep(0.040)
+                opcion_e = input('\n> ')
+                first_option = False
+
+            elif any(keyword in opcion_sino.lower() for keyword in ['no']):
+                if not file_read or not profile_read:
+                    text=('\nCreo que todavía te falta una cosa por leer...\n')
+                    for char in text:
+                        print(char, end='',flush=True)
+                        time.sleep(0.040)
+                else:
+                    seguir = False
+                    first_option = False
+                    break
+
+            else:
+                text=('\nOpción inválida. Tienes que elegir (si/no).\n')
+                for char in text:
+                    print(char, end='',flush=True)
+                    time.sleep(0.040)
+    
+
+
+    text = (
+        f'\n¡Muy bien! Podrás acceder a lo que leíste en el folder más adelante.\n'
+    )
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.040)
+    
+    time.sleep(1.5)
+
+    text = (
+        f'\nAhora, quizá te encuentres peligros durante tu investigación, así que necesitarás algo de ayuda.\n'
+        f'\nEscoge dos de las cosas que se encuentren en la armería.\n'
+    )
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.040)
+    
+    print('\n\nCargando armería...')
+    time.sleep(2)
+    print('\n')
+
+    print("""
+           +----------------------------------------------------------------------------------------------------+
+              __,_____
+             / __.==--"       ________ ____________       _________________.---.______                 __  __
+            /#(-'            |_____ __)._______.-'       (_(______________(_o o_(____()               )  \/  (
+            `-'                                                       .___.'. .'.___.                |XXXXXXXX|
+           Pistola               Navaja                               \ o    Y    o /                |HHHHHHHH|
+                                                                       \ \__   __/ /                 |XXXXXXXX| 
+                                                                        '.__'-'__.'                   |||||||| 
+                                                                            '''                                  
+                                                                      Hacha                       Chaleco Antibalas                                                      
+                                                    
+            +----------------------------------------------------------------------------------------------------+
+          """)
+
+    time.sleep(1.8)
+
+    text = (f'\n¿Qué quieres llevar para el caso?\n')    
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.025)
+
+    armas_elegidas = 0
+
+    opciones = ['pistola', 'navaja', 'hacha', 'chaleco']
+
+    while armas_elegidas < 2:
+        elec = input('\n> ').lower().split()
+
+        for palabra in elec:
+            if palabra in opciones:
+                if palabra in ['pistola']:
+                    armas_elegidas += 1
+                    myPlayer.gun = True
+                    myPlayer.add_weapon('Pistola')
+                
+                if palabra in ['navaja']:
+                    armas_elegidas += 1
+                    myPlayer.add_weapon('Navaja')
+
+                if palabra in ['hacha']:
+                    armas_elegidas += 1
+                    myPlayer.add_weapon('hacha')
+                
+                if palabra in ['chaleco']:
+                    armas_elegidas += 1
+                    myPlayer.bulletproof = True
+
+            if armas_elegidas > 2:
+                text = (f'\nHaz elegido más de dos opciones...\n'
+                        f'Se tomarán los primeros dos objetos que ingresaste\n')
+                for char in text:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+                break
+
+        palabra_not = False
+        if palabra not in opciones:
+            palabra_not = True
+            text = ("\nPor favor, elige alguna de las opciones en la armería.\n")
+            for char in text:
+                print(char, end='', flush=True)
+                time.sleep(0.040)
+
+
+        if armas_elegidas < 2 and not palabra_not:
+            text = (f'\nExcelente. Aún puedes elegir otra cosa más :)\n')    
+            for char in text:
+                print(char, end='', flush=True)
+                time.sleep(0.040)
+
+    text = (f'\n¡Perfecto! Ahora ya estás listo para comenzar...\n')    
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.040)
