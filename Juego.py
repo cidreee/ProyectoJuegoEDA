@@ -3,60 +3,11 @@
 @author: Valeria Marian Andrade Monreal
 """
 
-import heapq
 import sys
 import time
 
 
 # ---------------------------- Clases del código --------------------------------------------------------
-class Mapa:
-    def __init__(self, pos_actual):
-        self.matriz = [[2, 5, 1, 7],
-                       [13, 8, 11, 10],
-                       [6, 9, 10, 8],
-                       [12, 3, 1, 7]]
-        self.pos_actual = pos_actual
-
-    def calcular_min_costo(self, destino):
-        m = len(self.matriz)
-        n = len(self.matriz[0])
-        dp = [[float('inf') for _ in range(n)] for _ in range(m)]
-        movimientos = [(0, 1), (0, -1), (1, 0), (-1, 0)]  # derecha, izquierda, abajo, arriba
-
-        dp[self.pos_actual[0]][self.pos_actual[1]] = self.matriz[self.pos_actual[0]][self.pos_actual[1]]
-        heap = [(dp[self.pos_actual[0]][self.pos_actual[1]], self.pos_actual)]
-
-        while heap:
-            costo_actual, (i, j) = heapq.heappop(heap)
-
-            if costo_actual != dp[i][j]:
-                continue
-
-            for dx, dy in movimientos:
-                x, y = i + dx, j + dy
-
-                if 0 <= x < m and 0 <= y < n:
-                    costo_nuevo = costo_actual + self.matriz[x][y]
-
-                    if costo_nuevo < dp[x][y]:
-                        dp[x][y] = costo_nuevo
-                        heapq.heappush(heap, (costo_nuevo, (x, y)))
-
-        min_costo = dp[destino[0]][destino[1]]
-        return min_costo
-
-    # Determinamos las coordenadas de cada lugar en el mapa
-    def obtener_posicion_lugar(self, lugar):
-        lugares = {
-            'Lugar1': (3, 0),
-            'Lugar2': (0, 1),
-            'Lugar3': (0, 2),
-            'Lugar4': (0, 3),
-            'Lugar5': (1, 0),
-            # Añade más lugares según sea necesario
-        }
-        return lugares.get(lugar)
-
 
 # Inicializamos los atributos del personaje principal
 class Player:
@@ -70,15 +21,18 @@ class Player:
         self.status_effects = status_effects if status_effects is not None else []
         self.items = items if items is not None else []
         self.money = money
-        self.mapa = Mapa(location)
 
     def add_weapon(self, weapon):
         self.weapons.append(weapon)
     
     def get_weapons(self):
-        for weapon in self.weapons:
-            print(f"\n    - {weapon}\n")
-
+        if len(self.weapons) == 1:
+            print(f'\n        Tomar tu {self.weapons[0]}.\n')
+        else:
+            print(f'\n        Tomar tu {self.weapons[0]}.\n'
+                  f'          Tomar tu {self.weapons[1]}.\n')
+            
+                
     # Imprimimos la lista de items
     def get_items(self):
         return self.items
@@ -91,12 +45,6 @@ class Player:
     def add_money(self, money):
         self.money += money
 
-    # Actualizamos la posición del jugador en tiempo real
-    def mover(self, nueva_posicion):
-        self.location = nueva_posicion
-        self.mapa.pos_actual = nueva_posicion
-
-
 myPlayer = Player()
 
 
@@ -104,14 +52,14 @@ myPlayer = Player()
 class Partner:
     def __init__(self, jose = False, marcus = False):
         self.jose = jose
-        self.marcus = jose
+        self.marcus = marcus
 
     def partner_name(self):
         if self.jose is True:
-            return 'Pepe'
+            return 'José'
 
         if self.marcus is True:
-            return 'Marc'
+            return 'Marcus'
 
 
 myPartner = Partner()
@@ -173,7 +121,7 @@ def partner():
                 Edad: 33 años                                           .....:#@@@@@@%:.....
                 Estatura: 1.71 cm                                       .......:*@@*:.......
                 Peso: 70 kg                                             .....+@@@@@@@@+.....
-                Color favorito: Blanco                                  ...-@@@@@@@@@@@@-...
+                Tipo de sangre: O+                                      ...-@@@@@@@@@@@@-...
                 Perfil Profesional:                                     ..:@@@@@@@@@@@@@@-..
                     Academia de policía estatal de Texas:               ..#@@@@@@@@@@@@@@%..
                     Graduado con el promedio más bajo en su clase       .:@@@@@@@@@@@@@@@@-.
@@ -196,7 +144,7 @@ def partner():
                 .....:#@@@@@@%:.....        Edad: 41 años
                 .......:*@@*:.......        Estatura: 1.67 cm
                 .....+@@@@@@@@+.....        Peso: 80 kg
-                ...-@@@@@@@@@@@@-...        Color favorito: No tiene
+                ...-@@@@@@@@@@@@-...        Tipo de sangre: AB-
                 ..:@@@@@@@@@@@@@@-..        Perfil Profesional:
                 ..#@@@@@@@@@@@@@@%..            Criminología en Southern Arkansas University:
                 .:@@@@@@@@@@@@@@@@-.            Graduado con promedio de 8.8 en 1961.
@@ -216,17 +164,15 @@ def letter():
     print("""
             )_-+\n
             He llegado a un punto en #& que no puedo ignorar el resentimiento que siento 
-            hacia ti. Cada recuerdo de nuestra relación se ha vuelto tóxico, y quiero 
-            expresar la profundidad de mi desprecio.\n
+            hacia ti.\n
 
             Tus decisiones han dejado cicatrices en mi vida que van más allá de lo que puedes 
             entender. No sé si alguna vez te detuviste a pensar en las consecuencias de tus 
             acciones, o si simplemente no te importó. Pero necesito *( sepas que lo que 
             hiciste es algo que no puedo olvidar ni perdonar.\n
 
-            Esta carta es ;:<>?/ acto de liberación personal. La verdad es que no hay espacio 
-            en mi corazón para el perdón en este momento, solo te odio por lo que me has hecho 
-            pasar.\n
+            Esta carta es ;:<>?/ acto de liberación personal. La verdad, solo te odio por lo que me 
+            has hecho pasar.\n
 
             No deseo nada más que alejarme de ti y de todo lo que representas.\n
 
@@ -271,6 +217,172 @@ def criminal_file():
              f'\n       Se desconoce si la carta la escribió la víctima.'
              f'\n'
              f'\n                               CONFIDENCIAL')
+
+def cabin_map():
+    print("""\n
+
+                    ,----------------------------------------------------.-----.    
+                    |                                    |                     |    
+                    |    			         |                     |    
+                    |                                    |                     |    
+                    |             Sala                   |       Cocina        |    
+                    |                                    |                     |    
+                    |                                    |                     |    
+                    |                                    |                     |    
+                    |         ,----------"         ------:-----                |    
+                    |         |                                                |    
+                    |---------:    		                               |    
+                    |    |                                  ,------------------:              
+                    |    |.    ----------------.                               |    
+                    |    |                     |                               |    
+                    :----'                     |            |                  |  	
+                    |                          |            ---:    Baño       |    
+                    |         Cuarto         `-|               |               |    
+                    |                          .---            |               |    
+                    |                              |           |               |    
+                    |                              |           |               |    
+                    `------------------------------¨           `---------------'
+         \n """)
+
+def cabin_bath():
+    print("""  
+                                                 _______________________________________________________________________________ 
+                                                |                                                                               | 
+            |   |   |   |   |                   |                                                                               | 
+            |   |___|   |   |                   |           _____________________________                                       | 
+            |___|   |___|   |                   |          |  _________________________  |                                      |
+            |   |   |   |   |                   |          |O|                         |O|                                      |
+     /| |___|___|___|___|___| _________         |   /_\    | | //                      | |                   /_\                | 
+       .| |/|   |   |   |   |   |               |%  =|=  % |O|                         |O|                   =|=                | 
+      / | / |___|___|___|___|                   |          | |    //                   | |                                      |  
+    .'| |/|/|   |   |   |   |       |           |          | |    //                   | |                                      | 
+   /| |,| / |___|___|___|___|   |               |          |O|                         |O|                                      | 
+  / | / |/|.' __________________ `.             |==========| |                         | |======================================| 
+ /| |'| / |'.'_.-------------._`.`.             |          |O|                         |O|                                      | 
+| |/| |'|.'/.'  .           .  `.\`.            |          | | //                      | |              ________________        | 
+| / |/| / //                     \\\_\_          |          |O|_________________________|O|             |________________|       | 
+|/| / |/ //                       |   \         |          |_____________________________|               |            |         | 
+| |/| / //                        \  __\        |           ______________/;____________                 |~           |  =====  | 
+| / |/ //                          \|\ \        |         /`        .--T--|--T--.       `\               |            |         | 
+|/| / /_                              \ \       |        /_________'------'------'________\              |__%______%__|         | 
+| |/ _(')=                            /  \      |         |  _____   ____   ____   _____ |                .`        `.          | 
+| / (___)._________________________.-'    \     |         | |__~__| |    | |    | |__~__||                :          :          | 
+|/_________________________________________\    |         |         |    | |    |        |                 '.      .'           | 
+|                                           |   lc________|         |   {| |}   |        |___________________\`'-'`/____________| 
+|                                           |             |         |    | |    |        |                    |   | 
+|                                           |             |_________|____|_|____|________|                    |___|
+|                                           |   
+|                                           |                                                                            . .           
+|                                           |             ⠰⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠜                        ⢀⠀⢿⠆⠀⠀⠸⡟⢹⠁⠀⠀⠀⠈⠦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+hjm_________________________________________|               ⠸⢷⣄⠠⠀⠀⠀⢠⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⣠⡴⠋⠀                                ⠃⢸⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                                ⠙⢆⠀⠈⣄⢸⡄⢀⣤⢁⠄⠀⠀⠀⠀⠔⠊⠁⠀⠀⠀⠀                              ⠘⠛⠀⠀        
+                                                             ⠀⠀⠀⠀⠀⠳⣤⣸⣿⣷⣿⣿⣿⠀⣀⠴⠂⠀⠀⠀⠀⠀⠀⠀⠀
+                                                             ⠀⠀⠠⢤⣀⣴⣿⣿⣿⣿⣿⣿⣿⣞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                            ⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣟⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀
+                                                            ⠀⠀⠀⣤⡶⠻⢿⣿⣿⣿⣿⣿⣿⣿⡿⠦⢤⣀⣀⡀⠀⠀⠀⠀⠀
+                                                             ⠀⠀⠀⠀⠀⠀⢻⣿⣿⡿⠛⠙⠻⣏⠀⠀⠀⠈⠙⠛⠃⠀⠀⠀⠀
+                                                             ⢀⠀⢿⠆⠀⠀⠸⡟⢹⠁⠀⠀⠀⠈⠦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                             ⠀⠀⠀⠀⠀⠀⠀⠃⢸⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                             ⠀⠀⠀⠀⠀⠀⠀⠀⠘⠛⠀⠀
+            
+
+          """)
+
+def cabin_living():
+    print("""
+                        ____________________________________________________________________________________________________
+                        |                     ||_|_|_|_|_|_|_|_|_|_|_|                                                      |
+                        |                     |_|_|_|_|_|_|_|_|_|_|_||                                                      |
+                        |                     ||_|_|_|_|_|_|_|_|_|_|_|                                                      |
+                        |                     |_|_|_|_|_|_|_|_|_|_|_||                                                      |
+                        |                     ||_|_|_|_|_|_|_|_|_|_|_|                                                      |
+                        |  _                  |_|_|_|_|_|_|_|_|_|_|_||                                                      |
+                        | /_\                 ||_|_|_|_|_____|_|_|_|_|                                                      |
+                        | =|=                 |_|_|_|_|_|_|_|_|_|_|_||                                                      |
+                        |=================,;,/________________________\,;,=================================================     
+                        |                                                               O                                   |
+                        |                 =;============================;=             /~\                                  |    
+                        |                  [_|_|_]================[_|_|_]              |~|               .-=""'""'"'=-.     | 
+                        |                  [__|__]                [__|__]    __________|_|____          | . . . . . . . |   |
+                        |                  [_|_|_] o            o [_|_|_]    |       |       |          | .'.'.'.'.'.'. |   |
+                        |                  [__|__] |            | [__|__]    |       |       |         ()_______________()  |
+                        |                  [_|_|_] |---@@@@@@---| [_|_|_]    |      ~|~      |         ||_______________||  |
+                        |                  [__|__]/!\ @@@@@@@@ /!\[__|__]    |       |       |        |                   | |                
+                        lc_______________ /______________________________\___|_______|_______|________|                   | |
+                                         |________________________________|  ||"           "||        |___________________|                
+                                                    
+                                ~=======,,,,,=====================================~     _
+                                ~========\%%%%\===================================~   (_)
+                                ~==========\%%%%\=========================?=======~   
+                                ~============\%%%%\===============================~ 
+                                ~============`````======.=====.===================~
+                                ~====================='.'...'.'===================~
+
+                               
+          """)
+
+def cabin_kitchen():
+    print("""
+
+                    
+                    |'.                    (|)                     .'|
+                    |  '.                                        .'  |
+                    |    '.                                    .'    |
+                    |      '. ______________________________ .'      |
+                    |        :                              :     .. |
+                    |        :     mmmmmmm                  :   .'|| |
+                    |        :     |  |  |                  :  |  || |
+                    |        :     |--|--|                  :  I  || |
+                    |        :     |__|__|                  :  |  || |
+                    |        :                              :  |  || |
+                    |        :;;       .'````````````````:  :  |  || |
+                    |        :||___   :================:'|  :  | 0+| |
+                    |        :||===)  | |              | |  :  |  || |
+                    |        ://``\\\__|_|______________|_|__:  I  || |
+                    |      .'/'    \\' | '              | '   '.|  || |
+                    |    .'           |                |       '. || |
+                    |  .'                                        '|| |
+                    |.'                                            '.|
+                    
+          """)
+
+def cabin_room():
+    print("""
+
+                   o(=(=(=(=)=)=)=)o
+                    !!!!!!}!{!!!!!!                                                ___ 
+                    !!!!!} | {!!!!!                                               /   \\
+                    !!!!}  |  {!!!!             ()              ()               | //  |
+                    !!!'   |   '!!!             ||______________||               |     |
+                    ~@~----+----~@~             |                |                \___/
+                    !!!    |    !!!             |                |              _________
+                    !!!    |    !!!             |_______  _______|             |____-____|
+                    !!!____|____!!!  _________  {__~@~__}{__~@~__}             |____-____|
+                    !!!=========!!!   |__-__|   %%%%%%%%%%%%%%%%%%             |____-____|
+                   _!!!_________!!!___|_____|_ %%%%%%%%%%%%%%%%%%%% ___________|____-____|_
+                                      |     | %%%%%%%%%%%%%%%%%%%%%%           |/       \|
+                              .              %%%%%%%%%%%%%%%%%%%%%%%%
+                           ..   .           %%%%%%%%%%%%%%%%%%%%%%%%%%
+                    ⢀⠀⢿⠆⠀⠀⠸⡟⢹⠁⠀⠀⠀   ⠀⠀     %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                         ⢸ ⣷⠀⠀⠀⠀⠀⠀⠀   ⠀   /!!!!!!!!!!!!!!!!!!!!!!!!!!!!\\
+                              ⠘⠛⠀         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                          !!!!!!!!!!!!!!!!!!!!!!!!!!lc!!
+                                          `======~@~==========~@~======`
+                                         `==============================`
+                                        `====~@~==================~@~====`
+                                        `==================================`
+                                      `==~@~==========================~@~==`
+                                            
+                                         
+
+
+          """)
+
+def inv_bathroom():
+    message = ()
+    for char in message:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
 
 
 # Pantalla que maneja las opciones de inicio
@@ -351,6 +463,7 @@ def help_menu():
     print('▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n')
     time.sleep(5)
     title_screen()
+
 
 # Pantalla de final malo
 def bad_ending():
@@ -550,8 +663,8 @@ def prologo():
                         |        :;;       .'``(_)```\__/````:  :  |  || |
                         |        :||___   :================:'|  :  | 0+| |
                         |        :||===)  | |              | |  :  |  || |
-                        |        ://``\\__|_|______________|_|__:  I  || |
-                        |      .'/'    \' | '              | '   '.|  || |
+                        |        ://``\\\__|_|______________|_|__:  I  || |
+                        |      .'/'    \\' | '              | '   '.|  || |
                         |    .'           |                |       '. || |
                         |  .'                                        '|| |
                         |.'                                            '.|
@@ -817,8 +930,6 @@ def prologo():
             time.sleep(1)
 
 
-
-
 # Continuación del prólogo, donde conoces el expediente del caso y escoges un compañero para la partida
 def oficina():
     time.sleep(2)
@@ -831,66 +942,30 @@ def oficina():
     print('+----------------------------------------------------------------------------------------------------+\n')
     time.sleep(1)
     text = (
-        f'En cuanto llegas tu jefa te intercepta con tanta prisa que atropella a algunas personas \n'
+        f'En cuanto llegas tu jefe te intercepta con tanta prisa que atropella a algunas personas \n'
         f'en el breve trayecto que recorre hasta ti.\n')
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.025)
     
-    time.sleep(1)
+    time.sleep(2)
 
     print(""" \n
-                                                    
-                                      ....-----...''_____      
-                                  .';'                     `.
-                                .'  ;                         `.
-                              .'   :                            `.
-                             ;     :                              `.
-                           .'      :                               `.
-                          ;        :                                `.
-                         .         :                                 .
-                        .'          :                                 ;
-                        :           :                                 :
-                       ;            `.   .~--------.._                 ;
-                      ;               ......_   ...  `.`.              `.
-                      .           .' .'      `. `. ; .``.               :
-                     ;          .'; :         `.  .` . `.;              :
-                    ;          .'.';           `.  `. ;.`.`.             :
-                    :        .'  :.'             `. `.`.`.`.             :
-                   :        .'  : :                :   : `.`.            :
-                   :       :    :.'                 `. `. `. `.          `.
-                   :      :     ::                   `. :  `. :           :
-                  : ..    :     ::                    `. :  `. :          :
-                  ::  `.  :    ::                      `.:   `. :         :
-                  ::   : .'    ::-._                    `.:    `:         :
-                  ::   `.:     ::   "-._                _.-----  :        :
-                  ::    `;     :  _.--.._""-.        _.-"..--._  :        :
-                  : :    `     '-"-"(("))\   `     .' /(("))"-"- :        :
-                  : :            `-.`-.-'_\   . .  . /_`-.-'.-'   :      :
-                  : `.                        : :  :        :      :
-                  `. `.                       . .  .              :      ;
-                   :  `.                      , .  .              :     :
-                    :   `._                   , ;  :              :    ;
-
-                      `.....:                 _    _              :   :
-                             :                 `--'             .';   ;
-                              :                                . ;   :
-                               :           ____    __         '  :  .'
-                               :`.           ------         .   .'   :.'
-                               `.`.                        '
-                                :  .                     .':
-                                :   `.                  .  :
-                                :     `.              .'   :
-                                :       `-._________.'     :
-                                :                          :
-                                ;                          :
-                              .'                            `.   
-                             .'                              `.
-                           .'                                  `.
-                                                                 
+           __________. 
+           |  < (_) >|
+           /==== =====
+          (.---._ _.-.)
+           |/   a` a |
+           (      _\ |
+            \    __  ;
+            |\   .  /
+         _.'\ '----;'-.
+     _.-'  O ;-.__.'\O `o.
+    /o \      \/-.-\/|    \\
+   |    ;,     '.|\| /     |
                                                               \n   """)
-    
-    time.sleep(1)
+
+    time.sleep(2)
 
     print(f"""
                    |\________________________________________________________             
@@ -901,35 +976,43 @@ def oficina():
                     \______________________________________________________/                    
           
                                                                    """)
-    time.sleep(1.5)
+    time.sleep(2.5)
 
     text = ( f'\n ... \n\n'
-            f'Martin...¿tu mejor amigo..?\n'
-            f'Imposible\n\n\n')
+            f'Martin, ¿tu mejor amigo...?\n'
+            f'\nImposible.\n'
+            f'\n¿Quién sería capaz...?\n\n')
     for char in text:
         print(char, end='', flush=True)
-        time.sleep(0.090)
+        time.sleep(0.078)
     
-    time.sleep(1.5)
+    time.sleep(1.8)
     
 
     print("""
                    |\____________________________________________________________             
                    |                                                             |
                    |   Como se trata de alguien que era cercano a ti, más        |
-                   |   te vale que lo hagas bien y no te equivoques de nuevo.    |
+                   |   te vale encontrar al asesino y no equivocarte de nuevo.   |
                    |                                                            /   
                     \__________________________________________________________/   
 
           
+
+                                                                   """)
+    
+    time.sleep(3.5)
+    
+    print("""
+
                    |\___________________________________________________________             
                    |                                                            | 
-                   |    Aquí tienes el folder con expediente del caso y los     |
+                   |    Aquí tienes el folder con el expediente del caso y los  |
                    |    perfiles de 2 candidatos para que elijas a uno          |
                    |    como compañero.                                        /   
                     \_________________________________________________________/                    
           
-                                                                   """)
+          """)
 
     time.sleep(4)
 
@@ -1086,7 +1169,8 @@ def oficina():
 
             elif any(keyword in opcion_sino.lower() for keyword in ['no']):
                 if not file_read or not profile_read:
-                    text=('\nCreo que todavía te falta una cosa por leer...\n')
+                    text=(f'\nCreo que todavía te falta una cosa por leer...\n'
+                          f'\nRecuerda que tu jefe te ha entregado el expediente y los perfiles.\n')
                     for char in text:
                         print(char, end='',flush=True)
                         time.sleep(0.040)
@@ -1113,7 +1197,7 @@ def oficina():
     time.sleep(1.5)
 
     text = (
-        f'\nAhora, quizá te encuentres peligros durante tu investigación, así que necesitarás algo de ayuda.\n'
+        f'\n\nAhora, quizá te encuentres peligros durante tu investigación, así que necesitarás algo de ayuda.\n'
         f'\nEscoge dos de las cosas que se encuentren en la armería.\n'
     )
     for char in text:
@@ -1125,7 +1209,7 @@ def oficina():
     print('\n')
 
     print("""
-           +----------------------------------------------------------------------------------------------------+
+           +-----------------------------------------------------------------------------------------------------+
               __,_____
              / __.==--"       ________ ____________       _________________.---.______                 __  __
             /#(-'            |_____ __)._______.-'       (_(______________(_o o_(____()               )  \/  (
@@ -1145,57 +1229,513 @@ def oficina():
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.025)
-
-    armas_elegidas = 0
-
-    opciones = ['pistola', 'navaja', 'hacha', 'chaleco']
-
-    while armas_elegidas < 2:
-        elec = input('\n> ').lower().split()
-
-        for palabra in elec:
-            if palabra in opciones:
-                if palabra in ['pistola']:
-                    armas_elegidas += 1
-                    myPlayer.gun = True
-                    myPlayer.add_weapon('Pistola')
-                
-                if palabra in ['navaja']:
-                    armas_elegidas += 1
-                    myPlayer.add_weapon('Navaja')
-
-                if palabra in ['hacha']:
-                    armas_elegidas += 1
-                    myPlayer.add_weapon('hacha')
-                
-                if palabra in ['chaleco']:
-                    armas_elegidas += 1
-                    myPlayer.bulletproof = True
-
-            if armas_elegidas > 2:
-                text = (f'\nHaz elegido más de dos opciones...\n'
-                        f'Se tomarán los primeros dos objetos que ingresaste\n')
+    while len(myPlayer.weapons) < 2:
+        option = input('\n> ')
+    
+        if any(keyword in option.lower() for keyword in ['pistola', 'navaja', 'hacha', 'chaleco', 'antibalas']):
+            if option.lower() == 'pistola':
+                myPlayer.add_weapon('pistola')
+                myPlayer.gun = True
+            elif option.lower() == 'navaja':
+                myPlayer.add_weapon('navaja')
+            elif option.lower() == 'hacha':
+                myPlayer.add_weapon('hacha')
+            elif option.lower() in ['chaleco', 'antibalas']:
+                myPlayer.bulletproof = True
+    
+            if len(myPlayer.weapons) == 2:
+                text = ('\nYa has elegido. Esto es lo que llevarás contigo:\n\n')
                 for char in text:
                     print(char, end='', flush=True)
                     time.sleep(0.040)
-                break
-
-        palabra_not = False
-        if palabra not in opciones:
-            palabra_not = True
-            text = ("\nPor favor, elige alguna de las opciones en la armería.\n")
+                myPlayer.get_weapons()  # Imprimir las armas elegidas por el jugador
+            else:
+                text = ('\nExcelente. Aún puedes elegir otra cosa más :)\n')
+                for char in text:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+        else:
+            text = ('\nPor favor, elige alguna de las opciones en la armería.\n')
             for char in text:
                 print(char, end='', flush=True)
                 time.sleep(0.040)
 
-
-        if armas_elegidas < 2 and not palabra_not:
-            text = (f'\nExcelente. Aún puedes elegir otra cosa más :)\n')    
-            for char in text:
-                print(char, end='', flush=True)
-                time.sleep(0.040)
-
-    text = (f'\n¡Perfecto! Ahora ya estás listo para comenzar...\n')    
+    text = (f'\n\n¡Perfecto! Ahora ya estás listo para comenzar.\n'
+            f'\nLo primero será ir a investigar la escena del crimen. La cabaña.\n'
+            f'\n{myPartner.partner_name} te verá allá.\n\n'
+            f'\nMucha suerte atrapando al culpable.\n')    
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.040)
+    
+    cabin()
+##_---------------------------------------------------------------------------------------------
+
+# Primer capítulo, continuación del prólogo y la oficina
+def chapter_1():
+    pass
+
+
+# Segundo capítulo, este solo podrás acceder luego de que investigues cada escenario en el capítulo 1
+def chapter_2():
+    pass
+
+baño = False
+sala = False
+cocina = False
+cuarto = False
+
+# --------------------- Escenarios del juego -----------------------------------------------------
+# Lugares de la historia donde habrá pistas y una descripción breve del lugar
+def cabin():
+    text = (f'\n.\n'
+            f'.\n'
+            f'.\n')    
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.1)
+    time.sleep(2.3)
+    # Cambiar de musica en la cabaña
+    print(f'\n'
+        f'\n+----------------------------------------------------------------------------------------------------+\n'
+        f'                                                        /\\\n'
+        f'                                               __      /%%\\\n'
+        f'                                             |_I_|     /%%\\\n'
+        f'                   _________________/,\'_____ |I_I|____/%%%%\\/\\\n'
+        f'                 /\\\'.___.\'____.\'__./\'/_\\\'.__.\'__.\'__.\'\\%%%%/%%\\\n'
+        f'                /%%\\_.\'___.\'___.\'./\\/_ _\\.\'__.\'__.\'__.\'\\%%/%%%%\\\n'
+        f'               /%%%%\\.__.\'___.\'._/\\/|_|_|\\.__.\'__.\'__.\'.\\%/%%%%\\   \n'
+        f'               /%%%%\\_.\'__.\'__.\'.\\/_|_|_|_\\\'.___.\'__.\'___\\%%%%%%\\                  \n'
+        f'              /%%%%%%\\____________________________________\\%%%%%%\\\n'
+        f'             /%%%%%%%%\\]== _ _ _ ============______======]%%%%%%%\\\n'
+        f'             /%%%%%%%/\]==|_|_|_|============|////|======]%%%%%%%%\\__\n'
+        f'          __/%%%%%%%/%%\\==|_|_|_|============|////|======]%%%%%%%%\\\n'
+        f'           /%%%%%%%/%%%%\\====================|&///|======]%%%%%%%%%\\\n'
+        f'           /%%%%%%%/%%%%\\====================|////|======]^^^^^^^^^^\n'
+        f'          /%%%%%%%/%%%%%%\\===================|////|======]  _ - _ -\n'
+        f'          /%%%%%%%/%%%%%%%\"""""""""""""""""""\'====\'"""""""""""""""""""\n'
+        f'          ^^^^^^^/%%%%%%%%\\   _ -   _ -              _-                   ---   __\n'
+        f'                 ^^^^^^^^^^                                           ---    \n'
+        f'+----------------------------------------------------------------------------------------------------+  \n\n      '           
+        f'        ')
+
+
+    
+    time.sleep(1.5)
+    
+    text = (f'\nParece que tu compañero {myPartner.partner_name()} aún no ha llegado...\n'
+            f'\nLo mejor será comenzar a recolectar pistas por tu cuenta.\n'
+            f'\nAquí tienes un pequeño mapa del interior de la cabaña.\n')    
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.040)
+    
+    time.sleep(1.5)
+    print('\n\nCargando mapa...\n')
+    time.sleep(1.5)
+    print('+----------------------------------------------------------------------------------------------------+  ')
+    time.sleep(1)
+    cabin_map()
+    time.sleep(1)
+    print('+----------------------------------------------------------------------------------------------------+  ')
+    time.sleep(2.2)
+
+    text = (f'\n¿En qué parte de la cabaña te gustaría comenzar buscando?\n')  
+    for char in text:
+        print(char, end='', flush=True)
+        time.sleep(0.040)
+
+    eleccion = input('\n> ')
+
+    def select_cabin():
+        global baño, sala, cocina, cuarto
+        
+        while True:
+            if baño and sala and cocina and cuarto:
+                pass
+            
+            else:
+                if 'baño' in eleccion.lower():
+                    if baño:
+                        text = (f'\n!!\n'
+                                f'\nParece que ya habías entrado al baño.\n'
+                                f'\nNo querrás dañar la escena del crimen volviendo a entrar...\n')  
+                        for char in text:
+                            print(char, end='', flush=True)
+                            time.sleep(0.040)
+                    else:   
+                        tina = False
+                        espejo = False
+                        inodoro = False
+                        suelo = False
+                        lavabo = False
+                        baño = True
+                        time.sleep(1.5)
+                        print('\n\n\n Cargando baño... \n\n\n')
+                        time.sleep(2.2)
+                        cabin_bath()
+                        time.sleep(1.8)
+                        text = (f'\n¿Cuál de estos lugares te gustaría analizar más de cerca?\n\n')  
+                        for char in text:
+                            print(char, end='', flush=True)
+                            time.sleep(0.040)
+                        time.sleep(1.5)
+                        print (f'    La tina.\n'
+                                f'    El espejo.\n'
+                                f'    El suelo.\n'
+                                f'    El lavabo\n'
+                                f'    El inodoro\n'
+                                f'    Mejor nada...')  
+                        analize = input('\n> ')
+
+                        while True:
+                            if tina and espejo and inodoro and suelo and lavabo:
+                                text = (f'\n¡Increíble!\n\n'
+                                        f'Haz anallizado cada rincón del baño\n')  
+                                for char in text:
+                                    print(char, end='', flush=True)
+                                    time.sleep(0.040)
+                                break
+                            else:
+                                if 'tina' in analize.lower():
+                                    text = (f'\nAquí fue encontrado el cuerpo de Martin.\n'
+                                            f'\n.'
+                                            f'\n.'
+                                            f'\n.\n'
+                                            f'\nParece que lo único que hay es un enorme charco de su sangre...\n')  
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.040)
+
+                                elif 'espejo' in analize.lower():
+                                    print(""" 
+                                                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡶⠟⠛⠛⠛⠛⠻⢶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⠀⠀⢀⣾⠋⣠⡶⠟⠛⠛⠷⣦⣄⠈⠻⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⠀⢀⣾⠃⠰⠟⢠⡶⠶⠶⣦⣄⠉⠳⣤⡈⢻⣦⠀⠀⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⠀⣼⠇⣰⡆⢠⡄⠀⣀⣀⣀⠙⠻⣦⡙⢿⣆⠉⠁⠀⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⠰⠿⢠⡿⠀⣿⠀⣾⠋⣉⠙⢷⣄⠈⠻⣦⡙⢳⣄⠀⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⣤⠀⠚⠃⠀⣿⠀⣿⡀⠹⣷⡀⠙⢷⣄⠈⠻⡦⠁⠀⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⣿⠀⣴⠰⣦⠘⣆⠈⢿⣦⡈⠻⢷⣄⠙⠻⠀⣤⠄⣰⡄⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⢿⡆⢻⡆⠹⣧⠙⣦⡀⠉⠻⣦⣄⠙⠳⠆⢠⡿⢀⣿⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⢸⣇⠈⣿⠀⠘⢷⣌⠛⠶⡤⠀⣉⠛⠆⢠⡿⢁⣾⠃⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⠀⠟⢀⣠⣴⠦⠀⠙⢃⣀⣀⠈⠙⠛⠀⠛⢁⣾⠃⠀⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⠀⠀⠛⠉⣠⣴⠾⠛⢛⣉⣙⣛⡛⠗⠰⣦⠀⠁⠀⠀⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢠⡶⠟⢛⣉⣉⣉⡛⠛⠶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠞⢋⣁⣠⣈⠙⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+                                                """)
+                                    text = (f'\n¡Oh! Una huella.\n'
+                                            f'\nMe pregunto de quién será...\n')  
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.040)
+
+                                elif 'inodoro' in analize.lower():
+                                    text = (f'\nMmmm...\n'
+                                            f'\nNo hay nada relevante.'
+                                            )  
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.040)
+
+                                elif 'suelo' in analize.lower():
+                                    text = (f'\nNo parece haber nada más que sangre...\n\n')  
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.040)
+                                    time.sleep(2.4)
+                                    text = (f'\n ...\n')
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.080)
+                                    time.sleep(1.5)
+                                    text = (f'\nSe acaba de escuchar una puerta abriéndose.\n'
+                                            f'\nAlguien más acaba de entrar a la cabaña.\n')
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.040)
+                                    time.sleep(2.4)
+                                    text = (f'\nTienes que actuar ya.\n'
+                                            f'\n¿Qué harás?\n')
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.040)
+                                    myPlayer.get_weapons()
+                                    print(f'        Nada')
+                                    serious_op = input('\n> ')
+
+                                    if 'tomar' in serious_op.lower():
+                                        while True:
+                                            if any(palabra in serious_op.lower() for palabra in myPlayer.weapons):
+                                                text = (f'\nToma algo que tengas en tu armería...\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                serious_op = ('\n> ')
+                                            else:    
+                                                if 'pistola' in serious_op.lower():
+                                                    text = (f'\nBien.\n'
+                                                            f'\nEstás apuntando a la puerta del baño que por ahora estpá cerrada.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    text = (f'\n ...\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.080)
+                                                    print ("""
+  ____    _    _   _  ____ _ 
+ | __ )  / \  | \ | |/ ___| |
+ |  _ \ / _ \ |  \| | |  _| |
+ | |_) / ___ \| |\  | |_| |_|
+ |____/_/   \_\_| \_|\____(_)
+                                 
+                                                            """)  
+                                                    if myPartner.jose:
+                                                        time.sleep(3)
+                                                        text = (f'\nDisparaste.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        time.sleep(1.9)
+                                                        text = (f'\nLa puerta sigue cerrada. Lograste disparar antes de que entrara.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        text = (f'\n...¿Quieres abir la puerta?\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        open = input('\n> ')
+                                                        while not any(keyword in open.lower() for keyword in ['si']):
+                                                            if any(keyword in open.lower() for keyword in ['no']):
+                                                                text = (f'\nCreo que sería mejor si lo haces.'
+                                                                        f'\n...¿Quieres abir la puerta?\n')
+                                                                for char in text:
+                                                                    print(char, end='', flush=True)
+                                                                    time.sleep(0.040)
+                                                                open = input('\n> ')
+                                                            else:
+                                                                print('\n??')
+                                                                print('\n¿Sí o no...?\n')
+                                                                open = input('\n> ')
+
+                                                        # Cuando abre la puerta
+
+                                                        text = (f'\nHay alguien en el suelo. Le has dado. Felicidades.\n'
+                                                                f'\nOh.\n'
+                                                                f'\nParece que tiene algo en su mano...\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        
+                                                        print (""" 
+   ,   /\   ,
+  / '-'  '-' \\ 
+ | DETECTIVE  |
+ \    .--.    /
+  |  ( 19 )  |
+  \   '--'   /
+   '--.  .--'
+       \/
+                                                               
+
+    """)
+
+                                                        text = (f'\n¿Un detective?\n'
+                                                                f'\nParece ser que su nombre está en la parte trasera de la placa...\n\n\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        text = (f'\n ...\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.070)
+                                                        text = ('               José Paredes Pacheco \n\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.1)
+                                                        
+                                                        text = (f'\nOh.\n'
+                                                                f'\nLe has disparado a tu compañero.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.075)
+                                                        time.sleep(2.8)
+                                                        text = (f'\n.\n'
+                                                                f'.\n'
+                                                                f'.\n')    
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.1)
+                                                        time.sleep(3)
+                                                        text = (f'\nNo duraste mucho, ¿verdad?\n'
+                                                                f'\nDespués de este incidente te removieron en seguida del caso, {myPlayer.name}.\n'
+                                                                f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.060)
+                                                        time.sleep(2.5)
+                                                        bad_ending()
+
+                                                    elif myPartner.marcus:
+                                                        time.sleep(3)
+                                                        text = (f'\nTe han disparado.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        time.sleep(1.9)
+                                                        text = (f'\n ...\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.070)
+                                                        time.sleep(1)
+                                                        text = (f'\nNo supiste en qué momento pero ya estás en suelo.\n'
+                                                                f'\nDe repente hace mucho frío...\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.080)
+                                                        text = (f'\n¿Quién es...?\n'
+                                                                f'\nHay alguien parado en frente de ti.\n'
+                                                                f'\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        time.sleep(2)
+                                                        text = (f'\n!!!?\n'
+                                                                f'\nEs Marcus...,¿cómo....?.\n'
+                                                                f'\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        text = (f'\n.\n'
+                                                                f'.\n'
+                                                                f'.\n')    
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.1)
+                                                        text = (f'\nMoriste desangrado el 17 de Noviembre de 1986\n'
+                                                                f'\nEs Marcus...,¿cómo....?.\n'
+                                                                f'\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.075)
+                                                            bad_ending()                         
+
+                                                elif 'hacha' in serious_op.lower():
+                                                    text = (f'\nBien, sostenla fuerte.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    time.sleep(2)
+                                                    text = (f'\nLa puerta se ha abierto...\n'
+                                                            f'\nOh.\n'
+                                                            f'\nEs José.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    print(""" 
+
+                                                          """)
+
+
+                                                elif 'navaja' in serious_op.lower():
+                                                    pass
+
+                                    elif 'nada' in serious_op.lower():
+                                        if myPartner.jose:
+                                            pass
+                                        elif myPartner.marcus:
+                                            pass                       
+
+                                elif 'nada' in analize.lower():
+                                    text = (f'\nBien, será mejor continuar.\n')  
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.040)
+                                    time.sleep(2.4)
+                                    select_cabin()
+
+                                else:
+                                    text = ('\nRevisa algo que esté en el baño... \n')
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.040)
+
+                            
+                            text = ('\n¿Qué otra cosa quisieras revisar?\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                            analize = input('\n> ')
+
+                    
+                    # Colocar lo demás para encontrar las pistas
+
+                elif 'sala' in eleccion.lower():
+                    sala = True
+                    time.sleep(1.5)
+                    print('\n\n\nCargando sala... \n\n\n')
+                    time.sleep(2.2)
+                    cabin_living()
+                    time.sleep(1.8)
+                
+                elif 'cocina' in eleccion.lower():
+                    cocina = True
+                    time.sleep(1.5)
+                    print('\n\n\nCargando cocina... \n\n\n')
+                    time.sleep(2.2)
+                    cabin_kitchen()
+                    time.sleep(1.8)
+
+                elif 'cuarto' in eleccion.lower():
+                    cuarto = True
+                    time.sleep(1.5)
+                    print('\n\n\nCargando cuarto... \n\n\n')
+                    time.sleep(2.2)
+                    cabin_room()
+                    time.sleep(1.8)
+                
+                else:
+                    text = (f'\nCreo que eso no está en la cabaña... \n')  
+                    for char in text:
+                        print(char, end='', flush=True)
+                        time.sleep(0.040)
+    
+    select_cabin()
+
+        
+
+
+
+
+
+
+
+def lugar2():
+    print('\n¡Bienvenido a Lugar2!')
+    # Implementa la lógica para el lugar2
+
+
+def lugar3():
+    print('\n¡Bienvenido a Lugar3!')
+    # Implementa la lógica para el lugar3
+
+
+def lugar4():
+    print('\n¡Bienvenido a Lugar4!')
+    # Implementa la lógica para el lugar4
+
+
+def lugar5():
+    print('\n¡Bienvenido a Lugar5!')
+    # Implementa la lógica para el lugar5
+
+
+
+#oficina()
+#title_screen()
+#cabin()
+#cabin_room()
