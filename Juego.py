@@ -11,16 +11,13 @@ import time
 
 # Inicializamos los atributos del personaje principal
 class Player:
-    def __init__(self, name='', hp=100, location=(0, 0), status_effects=None, items=None, money=0, bulletproof = False, gun = False, weapons = []):
+    def __init__(self, name='', items=None, bulletproof = False, gun = False, weapons = []):
         self.name = name
         self.weapons = weapons if weapons is not None else []
         self.bulletproof = bulletproof
         self.gun = gun
-        self.hp = hp
-        self.location = location
-        self.status_effects = status_effects if status_effects is not None else []
         self.items = items if items is not None else []
-        self.money = money
+
 
     def add_weapon(self, weapon):
         self.weapons.append(weapon)
@@ -118,6 +115,42 @@ def obtener_lista_frutas():
         "Uvilla", "Yaca", "Zapote", "Zarzamora"
     ]
 
+def marc_letter():
+    text_to_display = (""" Carta de Marcus:"""
+    )
+
+    for char in text_to_display:
+        print(char, end='', flush=True)
+        time.sleep(0.040)
+    time.sleep(3)
+    text_to_display = (""" 
+                    
+
+        No hay palabras suficientes para justificar lo que he hecho, pero siento la necesidad de confesar. 
+        He tomado la vida de Martin. Sé que no hay justificación pero no me arrepiento de lo que hice.
+                            
+        Cuando me enteré que Martín salía con María no lo soporté.
+
+        Le quité la vida a Martin no hay disculpa que pueda mitigar ese hecho. No busco el perdón de nadie.
+        El miedo me consume, pero no el temor al castigo. Más bien, es el temor a la oscuridad de mi propia alma, 
+        a la monstruosidad que he descubierto dentro de mí. 
+
+        Mi único deseo ahora es que todos encuentren algún tipo de paz en medio de este caos. 
+        No hay manera de retroceder el tiempo ni de enmendar mis acciones. Solo espero que encuentres la fuerza para superar este dolor que, de alguna manera, te he infligido.
+
+        Atte. Marcus Davidson 
+                            
+
+    """
+    )
+
+    for char in text_to_display:
+        print(char, end='', flush=True)
+        time.sleep(0.040)
+    
+    time.sleep(4)
+
+    
 
 def wallet():
     print(""" 
@@ -505,18 +538,14 @@ def title_screen():
 def help_menu():
     time.sleep(1)
     print('\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄')
-    print(f'* * * * * * * * * * * * MENU DE AYUDA * * * * * * * * * * * * \n'
-          f'Quizás tengas dudas acerca del juego asi que\n'
-          f'esta es una guía rápida acerca de cómo jugar:\n'
-          f'- Usa arriba, abajo, izquierda  y derecha para moverte.\n'
-          f'- Usa "mirar" para inspeccionar.\n'
-          f'- Hay eventos aleatorios alrededor del mapa, suerte.\n'
-          f'- Escribe el comando a realizar.\n'
-          f'- Puedes obtener items que te ayudaran en el juego\n'
-          f'- Para checar tu inventario escribe "inventario"\n'
-          f'- Para checar el mapa escribe "ver mapa"\n'
-          f'- Si al jugar tienes dudas, escribe "ayuda"\n'
-          f'- ¡Mucha suerte y diviértete!...')
+    print(f'\n              * * * * * * * * * * * * MENU DE AYUDA * * * * * * * * * * * * \n'
+          f'                    Quizás tengas dudas acerca del juego asi que\n'
+          f'                    esta es una guía rápida acerca de cómo jugar:\n'
+          f'          - El juego te presentará la historia, presta mucha atención a los detalles.\n'
+          f'       - De acuerdo a la escena, podrás escribir ciertos comandos que desarrollaran la historia.\n'
+          f' - Habrá momentos donde si no sabes que hacer, podrás pedir ayuda escribiendo ciertas palabras clave.\n'
+          f'- Recuerda que cada decisión que tomes afectará en la historia.\n'
+          f'                                ¡Mucha suerte y diviértete!\n')
     print('▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n')
     time.sleep(5)
     title_screen()
@@ -1460,6 +1489,9 @@ def cabin():
                     print(char, end='', flush=True)
                     time.sleep(0.040)
                 eleccion = 'baño'
+                baño = False
+                sala = False
+                cuarto = False
                 time.sleep(2.5)
 
             else:
@@ -1740,7 +1772,7 @@ ____    _    _   _  ____ _
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.040)
                                                     if myClues.wallet:
-                                                        text = (f'\nDebido a que su fue cartera encontrada en la cabaña, en no mucho fue declarado culpable.\n'
+                                                        text = (f'\nDebido a que su identificación fue encontrada en la cabaña, en no mucho fue declarado culpable.\n'
                                                                 f'\nFelicidades. Has resuelto el caso.\n'
                                                                 f'\nMarcus fue el culpable todo este tiempo\n')
                                                         for char in text:
@@ -1748,7 +1780,7 @@ ____    _    _   _  ____ _
                                                             time.sleep(0.040)
                                                         time.sleep(2.5)
 
-                                                    # Agregar reporte del caso resuelto 
+                                                        marc_letter()
                                                         good_ending()
                                                 
                                                     else:
@@ -1896,6 +1928,11 @@ ____    _    _   _  ____ _
                                                     """)
                                                 
                                                 time.sleep(3.5)
+                                                text = (f'\nPiensa bien tu respuesta.\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                time.sleep(1.5)
 
                                                 murder = input('\n> ')
                                                 time.sleep(1)
@@ -1948,7 +1985,7 @@ ____    _    _   _  ____ _
                                                         time.sleep(0.040)
 
                                                     if myClues.wallet:
-                                                        text = (f'\nAdemás, está lo de la billetera.\n')
+                                                        text = (f'\nAdemás, está lo de la identificación.\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
@@ -1961,13 +1998,13 @@ ____    _    _   _  ____ _
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
-                                                        # AAgregar confesion final 
+                                                        time.sleep(3)
+                                                        marc_letter()
                                                         text = (f'\n¡Felicidades! Has resuelto el caso.\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
-                                                        
-                                                        #Agregar algo de la confesion de marcus
+                                                        time.sleep(2)
                                                         good_ending()
                                                     else:
                                                         text = (f'\nSin perder tiempo, llevas el reporte a tu jefe y presentas a Marcus como sospechoso.\n'
@@ -2122,7 +2159,7 @@ ____    _    _   _  ____ _
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.040)
                                                             if myClues.wallet:
-                                                                text = (f'\nDebido a que su fue cartera encontrada en la cabaña, en no mucho fue declarado culpable.\n'
+                                                                text = (f'\nDebido a que su identificación fue encontrada en la cabaña, en no mucho fue declarado culpable.\n'
                                                                         f'\nFelicidades. Has resuelto el caso.\n'
                                                                         f'\nMarcus fue el culpable todo este tiempo\n')
                                                                 for char in text:
@@ -2130,7 +2167,8 @@ ____    _    _   _  ____ _
                                                                     time.sleep(0.040)
                                                                 time.sleep(2.5)
 
-                                                        # Agregar reporte del caso resuelto 
+                                                                marc_letter()
+
                                                                 good_ending()
                                                     
                                                             else:
@@ -2314,7 +2352,8 @@ ____    _    _   _  ____ _
                                                 text = (f'\nPiensa bien tu respuesta.\n')
                                                 for char in text:
                                                     print(char, end='', flush=True)
-                                                    time.sleep(0.070)
+                                                    time.sleep(0.040)
+                                                time.sleep(1.5)
 
                                                 murder = input('\n> ')
 
@@ -2366,7 +2405,7 @@ ____    _    _   _  ____ _
                                                         time.sleep(0.040)
 
                                                     if myClues.wallet:
-                                                        text = (f'\nAdemás, está lo de la billetera.\n')
+                                                        text = (f'\nAdemás, está lo de la identificación.\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
@@ -2379,14 +2418,15 @@ ____    _    _   _  ____ _
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
-                                                        # AAgregar confesion final 
+                                                        time.sleep(3)
+                                                        marc_letter()
                                                         text = (f'\n¡Felicidades! Has resuelto el caso.\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
-                                                        
-                                                        #Agregar algo de la confesion de marcus
+                                                        time.sleep(2)
                                                         good_ending()
+
                                                     else:
                                                         text = (f'\nSin perder tiempo, llevas el reporte a tu jefe y presentas a Marcus como sospechoso.\n'
                                                                 f'\nSin embargo, debido a que no encontraste suficientes pruebas en la cabaña, se libró facilmente.\n')
@@ -2540,7 +2580,7 @@ ____    _    _   _  ____ _
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.040)
                                                             if myClues.wallet:
-                                                                text = (f'\nDebido a que su fue cartera encontrada en la cabaña, en no mucho fue declarado culpable.\n'
+                                                                text = (f'\nDebido a que su identificación fue encontrada en la cabaña, en no mucho fue declarado culpable.\n'
                                                                         f'\nFelicidades. Has resuelto el caso.\n'
                                                                         f'\nMarcus fue el culpable todo este tiempo\n')
                                                                 for char in text:
@@ -2548,7 +2588,7 @@ ____    _    _   _  ____ _
                                                                     time.sleep(0.040)
                                                                 time.sleep(2.5)
 
-                                                        # Agregar reporte del caso resuelto 
+                                                                marc_letter()
                                                                 good_ending()
                                                     
                                                             else:
@@ -2722,6 +2762,11 @@ ____    _    _   _  ____ _
                                         """)
                                     
                                     time.sleep(3.5)
+                                    text = (f'\nPiensa bien tu respuesta.\n')
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.040)
+                                    time.sleep(1.5)
 
                                     murder = input('\n> ')
                                     time.sleep(1)
@@ -2774,7 +2819,7 @@ ____    _    _   _  ____ _
                                             time.sleep(0.040)
 
                                         if myClues.wallet:
-                                            text = (f'\nAdemás, está lo de la billetera.\n')
+                                            text = (f'\nAdemás, está lo de la identificación.\n')
                                             for char in text:
                                                 print(char, end='', flush=True)
                                                 time.sleep(0.040)
@@ -2787,14 +2832,15 @@ ____    _    _   _  ____ _
                                             for char in text:
                                                 print(char, end='', flush=True)
                                                 time.sleep(0.040)
-                                            # AAgregar confesion final 
+                                            time.sleep(3)
+                                            marc_letter()
                                             text = (f'\n¡Felicidades! Has resuelto el caso.\n')
                                             for char in text:
                                                 print(char, end='', flush=True)
                                                 time.sleep(0.040)
-                                            
-                                            #Agregar algo de la confesion de marcus
+                                            time.sleep(2)
                                             good_ending()
+
                                         else:
                                             text = (f'\nSin perder tiempo, llevas el reporte a tu jefe y presentas a Marcus como sospechoso.\n'
                                                     f'\nSin embargo, debido a que no encontraste suficientes pruebas en la cabaña, se libró facilmente.\n')
@@ -2924,24 +2970,27 @@ ____    _    _   _  ____ _
                                     print(char, end='', flush=True)
                                     time.sleep(0.040)
                             else:
+                                time.sleep(2)
                                 myClues.key = True
                                 text = (f'\n¿Oh?\n'
                                         )  
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.040)
+                                time.sleep(3)
                                 text = (f'\n...\n'
                                         )  
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.060)
+                                time.sleep(2)
                                 text = (f'\n¡Una llave!\n'
                                         f'\nSerá mejor guardarla. Me pregunto qué abrirá...\n'
                                         )  
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.040)
-
+                                time.sleep(2)
 
                         elif 'nada' in analize.lower():
                             text = (f'\nBien, será mejor continuar.\n')  
@@ -3040,17 +3089,30 @@ ____    _    _   _  ____ _
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.060)
-                                text = (f'\n¡La llave!\n')                                    
+                                time.sleep(2)
+                                text = (f'\n¡Tienes la llave!\n'
+                                        f'\nÚsala para abrir el seguro.\n')                                    
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.040)
-                                time.sleep(2.5)
+                                text = (f'\n.\n'
+                                        f'.\n'
+                                        f'.\n')    
+                                for char in text:
+                                    print(char, end='', flush=True)
+                                    time.sleep(0.1)
+                                time.sleep(2)
                                 text = (f'\nAdentro hay... una identificación.\n')                                    
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.040)
-                                time.sleep(1.8)
+                                time.sleep(2)
                                 wallet()
+                                time.sleep(2)
+                                text = (f'\nHa sido guardada en pistas\n')                                    
+                                for char in text:
+                                    print(char, end='', flush=True)
+                                    time.sleep(0.040)
                             else:
                                 text = (f'\nLo mejor será buscarla.\n'
                                     )  
