@@ -27,10 +27,10 @@ class Player:
     
     def get_weapons(self):
         if len(self.weapons) == 1:
-            print(f'\n        Tomar tu {self.weapons[0]}.\n')
+            print(f'\n        - Tomar tu {self.weapons[0]}.\n')
         else:
-            print(f'\n        Tomar tu {self.weapons[0]}.\n'
-                  f'          Tomar tu {self.weapons[1]}.\n')
+            print(f'\n        - Tomar tu {self.weapons[0]}.\n'
+                  f'\n        - Tomar tu {self.weapons[1]}.\n')
             
                 
     # Imprimimos la lista de items
@@ -111,9 +111,31 @@ def obtener_lista_frutas():
     ]
 
 
+def fingerprint():
+    print(""" 
+                                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡶⠟⠛⠛⠛⠛⠻⢶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⠀⠀⢀⣾⠋⣠⡶⠟⠛⠛⠷⣦⣄⠈⠻⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⠀⢀⣾⠃⠰⠟⢠⡶⠶⠶⣦⣄⠉⠳⣤⡈⢻⣦⠀⠀⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⠀⣼⠇⣰⡆⢠⡄⠀⣀⣀⣀⠙⠻⣦⡙⢿⣆⠉⠁⠀⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⠰⠿⢠⡿⠀⣿⠀⣾⠋⣉⠙⢷⣄⠈⠻⣦⡙⢳⣄⠀⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⣤⠀⠚⠃⠀⣿⠀⣿⡀⠹⣷⡀⠙⢷⣄⠈⠻⡦⠁⠀⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⣿⠀⣴⠰⣦⠘⣆⠈⢿⣦⡈⠻⢷⣄⠙⠻⠀⣤⠄⣰⡄⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⢿⡆⢻⡆⠹⣧⠙⣦⡀⠉⠻⣦⣄⠙⠳⠆⢠⡿⢀⣿⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⢸⣇⠈⣿⠀⠘⢷⣌⠛⠶⡤⠀⣉⠛⠆⢠⡿⢁⣾⠃⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⠀⠟⢀⣠⣴⠦⠀⠙⢃⣀⣀⠈⠙⠛⠀⠛⢁⣾⠃⠀⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⠀⠀⠛⠉⣠⣴⠾⠛⢛⣉⣙⣛⡛⠗⠰⣦⠀⠁⠀⠀⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢠⡶⠟⢛⣉⣉⣉⡛⠛⠶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠞⢋⣁⣠⣈⠙⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+                                                """)
+
 # Lista de compañeros, puede no ser función y solo ser comentados
 def partner():
     print("""
+          
+
                                             PERFIL 1\n
                 \n                Nombre: José Paredes Pacheco                            .......#@@@@#:......
                 Alias: Pepe                                             .....-@@@@@@@@=.....
@@ -133,10 +155,14 @@ def partner():
                 Es bueno con el combate cuerpo a cuerpo.\n
                 Casos resueltos:
                 1 / 5
+          
 
             """)
 
     print("""
+          
+
+
                                         PERFIL 2\n
                 \n                .......#@@@@#:......        Nombre: Marcus Davidson       
                 .....-@@@@@@@@=.....        Alias: Marc
@@ -162,6 +188,7 @@ def partner():
 # Carta de la víctima
 def letter():
     print("""
+          
             )_-+\n
             He llegado a un punto en #& que no puedo ignorar el resentimiento que siento 
             hacia ti.\n
@@ -178,12 +205,13 @@ def letter():
 
             Atte:,
             #&$%@!^*(          
+          
           """)
 
 
 # Expediente del asesinato
 def criminal_file():
-    print(   '\nN° Expediente:** 93932                                        Fecha: 17/11/1986'
+    print(   f'\n\n\nN° Expediente:** 93932                                        Fecha: 17/11/1986'
              f'\n                                                              Hora: 06:35 a.m'
              f'\nLugar: Parque Nacional de Yosemite '
              f'\nDescripción del Caso:'
@@ -1068,7 +1096,7 @@ def oficina():
                 for char in text:
                     print(char, end='', flush=True)
                     time.sleep(0.040)
-                myPlayer.add_item(criminal_file)
+                myPlayer.add_item(criminal_file())
 
         elif any(keyword in opcion_e.lower() for keyword in ['perfil', 'perfiles', 'compañero', 'compañeros']):
             first_option = True
@@ -1088,7 +1116,7 @@ def oficina():
                 for char in text:
                     print(char, end='', flush=True)
                     time.sleep(0.040)
-                myPlayer.add_item(partner)
+                myPlayer.add_item(partner())
 
                 while not partner_choosen:
                     text = ('\n¿Con cuál de estas dos personas quieres trabajar?\n')
@@ -1136,7 +1164,7 @@ def oficina():
                 for char in text:
                     print(char, end='', flush=True)
                     time.sleep(0.025)
-                myPlayer.add_item(letter)
+                myPlayer.add_item(letter())
 
         else:
             text=('\nOpción inválida. Elige algo que te hayan entregado...\n')
@@ -1198,7 +1226,6 @@ def oficina():
 
     text = (
         f'\n\nAhora, quizá te encuentres peligros durante tu investigación, así que necesitarás algo de ayuda.\n'
-        f'\nEscoge dos de las cosas que se encuentren en la armería.\n'
     )
     for char in text:
         print(char, end='', flush=True)
@@ -1220,53 +1247,71 @@ def oficina():
                                                                             '''                                  
                                                                       Hacha                       Chaleco Antibalas                                                      
                                                     
-            +----------------------------------------------------------------------------------------------------+
+           +-----------------------------------------------------------------------------------------------------+
           """)
-
-    time.sleep(1.8)
-
-    text = (f'\n¿Qué quieres llevar para el caso?\n')    
+    
+    text =(f'\nEscoge dos de las cosas que se encuentren en la armería.\n'
+            )
     for char in text:
         print(char, end='', flush=True)
-        time.sleep(0.025)
-    while len(myPlayer.weapons) < 2:
-        option = input('\n> ')
-    
-        if any(keyword in option.lower() for keyword in ['pistola', 'navaja', 'hacha', 'chaleco', 'antibalas']):
-            if option.lower() == 'pistola':
-                myPlayer.add_weapon('pistola')
-                myPlayer.gun = True
-            elif option.lower() == 'navaja':
-                myPlayer.add_weapon('navaja')
-            elif option.lower() == 'hacha':
-                myPlayer.add_weapon('hacha')
-            elif option.lower() in ['chaleco', 'antibalas']:
-                myPlayer.bulletproof = True
-    
-            if len(myPlayer.weapons) == 2:
-                text = ('\nYa has elegido. Esto es lo que llevarás contigo:\n\n')
-                for char in text:
-                    print(char, end='', flush=True)
-                    time.sleep(0.040)
-                myPlayer.get_weapons()  # Imprimir las armas elegidas por el jugador
+        time.sleep(0.040)
+
+    time.sleep(1.8)
+    total_choices = 0
+    selected_options = set()
+
+    while total_choices < 2:
+        option = input('\n> ').lower()
+
+        selected_option = None
+        for keyword in ['pistola', 'navaja', 'hacha', 'chaleco']:
+            if keyword in option:
+                if selected_option is not None:
+                    # Si ya se seleccionó una opción, no se permite otra
+                    selected_option = None
+                    break
+                selected_option = keyword
+
+        if selected_option is not None:
+            if selected_option not in selected_options:
+                selected_options.add(selected_option)
+
+                if selected_option == 'pistola':
+                    myPlayer.add_weapon('pistola')
+                    myPlayer.gun = True
+                elif selected_option == 'navaja':
+                    myPlayer.add_weapon('navaja')
+                elif selected_option == 'hacha':
+                    myPlayer.add_weapon('hacha')
+                elif selected_option == 'chaleco':
+                    myPlayer.bulletproof = True
+
+                total_choices += 1
+
+                if total_choices < 2:
+                    text = ('\nExcelente. Aún puedes elegir otra cosa más :)\n')
+                    for char in text:
+                        print(char, end='', flush=True)
+                        time.sleep(0.040)
             else:
-                text = ('\nExcelente. Aún puedes elegir otra cosa más :)\n')
+                text = (f'\nYa has elegido {selected_option}. Por favor, elige otra cosa.\n')
                 for char in text:
                     print(char, end='', flush=True)
                     time.sleep(0.040)
         else:
-            text = ('\nPor favor, elige alguna de las opciones en la armería.\n')
+            text = ('\nPor favor, elige alguna de las opciones en la armería.\n'
+                    '\nRecuerda que solo puedes seleccionar una a la vez.\n')
             for char in text:
                 print(char, end='', flush=True)
                 time.sleep(0.040)
 
-    text = (f'\n\n¡Perfecto! Ahora ya estás listo para comenzar.\n'
-            f'\nLo primero será ir a investigar la escena del crimen. La cabaña.\n'
-            f'\n{myPartner.partner_name} te verá allá.\n\n'
-            f'\nMucha suerte atrapando al culpable.\n')    
+    # Después del bucle
+    text = ('\n¡Perfecto! Ya estás listo para comenzar a investigar.\n'
+            '\nEsto es lo que llevarás contigo:\n\n')
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.040)
+    myPlayer.get_weapons()  # Imprimir las armas elegidas por el jugador}
     
     cabin()
 ##_---------------------------------------------------------------------------------------------
@@ -1380,12 +1425,12 @@ def cabin():
                             print(char, end='', flush=True)
                             time.sleep(0.040)
                         time.sleep(1.5)
-                        print (f'    La tina.\n'
-                                f'    El espejo.\n'
-                                f'    El suelo.\n'
-                                f'    El lavabo\n'
-                                f'    El inodoro\n'
-                                f'    Mejor nada...')  
+                        print ( f'    - La tina.\n'
+                                f'    - El espejo.\n'
+                                f'    - El suelo.\n'
+                                f'    - El lavabo\n'
+                                f'    - El inodoro\n'
+                                f'    - Mejor nada...')  
                         analize = input('\n> ')
 
                         while True:
@@ -1408,24 +1453,8 @@ def cabin():
                                         time.sleep(0.040)
 
                                 elif 'espejo' in analize.lower():
-                                    print(""" 
-                                                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡶⠟⠛⠛⠛⠛⠻⢶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⠀⠀⢀⣾⠋⣠⡶⠟⠛⠛⠷⣦⣄⠈⠻⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⠀⢀⣾⠃⠰⠟⢠⡶⠶⠶⣦⣄⠉⠳⣤⡈⢻⣦⠀⠀⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⠀⣼⠇⣰⡆⢠⡄⠀⣀⣀⣀⠙⠻⣦⡙⢿⣆⠉⠁⠀⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⠰⠿⢠⡿⠀⣿⠀⣾⠋⣉⠙⢷⣄⠈⠻⣦⡙⢳⣄⠀⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⣤⠀⠚⠃⠀⣿⠀⣿⡀⠹⣷⡀⠙⢷⣄⠈⠻⡦⠁⠀⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⣿⠀⣴⠰⣦⠘⣆⠈⢿⣦⡈⠻⢷⣄⠙⠻⠀⣤⠄⣰⡄⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⢿⡆⢻⡆⠹⣧⠙⣦⡀⠉⠻⣦⣄⠙⠳⠆⢠⡿⢀⣿⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⢸⣇⠈⣿⠀⠘⢷⣌⠛⠶⡤⠀⣉⠛⠆⢠⡿⢁⣾⠃⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⠀⠟⢀⣠⣴⠦⠀⠙⢃⣀⣀⠈⠙⠛⠀⠛⢁⣾⠃⠀⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⠀⠀⠛⠉⣠⣴⠾⠛⢛⣉⣙⣛⡛⠗⠰⣦⠀⠁⠀⠀⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⢠⡶⠟⢛⣉⣉⣉⡛⠛⠶⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠞⢋⣁⣠⣈⠙⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-                                                ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-
-                                                """)
+                                    fingerprint()
+                                    myPlayer.add_item(fingerprint())
                                     text = (f'\n¡Oh! Una huella.\n'
                                             f'\nMe pregunto de quién será...\n')  
                                     for char in text:
@@ -1463,13 +1492,13 @@ def cabin():
                                         print(char, end='', flush=True)
                                         time.sleep(0.040)
                                     myPlayer.get_weapons()
-                                    print(f'        Nada')
+                                    print(f'        - Nada')
                                     serious_op = input('\n> ')
 
                                     if 'tomar' in serious_op.lower():
                                         while True:
-                                            if any(palabra in serious_op.lower() for palabra in myPlayer.weapons):
-                                                text = (f'\nToma algo que tengas en tu armería...\n')
+                                            if not any(palabra in serious_op.lower() for palabra in myPlayer.weapons):
+                                                text = (f'\Escoge algo que tengas en tu armería...\n')
                                                 for char in text:
                                                     print(char, end='', flush=True)
                                                     time.sleep(0.040)
@@ -1511,7 +1540,7 @@ def cabin():
                                                         open = input('\n> ')
                                                         while not any(keyword in open.lower() for keyword in ['si']):
                                                             if any(keyword in open.lower() for keyword in ['no']):
-                                                                text = (f'\nCreo que sería mejor si lo haces.'
+                                                                text = (f'\nCreo que sería mejor si lo haces.\n'
                                                                         f'\n...¿Quieres abir la puerta?\n')
                                                                 for char in text:
                                                                     print(char, end='', flush=True)
@@ -1582,6 +1611,7 @@ def cabin():
 
                                                     elif myPartner.marcus:
                                                         time.sleep(3)
+                                                        ## Chaleco antibalas
                                                         text = (f'\nTe han disparado.\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
@@ -1630,15 +1660,44 @@ def cabin():
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.040)
                                                     time.sleep(2)
-                                                    text = (f'\nLa puerta se ha abierto...\n'
-                                                            f'\nOh.\n'
-                                                            f'\nEs José.\n')
-                                                    for char in text:
-                                                        print(char, end='', flush=True)
-                                                        time.sleep(0.040)
-                                                    print(""" 
 
-                                                          """)
+                                                    if myPartner.jose:
+                                                        text = (f'\nLa puerta se ha abierto...\n'
+                                                                f'\nOh.\n'
+                                                                f'\nEs José.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        time.sleep(1.8)
+                                                        print(""" 
+                                                              
+                   |\___________________________________________________________             
+                   |                                                            | 
+                   |    ¡Perdón por la tardanza! Me adelanté y fui a conseguir  |
+                   |    los resultados de la sangre que está en este piso.      |
+                   |                                                           /   
+                    \_________________________________________________________/     
+                                                                   
+                                                            """)
+                                                        time.sleep(3)
+                                                        print(f""" 
+                                                              
+                   |\___________________________________________________________             
+                   |                                                            | 
+                   |    Parece que no es sangre de la víctima, {myPlayer.name}.  
+                   |    Los exámenes mostraron que es sangre tipo AB-.          |
+                   |                                                           /   
+                    \_________________________________________________________/     
+                                                                   
+                                                            """)
+                                                        time.sleep(3)
+                                                        text = (f'\n¿AB negativo...?\n'
+                                                                f'\nRápido, algo debe de haber en las pistas que has recolectado.\n'
+                                                                f'\nEscribe "revisar pistas".\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+
 
 
                                                 elif 'navaja' in serious_op.lower():
@@ -1705,34 +1764,6 @@ def cabin():
                         time.sleep(0.040)
     
     select_cabin()
-
-        
-
-
-
-
-
-
-
-def lugar2():
-    print('\n¡Bienvenido a Lugar2!')
-    # Implementa la lógica para el lugar2
-
-
-def lugar3():
-    print('\n¡Bienvenido a Lugar3!')
-    # Implementa la lógica para el lugar3
-
-
-def lugar4():
-    print('\n¡Bienvenido a Lugar4!')
-    # Implementa la lógica para el lugar4
-
-
-def lugar5():
-    print('\n¡Bienvenido a Lugar5!')
-    # Implementa la lógica para el lugar5
-
 
 
 #oficina()
