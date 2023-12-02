@@ -236,7 +236,7 @@ def criminal_file():
              f'\nHistorial Médico: '
              f'\nProblemas con el tabaco, la bebida y abuso de sustancias.'
              f'\nProblemas de asma.\n'
-             f'\nSospechosos: ??\n'
+             f'\nSospechosos: María Laura Salazar Pérez (su pareja)\n'
              f'\nEvidencia:'
              f'\n    1. Huellas: Se desconoce de quién.'
              f'\n    2. No se encontró el arma homicida.'
@@ -1000,7 +1000,7 @@ def oficina():
                    |                                                         |
                    |   Es Martin, {myPlayer.name}, quería que te enteraras   
                    |   antes de que saliera en las noticias.                 |
-                   |                                                        /   
+                   |   Sé un adulto y concéntrate en el trabajo.            /   
                     \______________________________________________________/                    
           
                                                                    """)
@@ -1021,15 +1021,15 @@ def oficina():
                    |\____________________________________________________________             
                    |                                                             |
                    |   Como se trata de alguien que era cercano a ti, más        |
-                   |   te vale encontrar al asesino y no equivocarte de nuevo.   |
-                   |                                                            /   
+                   |   te vale no equivocarte de nuevo. Tienes 12 horas          |
+                   |   resolver el caso por cuestión de presupuesto.            /   
                     \__________________________________________________________/   
 
           
 
                                                                    """)
     
-    time.sleep(3.5)
+    time.sleep(4.5)
     
     print("""
 
@@ -1092,7 +1092,7 @@ def oficina():
                 time.sleep(1.8)
                 file_read = True
                 letter_unlocked = True
-                text = ('\n\nEl expediente ha sido guardado en items :)\n')
+                text = ('\n\nEl expediente ha sido guardado en pistas.\n')
                 for char in text:
                     print(char, end='', flush=True)
                     time.sleep(0.040)
@@ -1112,7 +1112,7 @@ def oficina():
                 partner()
                 time.sleep(1.8)
                 profile_read = True
-                text = ('\n\nAmbos perfiles han sido guardado en items:)\n')
+                text = ('\n\nAmbos perfiles han sido guardado en pistas.\n')
                 for char in text:
                     print(char, end='', flush=True)
                     time.sleep(0.040)
@@ -1159,7 +1159,7 @@ def oficina():
                 print('\n')
                 letter()
                 time.sleep(1.8)
-                text = ('\n\nLa carta ha sido guardada en items :)\n')
+                text = ('\n\nLa carta ha sido guardada en pistas.\n')
                 letter_read = True
                 for char in text:
                     print(char, end='', flush=True)
@@ -1250,13 +1250,13 @@ def oficina():
            +-----------------------------------------------------------------------------------------------------+
           """)
     
+    time.sleep(1.8)
+    
     text =(f'\nEscoge dos de las cosas que se encuentren en la armería.\n'
             )
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.040)
-
-    time.sleep(1.8)
     total_choices = 0
     selected_options = set()
 
@@ -1697,6 +1697,39 @@ def cabin():
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
+                                                        
+                                                        clues = input('\n> ')
+
+                                                        while not any(keyword in clues.lower() for keyword in ['revisar']):
+                                                            text = (f'\nCreo que sería mejor si lo haces...\n'
+                                                                    f'\nEscribe "revisar pistas".\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+                                                            clues = input('\n> ')
+                                                        
+                                                        time.sleep(2.5)
+                                                        print('\n\n\nCargando pistas...\n\n\n')
+                                                        time.sleep(2.8)
+
+                                                        print(myPlayer.get_items())
+
+                                                        time.sleep(5)
+                                                        print(f""" 
+                                                              
+                   |\___________________________________________________________             
+                   |                                                            | 
+                   |    {myPlayer.name}..,¿quién crees que pude haber sido el
+                   |    culpable? Ya casi han pasado las 12 horas...            |
+                   |                                                           /   
+                    \_________________________________________________________/     
+                                                                   
+                                                            """)
+                                                        
+
+
+
+
 
 
 
@@ -1770,3 +1803,4 @@ def cabin():
 #title_screen()
 #cabin()
 #cabin_room()
+
