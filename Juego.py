@@ -47,6 +47,18 @@ class Player:
 
 myPlayer = Player()
 
+# Definimos una clase para pistas
+
+class Clues:
+    def __init__(self, file = False, letter = False , porfile = False, fingerprint = False, wallet = False , key = False ):
+        self.file = file
+        self.letter = letter
+        self.porfile = porfile
+        self.fingerprint = fingerprint
+        self.wallet = wallet
+        self.key = key
+
+myClues = Clues()
 
 # Verificamos con qué compañero vamos a trabajar, ya que este nos ayudará en la historia más adelante
 class Partner:
@@ -82,10 +94,6 @@ def check_items():
     time.sleep(1)
 
 
-# Lista de acciones posibles del jugador para abarcar mayor margen
-def actions():
-    pass
-
 
 def obtener_lista_frutas():
     return [
@@ -109,6 +117,27 @@ def obtener_lista_frutas():
         "Pitomba", "Pomarrosa", "Pouteria", "Salacca", "Sapodilla", "Tuna",
         "Uvilla", "Yaca", "Zapote", "Zarzamora"
     ]
+
+
+def wallet():
+    print(""" 
+
+
+⣿⡿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⢿⢿⢿
+⣿⠀⢠⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⡄⠀   ⣿
+⣿⠀⢠⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⣤⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀     ⣿
+⣿⠀⢸⠀⠀⠀⠀⣀⣄⡀⠀⠀⠀ ⢸⡇⠀⠠⠤⠤⠤⠤⠤⠤⠤⠤⠀⠀    ⣿
+⣿⠀⢸⠀⠀⠀⣼⣿⣿⣿⡆⠀ ⠀⢸⡇⠀⠀⠀⠀             ⣿
+⣿⠀⢸⠀⠀⠀⢻⣿⣿⣿⠇⠀ ⠀⢸⡇  Marcus         ⣿
+⣿⠀⢸⠀⠀⠀⣀⠙⠛⢁⣀⠀⠀ ⢸⡇  Davidson        ⣿
+⣿⠀⢸⠀⢀⣾⣿⣿⣿⣿⣿⣧⠀ ⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀      ⣿⣿
+⣿⠀⢸⢀⣾⣿⣿⣿⣿⣿⣿⣿⣇⢸⡇⠀⠀⠀⠛⠛⠛⠛⠛⠃⠀       ⣿⣿
+⣿⠀⢸⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣼⡇⠀⠀⠀⠛⠛⠛⠛⠛⠛⠛⠃     ⣿⣿
+⣿⣄⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣠⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+          
+
+      """)
 
 
 def fingerprint():
@@ -525,6 +554,42 @@ def bad_ending():
         elif option.lower() == 'no':
             time.sleep(1)
             sys.exit()
+
+def good_ending():
+    print('+----------------------------------------------------------------------------------------------------+')
+    print('''                                 
+                                              
+ ██████╗ ██████╗ ███╗   ██╗ ██████╗ ██████╗  █████╗ ████████╗██╗   ██╗██╗      █████╗ ████████╗██╗ ██████╗ ███╗   ██╗███████╗
+██╔════╝██╔═══██╗████╗  ██║██╔════╝ ██╔══██╗██╔══██╗╚══██╔══╝██║   ██║██║     ██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║██╔════╝
+██║     ██║   ██║██╔██╗ ██║██║  ███╗██████╔╝███████║   ██║   ██║   ██║██║     ███████║   ██║   ██║██║   ██║██╔██╗ ██║███████╗
+██║     ██║   ██║██║╚██╗██║██║   ██║██╔══██╗██╔══██║   ██║   ██║   ██║██║     ██╔══██║   ██║   ██║██║   ██║██║╚██╗██║╚════██║
+╚██████╗╚██████╔╝██║ ╚████║╚██████╔╝██║  ██║██║  ██║   ██║   ╚██████╔╝███████╗██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║███████║
+ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+                                                                                                                             
+          \n''')
+
+    print('¿DESEAS COMENZAR DE NUEVO (SI/NO)? ')
+    option = input('\n> ')
+    print('+----------------------------------------------------------------------------------------------------+\n')
+    if option.lower() == 'si':
+        time.sleep(1)
+        prologo()
+    elif option.lower() == 'no':
+        time.sleep(1)
+        sys.exit()
+    while option.lower() not in ['yes', 'no']:
+        print('Tienes que tomas una decisión...')
+        time.sleep(1)
+        print('¿DESEAS COMENZAR DE NUEVO (SI/NO)? ')
+        option = input('\n> ')
+        print('+----------------------------------------------------------------------------------------------------+\n')
+        if option.lower() == 'si':
+            time.sleep(1)
+            prologo()
+        elif option.lower() == 'no':
+            time.sleep(1)
+            sys.exit()
+
 
 
 # ----------------- Inicio del juego ------------------------------------------------------
@@ -1021,7 +1086,7 @@ def oficina():
                    |\____________________________________________________________             
                    |                                                             |
                    |   Como se trata de alguien que era cercano a ti, más        |
-                   |   te vale no equivocarte de nuevo. Tienes 12 horas          |
+                   |   te vale no equivocarte de nuevo. Tienes 12 horas para     |
                    |   resolver el caso por cuestión de presupuesto.            /   
                     \__________________________________________________________/   
 
@@ -1096,7 +1161,8 @@ def oficina():
                 for char in text:
                     print(char, end='', flush=True)
                     time.sleep(0.040)
-                myPlayer.add_item(criminal_file())
+                myClues.file = True
+                #myPlayer.add_item(criminal_file())
 
         elif any(keyword in opcion_e.lower() for keyword in ['perfil', 'perfiles', 'compañero', 'compañeros']):
             first_option = True
@@ -1116,7 +1182,8 @@ def oficina():
                 for char in text:
                     print(char, end='', flush=True)
                     time.sleep(0.040)
-                myPlayer.add_item(partner())
+                myClues.porfile = True
+                # myPlayer.add_item(partner())
 
                 while not partner_choosen:
                     text = ('\n¿Con cuál de estas dos personas quieres trabajar?\n')
@@ -1164,7 +1231,8 @@ def oficina():
                 for char in text:
                     print(char, end='', flush=True)
                     time.sleep(0.025)
-                myPlayer.add_item(letter())
+                myClues.letter = True
+                # myPlayer.add_item(letter())
 
         else:
             text=('\nOpción inválida. Elige algo que te hayan entregado...\n')
@@ -1174,7 +1242,7 @@ def oficina():
             opcion_e = input('\n> ')
 
         if letter_read and profile_read and file_read:
-            text = ('\n¡Perfecto! Ya has leído todos los archivos del expediente.\n')
+            text = ('\nPerfecto. Ya has leído todos los archivos del expediente.\n')
             for char in text:
                 print(char, end='', flush=True)
                 time.sleep(0.040)
@@ -1306,24 +1374,13 @@ def oficina():
                 time.sleep(0.040)
 
     # Después del bucle
-    text = ('\n¡Perfecto! Ya estás listo para comenzar a investigar.\n'
-            '\nEsto es lo que llevarás contigo:\n\n')
+    text = ('\n¡Perfecto! Ya estás listo para comenzar a investigar.\n\n')
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.040)
-    myPlayer.get_weapons()  # Imprimir las armas elegidas por el jugador}
     
     cabin()
 ##_---------------------------------------------------------------------------------------------
-
-# Primer capítulo, continuación del prólogo y la oficina
-def chapter_1():
-    pass
-
-
-# Segundo capítulo, este solo podrás acceder luego de que investigues cada escenario en el capítulo 1
-def chapter_2():
-    pass
 
 baño = False
 sala = False
@@ -1331,7 +1388,6 @@ cocina = False
 cuarto = False
 
 # --------------------- Escenarios del juego -----------------------------------------------------
-# Lugares de la historia donde habrá pistas y una descripción breve del lugar
 def cabin():
     text = (f'\n.\n'
             f'.\n'
@@ -1390,382 +1446,1434 @@ def cabin():
         print(char, end='', flush=True)
         time.sleep(0.040)
 
-    eleccion = input('\n> ')
 
     def select_cabin():
         global baño, sala, cocina, cuarto
+
+        eleccion = input('\n> ')
         
         while True:
             if baño and sala and cocina and cuarto:
-                pass
-            
+                text = (f'\nMmmm, algo me dice que deberías revisar el baño otra vez... \n'
+                        f'\nVamos allá mejor.')
+                for char in text:
+                    print(char, end='', flush=True)
+                    time.sleep(0.040)
+                eleccion = 'baño'
+                time.sleep(2.5)
+
             else:
-                if 'baño' in eleccion.lower():
-                    if baño:
-                        text = (f'\n!!\n'
-                                f'\nParece que ya habías entrado al baño.\n'
-                                f'\nNo querrás dañar la escena del crimen volviendo a entrar...\n')  
-                        for char in text:
-                            print(char, end='', flush=True)
-                            time.sleep(0.040)
-                    else:   
-                        tina = False
-                        espejo = False
-                        inodoro = False
-                        suelo = False
-                        lavabo = False
-                        baño = True
-                        time.sleep(1.5)
-                        print('\n\n\n Cargando baño... \n\n\n')
-                        time.sleep(2.2)
-                        cabin_bath()
-                        time.sleep(1.8)
-                        text = (f'\n¿Cuál de estos lugares te gustaría analizar más de cerca?\n\n')  
-                        for char in text:
-                            print(char, end='', flush=True)
-                            time.sleep(0.040)
-                        time.sleep(1.5)
-                        print ( f'    - La tina.\n'
-                                f'    - El espejo.\n'
-                                f'    - El suelo.\n'
-                                f'    - El lavabo\n'
-                                f'    - El inodoro\n'
-                                f'    - Mejor nada...')  
-                        analize = input('\n> ')
+                if 'baño' in eleccion.lower(): 
+                    baño = True
+                    time.sleep(1.5)
+                    print('\n\n\n Cargando baño... \n\n\n')
+                    time.sleep(2.2)
+                    cabin_bath()
+                    time.sleep(1.8)
+                    text = (f'\n¿Cuál de estos lugares te gustaría analizar más de cerca?\n\n')  
+                    for char in text:
+                        print(char, end='', flush=True)
+                        time.sleep(0.040)
+                    time.sleep(1.5)
+                    print ( f'    - La tina\n'
+                            f'    - El espejo\n'
+                            f'    - El suelo\n'
+                            f'    - El lavabo\n'
+                            f'    - El inodoro\n'
+                            f'    - Mejor nada...\n')  
+                    analize = input('\n> ')
 
-                        while True:
-                            if tina and espejo and inodoro and suelo and lavabo:
-                                text = (f'\n¡Increíble!\n\n'
-                                        f'Haz anallizado cada rincón del baño\n')  
-                                for char in text:
-                                    print(char, end='', flush=True)
-                                    time.sleep(0.040)
-                                break
-                            else:
-                                if 'tina' in analize.lower():
-                                    text = (f'\nAquí fue encontrado el cuerpo de Martin.\n'
-                                            f'\n.'
-                                            f'\n.'
-                                            f'\n.\n'
-                                            f'\nParece que lo único que hay es un enorme charco de su sangre...\n')  
-                                    for char in text:
-                                        print(char, end='', flush=True)
-                                        time.sleep(0.040)
+                    while True: 
+                        if 'tina' in analize.lower():
+                            text = (f'\nAquí fue encontrado el cuerpo de Martin.\n'
+                                    f'\n.'
+                                    f'\n.'
+                                    f'\n.\n'
+                                    f'\nParece que lo único que hay es un enorme charco de su sangre...\n')  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
 
-                                elif 'espejo' in analize.lower():
-                                    fingerprint()
-                                    myPlayer.add_item(fingerprint())
-                                    text = (f'\n¡Oh! Una huella.\n'
-                                            f'\nMe pregunto de quién será...\n')  
-                                    for char in text:
-                                        print(char, end='', flush=True)
-                                        time.sleep(0.040)
+                        elif 'espejo' in analize.lower():
+                            fingerprint()
+                            myClues.fingerprint = True
+                            #myPlayer.add_item(fingerprint())
+                            text = (f'\n¡Oh! Una huella.\n'
+                                    f'\nMe pregunto de quién será...\n')  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
 
-                                elif 'inodoro' in analize.lower():
-                                    text = (f'\nMmmm...\n'
-                                            f'\nNo hay nada relevante.'
-                                            )  
-                                    for char in text:
-                                        print(char, end='', flush=True)
-                                        time.sleep(0.040)
+                        elif 'inodoro' in analize.lower():
+                            text = (f'\nMmmm...\n'
+                                    f'\nNo hay nada relevante.\n'
+                                    )  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
 
-                                elif 'suelo' in analize.lower():
-                                    text = (f'\nNo parece haber nada más que sangre...\n\n')  
-                                    for char in text:
-                                        print(char, end='', flush=True)
-                                        time.sleep(0.040)
-                                    time.sleep(2.4)
-                                    text = (f'\n ...\n')
-                                    for char in text:
-                                        print(char, end='', flush=True)
-                                        time.sleep(0.080)
-                                    time.sleep(1.5)
-                                    text = (f'\nSe acaba de escuchar una puerta abriéndose.\n'
-                                            f'\nAlguien más acaba de entrar a la cabaña.\n')
-                                    for char in text:
-                                        print(char, end='', flush=True)
-                                        time.sleep(0.040)
-                                    time.sleep(2.4)
-                                    text = (f'\nTienes que actuar ya.\n'
-                                            f'\n¿Qué harás?\n')
-                                    for char in text:
-                                        print(char, end='', flush=True)
-                                        time.sleep(0.040)
-                                    myPlayer.get_weapons()
-                                    print(f'        - Nada')
-                                    serious_op = input('\n> ')
+                        elif 'suelo' in analize.lower():
+                            text = (f'\nNo parece haber nada más que sangre...\n\n')  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                            time.sleep(2.4)
+                            text = (f'\n ...\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.080)
+                            time.sleep(1.5)
+                            text = (f'\nSe acaba de escuchar una puerta abriéndose.\n'
+                                    f'\nAlguien más acaba de entrar a la cabaña.\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                            time.sleep(2.4)
+                            text = (f'\nTienes que actuar ya.\n'
+                                    f'\n¿Qué harás?\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                            myPlayer.get_weapons()
+                            print(f'        - Nada\n')
+                            serious_op = input('\n> ')
 
-                                    if 'tomar' in serious_op.lower():
-                                        while True:
-                                            if not any(palabra in serious_op.lower() for palabra in myPlayer.weapons):
-                                                text = (f'\Escoge algo que tengas en tu armería...\n')
+                            if 'tomar' in serious_op.lower():
+                                while True:
+                                    if not any(palabra in serious_op.lower() for palabra in myPlayer.weapons):
+                                        text = (f'\Escoge algo que tengas en tu armería...\n')
+                                        for char in text:
+                                            print(char, end='', flush=True)
+                                            time.sleep(0.040)
+                                        serious_op = ('\n> ')
+                                    else:    
+                                        if 'pistola' in serious_op.lower():
+                                            text = (f'\nBien.\n'
+                                                    f'\nEstás apuntando a la puerta del baño que por ahora estpá cerrada.\n')
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.040)
+                                            text = (f'\n ...\n')
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.080)
+                                            time.sleep(3)
+                                            print ("""
+ ____    _    _   _  ____ _ 
+| __ )  / \  | \ | |/ ___| |
+|  _ \ / _ \ |  \| | |  _| |
+| |_) / ___ \| |\  | |_| |_|
+|____/_/   \_\_| \_|\____(_)
+                            
+                                                    """)  
+                                            if myPartner.jose:
+                                                time.sleep(3)
+                                                text = (f'\nDisparaste.\n')
                                                 for char in text:
                                                     print(char, end='', flush=True)
                                                     time.sleep(0.040)
-                                                serious_op = ('\n> ')
-                                            else:    
-                                                if 'pistola' in serious_op.lower():
+                                                time.sleep(1.9)
+                                                text = (f'\nLa puerta sigue cerrada. Lograste disparar antes de que entrara.\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                text = (f'\n...¿Quieres abir la puerta?\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                open = input('\n> ')
+                                                while not any(keyword in open.lower() for keyword in ['si']):
+                                                    if any(keyword in open.lower() for keyword in ['no']):
+                                                        text = (f'\nCreo que sería mejor si lo haces.\n'
+                                                                f'\n...¿Quieres abir la puerta?\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        open = input('\n> ')
+                                                    else:
+                                                        print('\n??')
+                                                        print('\n¿Sí o no...?\n')
+                                                        open = input('\n> ')
+
+                                                # Cuando abre la puerta
+
+                                                text = (f'\nHay alguien en el suelo. Le has dado. Felicidades.\n'
+                                                        f'\nOh.\n'
+                                                        f'\nParece que tiene algo en su mano...\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                
+                                                print (""" 
+  ,   /\   ,
+ / '-'  '-' \\ 
+| DETECTIVE  |
+\    .--.    /
+ |  ( 19 )  |
+ \   '--'   /
+  '--.  .--'
+      \/
+                                                        
+
+""")
+
+                                                text = (f'\n¿Un detective?\n'
+                                                        f'\nParece ser que su nombre está en la parte trasera de la placa...\n\n\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                text = (f'\n ...\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.070)
+                                                text = ('               José Paredes Pacheco \n\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.1)
+                                                
+                                                text = (f'\nOh.\n'
+                                                        f'\nLe has disparado a tu compañero.\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.075)
+                                                time.sleep(2.8)
+                                                text = (f'\n.\n'
+                                                        f'.\n'
+                                                        f'.\n')    
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.1)
+                                                time.sleep(3)
+                                                text = (f'\nNo duraste mucho, ¿verdad?\n'
+                                                        f'\nDespués de este incidente te removieron en seguida del caso, {myPlayer.name}.\n'
+                                                        f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.060)
+                                                time.sleep(2.5)
+                                                bad_ending()
+
+                                            elif myPartner.marcus:
+                                                time.sleep(3)
+                                                ## Chaleco antibalas
+                                                text = (f'\nTe han disparado.\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                time.sleep(1.9)
+                                                if myPlayer.bulletproof:
+                                                    text = (f'\nDuele mucho...\n'
+                                                            f'\nPero sabes que te dolería mucho más si no tuvieras el chaleco antibalas.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    time.sleep(1.6)
+                                                    text = (f'\nSe ha abierto la puerta.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    time.sleep(1)
+                                                    print ("""
+____    _    _   _  ____ _ 
+| __ )  / \  | \ | |/ ___| |
+|  _ \ / _ \ |  \| | |  _| |
+| |_) / ___ \| |\  | |_| |_|
+|____/_/   \_\_| \_|\____(_)
+                            
+                                                    """) 
                                                     text = (f'\nBien.\n'
-                                                            f'\nEstás apuntando a la puerta del baño que por ahora estpá cerrada.\n')
+                                                            f'\nDisparaste ahora tú sin pensarlo dos veces.\n'
+                                                            f'\nLe has dado. Felicidades'
+                                                            f'\nEl desconocido se encuentra ya en el suelo en frente de ti.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    time.sleep(1)
+                                                    text = (f'\nOh.\n'
+                                                            f'\nParece que tiene algo en su mano...\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    
+                                                    print (""" 
+ ,    /\   ,
+ / '-'  '-' \\ 
+| DETECTIVE  |
+\    .--.    /
+ |  ( 19 )  |
+ \   '--'   /
+  '--.  .--'
+      \/
+                                                        
+
+""")
+
+                                                    text = (f'\n¿Un detective?\n'
+                                                            f'\nParece ser que su nombre está en la parte trasera de la placa...\n\n\n')
                                                     for char in text:
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.040)
                                                     text = (f'\n ...\n')
                                                     for char in text:
                                                         print(char, end='', flush=True)
-                                                        time.sleep(0.080)
-                                                    print ("""
-  ____    _    _   _  ____ _ 
- | __ )  / \  | \ | |/ ___| |
- |  _ \ / _ \ |  \| | |  _| |
- | |_) / ___ \| |\  | |_| |_|
- |____/_/   \_\_| \_|\____(_)
-                                 
-                                                            """)  
-                                                    if myPartner.jose:
-                                                        time.sleep(3)
-                                                        text = (f'\nDisparaste.\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.040)
-                                                        time.sleep(1.9)
-                                                        text = (f'\nLa puerta sigue cerrada. Lograste disparar antes de que entrara.\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.040)
-                                                        text = (f'\n...¿Quieres abir la puerta?\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.040)
-                                                        open = input('\n> ')
-                                                        while not any(keyword in open.lower() for keyword in ['si']):
-                                                            if any(keyword in open.lower() for keyword in ['no']):
-                                                                text = (f'\nCreo que sería mejor si lo haces.\n'
-                                                                        f'\n...¿Quieres abir la puerta?\n')
-                                                                for char in text:
-                                                                    print(char, end='', flush=True)
-                                                                    time.sleep(0.040)
-                                                                open = input('\n> ')
-                                                            else:
-                                                                print('\n??')
-                                                                print('\n¿Sí o no...?\n')
-                                                                open = input('\n> ')
+                                                        time.sleep(0.070)
+                                                    text = ('               Marcus Davidson \n\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.1)
+                                                
+                                                    text = (f'\nOh.\n'
+                                                            f'\nLe has disparado a tu compañero.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.075)
+                                                    time.sleep(2)
+                                                    text = (f'\nPero...\n'
+                                                            f'\n¿Por qué te había disparado primero?\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
 
-                                                        # Cuando abre la puerta
-
-                                                        text = (f'\nHay alguien en el suelo. Le has dado. Felicidades.\n'
-                                                                f'\nOh.\n'
-                                                                f'\nParece que tiene algo en su mano...\n')
+                                                    time.sleep(2.5)
+                                                    text = (f'\nInmediatamente te fusite y presentaste su nombre como posible culpable.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    if myClues.wallet:
+                                                        text = (f'\nDebido a que su fue cartera encontrada en la cabaña, en no mucho fue declarado culpable.\n'
+                                                                f'\nFelicidades. Has resuelto el caso.\n'
+                                                                f'\nMarcus fue el culpable todo este tiempo\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
-                                                        
-                                                        print (""" 
-   ,   /\   ,
-  / '-'  '-' \\ 
- | DETECTIVE  |
- \    .--.    /
-  |  ( 19 )  |
-  \   '--'   /
-   '--.  .--'
-       \/
-                                                               
-
-    """)
-
-                                                        text = (f'\n¿Un detective?\n'
-                                                                f'\nParece ser que su nombre está en la parte trasera de la placa...\n\n\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.040)
-                                                        text = (f'\n ...\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.070)
-                                                        text = ('               José Paredes Pacheco \n\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.1)
-                                                        
-                                                        text = (f'\nOh.\n'
-                                                                f'\nLe has disparado a tu compañero.\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.075)
-                                                        time.sleep(2.8)
-                                                        text = (f'\n.\n'
-                                                                f'.\n'
-                                                                f'.\n')    
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.1)
-                                                        time.sleep(3)
-                                                        text = (f'\nNo duraste mucho, ¿verdad?\n'
-                                                                f'\nDespués de este incidente te removieron en seguida del caso, {myPlayer.name}.\n'
-                                                                f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.060)
                                                         time.sleep(2.5)
-                                                        bad_ending()
 
-                                                    elif myPartner.marcus:
-                                                        time.sleep(3)
-                                                        ## Chaleco antibalas
-                                                        text = (f'\nTe han disparado.\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.040)
-                                                        time.sleep(1.9)
-                                                        text = (f'\n ...\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.070)
-                                                        time.sleep(1)
-                                                        text = (f'\nNo supiste en qué momento pero ya estás en suelo.\n'
-                                                                f'\nDe repente hace mucho frío...\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.080)
-                                                        text = (f'\n¿Quién es...?\n'
-                                                                f'\nHay alguien parado en frente de ti.\n'
-                                                                f'\n')
+                                                    # Agregar reporte del caso resuelto 
+                                                        good_ending()
+                                                
+                                                    else:
+                                                        text = (f'\nDebido a que no encontraste suficientes pruebas en la cabaña, Marcus no pudo ser declarado culpable y \n'
+                                                                f'te destituyeron de tu cargo.\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
                                                         time.sleep(2)
-                                                        text = (f'\n!!!?\n'
-                                                                f'\nEs Marcus...,¿cómo....?.\n'
-                                                                f'\n')
+                                                        text = (
+                                                                f'\nQué pena. Tan cerca...\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
+                                                        time.sleep(2.5)
+                                                        text = (
+                                                                f'\nDespués de esto te despidieron, sin lograr hacer nada por Martin.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        time.sleep(3)
+                                                        bad_ending()
+
+                                                else:
+                                                
+                                                    text = (f'\n ...\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.070)
+                                                    time.sleep(1)
+                                                    text = (f'\nNo supiste en qué momento pero ya estás en suelo.\n'
+                                                            f'\nDe repente hace mucho frío...\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.080)
+                                                    text = (f'\n¿Quién es...?\n'
+                                                            f'\nHay alguien parado en frente de ti.\n'
+                                                            f'\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    time.sleep(2)
+                                                    text = (f'\n!!!?\n'
+                                                            f'\nEs Marcus...,¿cómo....?.\n'
+                                                            f'\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    text = (f'\n.\n'
+                                                            f'.\n'
+                                                            f'.\n')    
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.1)
+                                                    text = (f'\nMoriste desangrado el 17 de Noviembre de 1986\n'
+                                                            f'\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.075)
+                                                        bad_ending()                         
+
+                                        elif 'hacha' in serious_op.lower():
+                                            text = (f'\nBien, sostenla fuerte.\n')
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.040)
+                                            time.sleep(2)
+
+                                            if myPartner.jose:
+                                                text = (f'\nLa puerta se ha abierto...\n'
+                                                        f'\nOh.\n'
+                                                        f'\nEs José.\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                time.sleep(1.8)
+                                                print(""" 
+                                                        
+            |\___________________________________________________________             
+            |                                                            | 
+            |    ¡Perdón por la tardanza! Me adelanté y fui a conseguir  |
+            |    los resultados de la sangre que está en este piso.      |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                            
+                                                    """)
+                                                time.sleep(3)
+                                                print(f""" 
+                                                        
+            |\___________________________________________________________             
+            |                                                            | 
+            |    Parece que no es sangre de la víctima, {myPlayer.name}.  
+            |    Los exámenes mostraron que es sangre tipo AB-.          |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                            
+                                                    """)
+                                                time.sleep(3)
+                                                text = (f'\n¿AB negativo...?\n'
+                                                        f'\nRápido, algo debe de haber en las pistas que has recolectado.\n'
+                                                        f'\nEscribe "revisar pistas".\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                
+                                                clues = input('\n> ')
+
+                                                while not any(keyword in clues.lower() for keyword in ['revisar']):
+                                                    text = (f'\n...\n'
+                                                            f'\nEscribe "revisar pistas".\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    clues = input('\n> ')
+                                                
+                                                time.sleep(2.5)
+                                                print('\n\n\nCargando pistas...\n\n\n')
+                                                time.sleep(2.8)
+
+                                                if myClues.file:
+                                                    criminal_file()
+                                                
+                                                if myClues.porfile:
+                                                    partner()
+                                                
+                                                if myClues.letter:
+                                                    letter()
+
+                                                if myClues.fingerprint:
+                                                    fingerprint()
+                                                
+                                                if myClues.wallet:
+                                                    wallet()
+
+                                                time.sleep(6)
+                                                print(f""" 
+                                                        
+            |\___________________________________________________________             
+            |                                                            | 
+            |    {myPlayer.name}..,¿quién crees que pudo haber sido el
+            |    culpable? Ya casi han pasado las 12 horas...            |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                            
+                                                    """)
+                                                
+                                                time.sleep(3.5)
+
+                                                murder = input('\n> ')
+                                                time.sleep(1)
+
+                                                if any(keyword in murder.lower() for keyword in ['maria', 'pareja', 'laura','salazar', 'perez']):
+                                                    time.sleep(1.8)
+                                                    text = (f'\nMmm...Parece que no has podido descubrir al asesino.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.070)
+                                                    text = (f'\n.\n'
+                                                            f'.\n'
+                                                            f'.\n')    
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.1)
+                                                    text = (f'\nDespués de inculpar a la pareja de Martín, ella quedó libre casi de inmediato por\n'
+                                                            f'la falta de pruebas.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    time.sleep(1)
+                                                    text = (f'\nEl caso se archivó como caso sin resover.\n'
+                                                            f'Y, debido a no poder encontrar al culpable, te despidieron en cuestión de días.\n'
+                                                            f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.060)
+                                                    time.sleep(2)
+                                                    bad_ending()
+
+                                                elif any(keyword in murder.lower() for keyword in ['marc', 'marcus', 'davidson']):
+                                                    time.sleep(1.5)
+                                                    print(f""" 
+                                                        
+            |\___________________________________________________________             
+            |                                                            | 
+            |    ¿Marcus...?                                             |
+            |                                                            |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                            
+                                                    """)
+                                                    time.sleep(2)
+                                                    text = (f'\nClaro...\n'
+                                                            f'\nTiene sentido.\n'
+                                                            f'\nEl tipo de sangre coincide\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+
+                                                    if myClues.wallet:
+                                                        text = (f'\nAdemás, está lo de la billetera.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        text = (f'\nSin perder tiempo, llevas el reporte a tu jefe y presentas a Marcus como sospechoso.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        time.sleep(1.8)
+                                                        text = (f'\nGracias a las pruebas, y la confesión final de Marcus, se le dio cadena perpetua.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        # AAgregar confesion final 
+                                                        text = (f'\n¡Felicidades! Has resuelto el caso.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        
+                                                        #Agregar algo de la confesion de marcus
+                                                        good_ending()
+                                                    else:
+                                                        text = (f'\nSin perder tiempo, llevas el reporte a tu jefe y presentas a Marcus como sospechoso.\n'
+                                                                f'\nSin embargo, debido a que no encontraste suficientes pruebas en la cabaña, se libró facilmente.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+
+                                                        time.sleep(1.6)
+
+                                                        text = (f'\nEl caso se archivó como caso sin resover.\n'
+                                                            f'Y, debido a no poder encontrar al culpable, te despidieron en cuestión de días.\n'
+                                                            f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.060)
+                                                        time.sleep(2)
+                                                        bad_ending()
+
+                                                else:
+                                                        text = (f'\nPareces no estar muy seguro...\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        print(f""" 
+                                                        
+            |\___________________________________________________________             
+            |                                                            | 
+            |    ...                                                     |
+            |                                                            |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                            
+                                                    """)
+                                                        time.sleep(2)
                                                         text = (f'\n.\n'
                                                                 f'.\n'
                                                                 f'.\n')    
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.1)
-                                                        text = (f'\nMoriste desangrado el 17 de Noviembre de 1986\n'
-                                                                f'\nEs Marcus...,¿cómo....?.\n'
-                                                                f'\n')
+                                                        time.sleep(2)
+                                                        text = (f'\nUna vez más, no pudiste resolver el caso, ¿verdad?\n'
+                                                                f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
-                                                            time.sleep(0.075)
-                                                            bad_ending()                         
+                                                            time.sleep(0.060)
+                                                        time.sleep(3)
+                                                        bad_ending()
 
-                                                elif 'hacha' in serious_op.lower():
-                                                    text = (f'\nBien, sostenla fuerte.\n')
+                                            
+                                            elif myPartner.marcus:
+                                                text = (f'\nBien, sostenla fuerte.\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                time.sleep(2)
+                                                text = (f'\n ...\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.080)
+                                                time.sleep(3)
+                                                print ("""
+ ____    _    _   _  ____ _ 
+| __ )  / \  | \ | |/ ___| |
+|  _ \ / _ \ |  \| | |  _| |
+| |_) / ___ \| |\  | |_| |_|
+|____/_/   \_\_| \_|\____(_)
+                            
+                                                        """)
+                                                time.sleep(2)
+                                                if myPlayer.bulletproof:  
+                                                    text = (f'\nDuele mucho...\n'
+                                                            f'\nPero sabes que te dolería mucho más si no tuvieras el chaleco antibalas.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    time.sleep(1.6)
+                                                    text = (f'\nSe ha abierto la puerta.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    time.sleep(1)
+                                                    text = (f'\n¿Qué quieres hacer?\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    print(f'\n     - Pelear\n'
+                                                          f'\n     - Nada\n')
+                                                    live = input('\n> ')
+
+                                                    while True:
+                                                        if 'pelear' in live.lower():
+                                                            text = (f'\nTe abalanzas sobre esa persona con el arma que está en tus manos.\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+                                                            text = (f'\n.\n'
+                                                                    f'.\n'
+                                                                    f'.\n')    
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.1)
+                                                            time.sleep(1)
+                                                            text = (f'\nNo sabes cómo, pero lograste ganar.\n'
+                                                                    f'\nEn el forcejeo una placa de metal salió volando...\n'
+                                                                    f'\nVe a tomarla para ver qué dice\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+                                                            print (""" 
+    ,    /\   ,
+    / '-'  '-' \\ 
+   | DETECTIVE  |
+   \    .--.    /
+    |  ( 19 )  |
+    \   '--'   /
+     '--.  .--'
+         \/
+                                                            
+
+    """)
+
+                                                            text = (f'\n¿Un detective?\n'
+                                                                    f'\nParece ser que su nombre está en la parte trasera de la placa...\n\n\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+                                                            text = (f'\n ...\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.070)
+                                                            text = ('               Marcus Davidson \n\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.1)
+                                                        
+                                                            text = (f'\nOh.\n'
+                                                                    f'\nEs tu compañero. O lo era... \n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.075)
+                                                            text = (f'\nPero...\n'
+                                                                f'\n¿Por qué te había disparado primero?\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+
+                                                            time.sleep(2.5)
+                                                            text = (f'\nInmediatamente te fusite y presentaste su nombre como posible culpable.\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+                                                            if myClues.wallet:
+                                                                text = (f'\nDebido a que su fue cartera encontrada en la cabaña, en no mucho fue declarado culpable.\n'
+                                                                        f'\nFelicidades. Has resuelto el caso.\n'
+                                                                        f'\nMarcus fue el culpable todo este tiempo\n')
+                                                                for char in text:
+                                                                    print(char, end='', flush=True)
+                                                                    time.sleep(0.040)
+                                                                time.sleep(2.5)
+
+                                                        # Agregar reporte del caso resuelto 
+                                                                good_ending()
+                                                    
+                                                            else:
+                                                                text = (f'\nDebido a que no encontraste suficientes pruebas en la cabaña, Marcus no pudo ser declarado culpable y \n'
+                                                                        f'te destituyeron de tu cargo.\n')
+                                                                for char in text:
+                                                                    print(char, end='', flush=True)
+                                                                    time.sleep(0.040)
+                                                                time.sleep(2)
+                                                                text = (
+                                                                        f'\nQué pena. Tan cerca...\n')
+                                                                for char in text:
+                                                                    print(char, end='', flush=True)
+                                                                    time.sleep(0.040)
+                                                                time.sleep(2.5)
+                                                                text = (
+                                                                        f'\nDespués de esto te despidieron, sin lograr hacer nada por Martin.\n')
+                                                                for char in text:
+                                                                    print(char, end='', flush=True)
+                                                                    time.sleep(0.040)
+                                                                time.sleep(3)
+                                                                bad_ending()
+
+                                                        elif 'nada' in live.lower():
+                                                            text = (f'\nAcaba de entrar alguien. Se ve furioso.\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+                                                            time.sleep(3)
+                                                            print ("""
+     ____    _    _   _  ____ _ 
+    | __ )  / \  | \ | |/ ___| |
+    |  _ \ / _ \ |  \| | |  _| |
+    | |_) / ___ \| |\  | |_| |_|
+    |____/_/   \_\_| \_|\____(_)
+                                
+                                                            """)
+                                                            time.sleep(2)
+                                                            text = (f'\nMoriste por un disparo el 17 de Noviembre de 1986.\n'
+                                                                f'\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.075)
+                                                            bad_ending()
+
+                                                        else: 
+                                                            text = (f'\nElige correctamente...\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+
+                                                            live = input('\n> ')
+
+
+                                                else:
+                                                    text = (f'\n ...\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.070)
+                                                    time.sleep(1)
+                                                    text = (f'\nNo supiste en qué momento pero ya estás en suelo.\n'
+                                                            f'\nDe repente hace mucho frío...\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.080)
+                                                    text = (f'\n¿Quién es...?\n'
+                                                            f'\nHay alguien parado en frente de ti.\n'
+                                                            f'\n')
                                                     for char in text:
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.040)
                                                     time.sleep(2)
+                                                    text = (f'\n!!!?\n'
+                                                            f'\nEs Marcus...,¿cómo....?.\n'
+                                                            f'\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    text = (f'\n.\n'
+                                                            f'.\n'
+                                                            f'.\n')    
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.1)
+                                                    text = (f'\nMoriste desangrado el 17 de Noviembre de 1986\n'
+                                                            f'\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.075)
+                                                        bad_ending()                   
+                                                    
 
-                                                    if myPartner.jose:
-                                                        text = (f'\nLa puerta se ha abierto...\n'
-                                                                f'\nOh.\n'
-                                                                f'\nEs José.\n')
+                                        elif 'navaja' in serious_op.lower():
+                                            text = (f'\nBien, sostenla fuerte.\n')
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.040)
+                                            time.sleep(2)
+
+                                            if myPartner.jose:
+                                                text = (f'\nLa puerta se ha abierto...\n'
+                                                        f'\nOh.\n'
+                                                        f'\nEs José.\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                time.sleep(1.8)
+                                                print(""" 
+                                                        
+            |\___________________________________________________________             
+            |                                                            | 
+            |    ¡Perdón por la tardanza! Me adelanté y fui a conseguir  |
+            |    los resultados de la sangre que está en este piso.      |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                            
+                                                    """)
+                                                time.sleep(4)
+                                                print(f""" 
+                                                        
+            |\___________________________________________________________             
+            |                                                            | 
+            |    Parece que no es sangre de la víctima, {myPlayer.name}.  
+            |    Los exámenes mostraron que es sangre tipo AB-.          |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                            
+                                                    """)
+                                                time.sleep(4)
+                                                text = (f'\n¿AB negativo...?\n'
+                                                        f'\nRápido, algo debe de haber en las pistas que has recolectado.\n'
+                                                        f'\nEscribe "revisar pistas".\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                
+                                                clues = input('\n> ')
+
+                                                while not any(keyword in clues.lower() for keyword in ['revisar', 'pistas']):
+                                                    text = (f'\n...\n'
+                                                            f'\nEscribe "revisar pistas".\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    clues = input('\n> ')
+                                                
+                                                time.sleep(2.5)
+                                                print('\n\n\nCargando pistas...\n\n\n')
+                                                time.sleep(2.8)
+
+                                                if myClues.file:
+                                                    criminal_file()
+                                                
+                                                if myClues.porfile:
+                                                    partner()
+                                                
+                                                if myClues.letter:
+                                                    letter()
+
+                                                if myClues.fingerprint:
+                                                    fingerprint()
+                                                
+                                                if myClues.wallet:
+                                                    wallet()
+                                                    
+
+                                                time.sleep(6)
+                                                print(f""" 
+                                                        
+            |\___________________________________________________________             
+            |                                                            | 
+            |    {myPlayer.name}..,¿quién crees que pudo haber sido el
+            |    culpable? Ya casi han pasado las 12 horas...            |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                            
+                                                    """)
+                                                
+                                                
+                                                time.sleep(3.5)
+                                                text = (f'\nPiensa bien tu respuesta.\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.070)
+
+                                                murder = input('\n> ')
+
+                                                if any(keyword in murder.lower() for keyword in ['maria', 'pareja', 'laura','salazar', 'perez']):
+                                                    time.sleep(1.8)
+                                                    text = (f'\nMmm...Parece que no has podido descubrir al asesino.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.070)
+                                                    text = (f'\n.\n'
+                                                            f'.\n'
+                                                            f'.\n')    
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.1)
+                                                    text = (f'\nDespués de inculpar a la pareja de Martín, ella quedó libre casi de inmediato por\n'
+                                                            f'la falta de pruebas.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    time.sleep(1)
+                                                    text = (f'\nEl caso se archivó como caso sin resover.\n'
+                                                            f'Y, debido a no poder encontrar al culpable, te despidieron en cuestión de días.\n'
+                                                            f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.060)
+                                                    time.sleep(2)
+                                                    bad_ending()
+
+                                                elif any(keyword in murder.lower() for keyword in ['marc', 'marcus', 'davidson']):
+                                                    time.sleep(1.5)
+                                                    print(f""" 
+                                                        
+            |\___________________________________________________________             
+            |                                                            | 
+            |    ¿Marcus...?                                             |
+            |                                                            |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                            
+                                                    """)
+                                                    time.sleep(2)
+                                                    text = (f'\nClaro...\n'
+                                                            f'\nTiene sentido.\n'
+                                                            f'\nEl tipo de sangre coincide\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+
+                                                    if myClues.wallet:
+                                                        text = (f'\nAdemás, está lo de la billetera.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        text = (f'\nSin perder tiempo, llevas el reporte a tu jefe y presentas a Marcus como sospechoso.\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
                                                         time.sleep(1.8)
-                                                        print(""" 
-                                                              
-                   |\___________________________________________________________             
-                   |                                                            | 
-                   |    ¡Perdón por la tardanza! Me adelanté y fui a conseguir  |
-                   |    los resultados de la sangre que está en este piso.      |
-                   |                                                           /   
-                    \_________________________________________________________/     
-                                                                   
-                                                            """)
-                                                        time.sleep(3)
-                                                        print(f""" 
-                                                              
-                   |\___________________________________________________________             
-                   |                                                            | 
-                   |    Parece que no es sangre de la víctima, {myPlayer.name}.  
-                   |    Los exámenes mostraron que es sangre tipo AB-.          |
-                   |                                                           /   
-                    \_________________________________________________________/     
-                                                                   
-                                                            """)
-                                                        time.sleep(3)
-                                                        text = (f'\n¿AB negativo...?\n'
-                                                                f'\nRápido, algo debe de haber en las pistas que has recolectado.\n'
-                                                                f'\nEscribe "revisar pistas".\n')
+                                                        text = (f'\nGracias a las pruebas, y la confesión final de Marcus, se le dio cadena perpetua.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        # AAgregar confesion final 
+                                                        text = (f'\n¡Felicidades! Has resuelto el caso.\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
                                                         
-                                                        clues = input('\n> ')
+                                                        #Agregar algo de la confesion de marcus
+                                                        good_ending()
+                                                    else:
+                                                        text = (f'\nSin perder tiempo, llevas el reporte a tu jefe y presentas a Marcus como sospechoso.\n'
+                                                                f'\nSin embargo, debido a que no encontraste suficientes pruebas en la cabaña, se libró facilmente.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
 
-                                                        while not any(keyword in clues.lower() for keyword in ['revisar']):
-                                                            text = (f'\nCreo que sería mejor si lo haces...\n'
-                                                                    f'\nEscribe "revisar pistas".\n')
+                                                        time.sleep(1.6)
+
+                                                        text = (f'\nEl caso se archivó como caso sin resover.\n'
+                                                            f'Y, debido a no poder encontrar al culpable, te despidieron en cuestión de días.\n'
+                                                            f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.060)
+                                                        time.sleep(2)
+                                                        bad_ending()
+
+                                                else:
+                                                        text = (f'\nPareces no estar muy seguro...\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.040)
+                                                        print(f""" 
+                                                        
+            |\___________________________________________________________             
+            |                                                            | 
+            |    ...                                                     |
+            |                                                            |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                            
+                                                    """)
+                                                        time.sleep(2)
+                                                        text = (f'\n.\n'
+                                                                f'.\n'
+                                                                f'.\n')    
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.1)
+                                                        time.sleep(2)
+                                                        text = (f'\nUna vez más, no pudiste resolver el caso, ¿verdad?\n'
+                                                                f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                                        for char in text:
+                                                            print(char, end='', flush=True)
+                                                            time.sleep(0.060)
+                                                        time.sleep(3)
+                                                        bad_ending()
+
+                                            
+                                            elif myPartner.marcus:
+                                                text = (f'\nBien, sostenla fuerte.\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.040)
+                                                time.sleep(2)
+                                                text = (f'\n ...\n')
+                                                for char in text:
+                                                    print(char, end='', flush=True)
+                                                    time.sleep(0.080)
+                                                time.sleep(3)
+                                                print ("""
+ ____    _    _   _  ____ _ 
+| __ )  / \  | \ | |/ ___| |
+|  _ \ / _ \ |  \| | |  _| |
+| |_) / ___ \| |\  | |_| |_|
+|____/_/   \_\_| \_|\____(_)
+                            
+                                                        """)
+                                                time.sleep(2)
+                                                if myPlayer.bulletproof:  
+                                                    text = (f'\nDuele mucho...\n'
+                                                            f'\nPero sabes que te dolería mucho más si no tuvieras el chaleco antibalas.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    time.sleep(1.6)
+                                                    text = (f'\nSe ha abierto la puerta.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    time.sleep(1)
+                                                    text = (f'\n¿Qué quieres hacer?\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    print(f'\n     - Pelear\n'
+                                                          f'\n     - Nada\n')
+                                                    live = input('\n> ')
+
+                                                    while True:
+                                                        if 'pelear' in live.lower():
+                                                            text = (f'\nTe abalanzas sobre esa persona con el arma que está en tus manos.\n')
                                                             for char in text:
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.040)
-                                                            clues = input('\n> ')
+                                                            text = (f'\n.\n'
+                                                                    f'.\n'
+                                                                    f'.\n')    
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.1)
+                                                            time.sleep(1)
+                                                            text = (f'\nNo sabes cómo, pero lograste ganar.\n'
+                                                                    f'\nEn el forcejeo una placa de metal salió volando...\n'
+                                                                    f'\nVe a tomarla para ver qué dice\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+                                                            print (""" 
+     ,    /\   ,
+     / '-'  '-' \\ 
+    | DETECTIVE  |
+    \    .--.    /
+     |  ( 19 )  |
+     \   '--'   /
+      '--.  .--'
+          \/
+                                                            
+
+    """)
+
+                                                            text = (f'\n¿Un detective?\n'
+                                                                    f'\nParece ser que su nombre está en la parte trasera de la placa...\n\n\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+                                                            text = (f'\n ...\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.070)
+                                                            text = ('               Marcus Davidson \n\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.1)
                                                         
-                                                        time.sleep(2.5)
-                                                        print('\n\n\nCargando pistas...\n\n\n')
-                                                        time.sleep(2.8)
+                                                            text = (f'\nOh.\n'
+                                                                    f'\nEs tu compañero. O lo era... \n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.075)
+                                                            text = (f'\nPero...\n'
+                                                                f'\n¿Por qué te había disparado primero?\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
 
-                                                        print(myPlayer.get_items())
+                                                            time.sleep(2.5)
+                                                            text = (f'\nInmediatamente te fusite y presentaste su nombre como posible culpable.\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+                                                            if myClues.wallet:
+                                                                text = (f'\nDebido a que su fue cartera encontrada en la cabaña, en no mucho fue declarado culpable.\n'
+                                                                        f'\nFelicidades. Has resuelto el caso.\n'
+                                                                        f'\nMarcus fue el culpable todo este tiempo\n')
+                                                                for char in text:
+                                                                    print(char, end='', flush=True)
+                                                                    time.sleep(0.040)
+                                                                time.sleep(2.5)
 
-                                                        time.sleep(5)
-                                                        print(f""" 
-                                                              
-                   |\___________________________________________________________             
-                   |                                                            | 
-                   |    {myPlayer.name}..,¿quién crees que pude haber sido el
-                   |    culpable? Ya casi han pasado las 12 horas...            |
-                   |                                                           /   
-                    \_________________________________________________________/     
-                                                                   
+                                                        # Agregar reporte del caso resuelto 
+                                                                good_ending()
+                                                    
+                                                            else:
+                                                                text = (f'\nDebido a que no encontraste suficientes pruebas en la cabaña, Marcus no pudo ser declarado culpable y \n'
+                                                                        f'te destituyeron de tu cargo.\n')
+                                                                for char in text:
+                                                                    print(char, end='', flush=True)
+                                                                    time.sleep(0.040)
+                                                                time.sleep(2)
+                                                                text = (
+                                                                        f'\nQué pena. Tan cerca...\n')
+                                                                for char in text:
+                                                                    print(char, end='', flush=True)
+                                                                    time.sleep(0.040)
+                                                                time.sleep(2.5)
+                                                                text = (
+                                                                        f'\nDespués de esto te despidieron, sin lograr hacer nada por Martin.\n')
+                                                                for char in text:
+                                                                    print(char, end='', flush=True)
+                                                                    time.sleep(0.040)
+                                                                time.sleep(3)
+                                                                bad_ending()
+
+                                                        elif 'nada' in live.lower():
+                                                            text = (f'\nAcaba de entrar alguien. Se ve furioso.\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+                                                            time.sleep(3)
+                                                            print ("""
+     ____    _    _   _  ____ _ 
+    | __ )  / \  | \ | |/ ___| |
+    |  _ \ / _ \ |  \| | |  _| |
+    | |_) / ___ \| |\  | |_| |_|
+    |____/_/   \_\_| \_|\____(_)
+                                
                                                             """)
+                                                            time.sleep(2)
+                                                            text = (f'\nMoriste por un disparo el 17 de Noviembre de 1986.\n'
+                                                                f'\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.075)
+                                                            bad_ending()
+
+                                                        else: 
+                                                            text = (f'\nElige correctamente...\n')
+                                                            for char in text:
+                                                                print(char, end='', flush=True)
+                                                                time.sleep(0.040)
+
+                                                            live = input('\n> ')
+
+
+                                                else:
+                                                    text = (f'\n ...\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.070)
+                                                    time.sleep(1)
+                                                    text = (f'\nNo supiste en qué momento pero ya estás en suelo.\n'
+                                                            f'\nDe repente hace mucho frío...\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.080)
+                                                    text = (f'\n¿Quién es...?\n'
+                                                            f'\nHay alguien parado en frente de ti.\n'
+                                                            f'\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    time.sleep(2)
+                                                    text = (f'\n!!!?\n'
+                                                            f'\nEs Marcus...,¿cómo....?.\n'
+                                                            f'\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    text = (f'\n.\n'
+                                                            f'.\n'
+                                                            f'.\n')    
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.1)
+                                                    text = (f'\nMoriste desangrado el 17 de Noviembre de 1986\n'
+                                                            f'\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.075)
+                                                        bad_ending()              
+
+                            elif 'nada' in serious_op.lower():
+                                time.sleep(2)
+
+                                if myPartner.jose:
+                                    text = (f'\nLa puerta se ha abierto...\n'
+                                            f'\nOh.\n'
+                                            f'\nEs José.\n')
+                                    for char in text:
+                                        print(char, end='', flush=True)
+                                        time.sleep(0.040)
+                                    time.sleep(1.8)
+                                    print(""" 
+                                            
+            |\___________________________________________________________             
+            |                                                            | 
+            |    ¡Perdón por la tardanza! Me adelanté y fui a conseguir  |
+            |    los resultados de la sangre que está en este piso.      |
+            |                                                           /   
+             \_________________________________________________________/     
                                                         
-
-
-
-
-
-
-
-                                                elif 'navaja' in serious_op.lower():
-                                                    pass
-
-                                    elif 'nada' in serious_op.lower():
-                                        if myPartner.jose:
-                                            pass
-                                        elif myPartner.marcus:
-                                            pass                       
-
-                                elif 'nada' in analize.lower():
-                                    text = (f'\nBien, será mejor continuar.\n')  
+                                        """)
+                                    time.sleep(3)
+                                    print(f""" 
+                                                
+            |\___________________________________________________________             
+            |                                                            | 
+            |    Parece que no es sangre de la víctima, {myPlayer.name}.  
+            |    Los exámenes mostraron que es sangre tipo AB-.          |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                
+                                        """)
+                                    time.sleep(3)
+                                    text = (f'\n¿AB negativo...?\n'
+                                            f'\nRápido, algo debe de haber en las pistas que has recolectado.\n'
+                                            f'\nEscribe "revisar pistas".\n')
                                     for char in text:
                                         print(char, end='', flush=True)
                                         time.sleep(0.040)
-                                    time.sleep(2.4)
-                                    select_cabin()
+                                    
+                                    clues = input('\n> ')
 
-                                else:
-                                    text = ('\nRevisa algo que esté en el baño... \n')
-                                    for char in text:
-                                        print(char, end='', flush=True)
-                                        time.sleep(0.040)
+                                    while not any(keyword in clues.lower() for keyword in ['revisar']):
+                                        text = (f'\n...\n'
+                                                f'\nEscribe "revisar pistas".\n')
+                                        for char in text:
+                                            print(char, end='', flush=True)
+                                            time.sleep(0.040)
+                                        clues = input('\n> ')
+                                    
+                                    time.sleep(2.5)
+                                    print('\n\n\nCargando pistas...\n\n\n')
+                                    time.sleep(2.8)
 
-                            
-                            text = ('\n¿Qué otra cosa quisieras revisar?\n')
+                                    if myClues.file:
+                                        criminal_file()
+                                    
+                                    if myClues.porfile:
+                                        partner()
+                                    
+                                    if myClues.letter:
+                                        letter()
+
+                                    if myClues.fingerprint:
+                                        fingerprint()
+                                    
+                                    if myClues.wallet:
+                                        wallet()
+
+                                    time.sleep(6)
+                                    print(f""" 
+                                            
+            |\___________________________________________________________             
+            |                                                            | 
+            |    {myPlayer.name}..,¿quién crees que pudo haber sido el
+            |    culpable? Ya casi han pasado las 12 horas...            |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                
+                                        """)
+                                    
+                                    time.sleep(3.5)
+
+                                    murder = input('\n> ')
+                                    time.sleep(1)
+
+                                    if any(keyword in murder.lower() for keyword in ['maria', 'pareja', 'laura','salazar', 'perez']):
+                                        time.sleep(1.8)
+                                        text = (f'\nMmm...Parece que no has podido descubrir al asesino.\n')
+                                        for char in text:
+                                            print(char, end='', flush=True)
+                                            time.sleep(0.070)
+                                        text = (f'\n.\n'
+                                                f'.\n'
+                                                f'.\n')    
+                                        for char in text:
+                                            print(char, end='', flush=True)
+                                            time.sleep(0.1)
+                                        text = (f'\nDespués de inculpar a la pareja de Martín, ella quedó libre casi de inmediato por\n'
+                                                f'la falta de pruebas.\n')
+                                        for char in text:
+                                            print(char, end='', flush=True)
+                                            time.sleep(0.040)
+                                        time.sleep(1)
+                                        text = (f'\nEl caso se archivó como caso sin resover.\n'
+                                                f'Y, debido a no poder encontrar al culpable, te despidieron en cuestión de días.\n'
+                                                f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                        for char in text:
+                                            print(char, end='', flush=True)
+                                            time.sleep(0.060)
+                                        time.sleep(2)
+                                        bad_ending()
+
+                                    elif any(keyword in murder.lower() for keyword in ['marc', 'marcus', 'davidson']):
+                                        time.sleep(1.5)
+                                        print(f""" 
+                                            
+            |\___________________________________________________________             
+            |                                                            | 
+            |    ¿Marcus...?                                             |
+            |                                                            |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                        
+                                        """)
+                                        time.sleep(2)
+                                        text = (f'\nClaro...\n'
+                                                f'\nTiene sentido.\n'
+                                                f'\nEl tipo de sangre coincide\n')
+                                        for char in text:
+                                            print(char, end='', flush=True)
+                                            time.sleep(0.040)
+
+                                        if myClues.wallet:
+                                            text = (f'\nAdemás, está lo de la billetera.\n')
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.040)
+                                            text = (f'\nSin perder tiempo, llevas el reporte a tu jefe y presentas a Marcus como sospechoso.\n')
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.040)
+                                            time.sleep(1.8)
+                                            text = (f'\nGracias a las pruebas, y la confesión final de Marcus, se le dio cadena perpetua.\n')
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.040)
+                                            # AAgregar confesion final 
+                                            text = (f'\n¡Felicidades! Has resuelto el caso.\n')
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.040)
+                                            
+                                            #Agregar algo de la confesion de marcus
+                                            good_ending()
+                                        else:
+                                            text = (f'\nSin perder tiempo, llevas el reporte a tu jefe y presentas a Marcus como sospechoso.\n'
+                                                    f'\nSin embargo, debido a que no encontraste suficientes pruebas en la cabaña, se libró facilmente.\n')
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.040)
+
+                                            time.sleep(1.6)
+    
+                                            text = (f'\nEl caso se archivó como caso sin resover.\n'
+                                                f'Y, debido a no poder encontrar al culpable, te despidieron en cuestión de días.\n'
+                                                f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.060)
+                                            time.sleep(2)
+                                            bad_ending()
+
+                                    else:
+                                            text = (f'\nPareces no estar muy seguro...\n')
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.040)
+                                            print(f""" 
+                                                    
+            |\___________________________________________________________             
+            |                                                            | 
+            |    ...                                                     |
+            |                                                            |
+            |                                                           /   
+             \_________________________________________________________/     
+                                                        
+                                        """)
+                                            time.sleep(2)
+                                            text = (f'\n.\n'
+                                                    f'.\n'
+                                                    f'.\n')    
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.1)
+                                            time.sleep(2)
+                                            text = (f'\nUna vez más, no pudiste resolver el caso, ¿verdad?\n'
+                                                    f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                            for char in text:
+                                                print(char, end='', flush=True)
+                                                time.sleep(0.060)
+                                            time.sleep(3)
+                                            bad_ending()
+
+                                       
+
+                        elif 'nada' in analize.lower():
+                            text = (f'\nBien, será mejor continuar.\n')  
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
-                            analize = input('\n> ')
+                            time.sleep(2.4)
+                            text = (
+                                    f'\n¿A qué otra parte de la cabaña quieres ir?\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                            time.sleep(0.040)
 
-                    
-                    # Colocar lo demás para encontrar las pistas
+                            select_cabin()
 
+                        else:
+                            text = ('\nRevisa algo que esté en el baño... \n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+
+                        
+                        text = ('\n¿Qué otra cosa quisieras revisar?\n')
+                        for char in text:
+                            print(char, end='', flush=True)
+                            time.sleep(0.040)
+                        analize = input('\n> ')
+
+                
                 elif 'sala' in eleccion.lower():
                     sala = True
                     time.sleep(1.5)
@@ -1773,7 +2881,94 @@ def cabin():
                     time.sleep(2.2)
                     cabin_living()
                     time.sleep(1.8)
-                
+                    text = (f'\n¿Cuál de estos lugares te gustaría analizar más de cerca?\n\n')  
+                    for char in text:
+                        print(char, end='', flush=True)
+                        time.sleep(0.040)
+                    time.sleep(1.5)
+                    print ( f'    - La chimenea\n'
+                            f'    - El sillon\n'
+                            f'    - La alfombra\n'
+                            f'    - El mueble\n'
+                            f'    - Mejor nada...\n')  
+                    analize = input('\n> ')
+
+                    while True: 
+                        if 'chimenea' in analize.lower():
+                            text = (f'\nMmmm...\n'
+                                    f'\nNo hay nada relevante.\n'
+                                    )  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif 'sillon' in analize.lower():
+                            text = (f'\nQué hermoso sillón...\n'
+                                    f'\nPero igual parece no tener ninguna pista.\n'
+                                    )  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif 'mueble' in analize.lower():
+                            text = (f'\nHay unos libros viejos adentro.\n'
+                                    f'\nDeberían limpiar más seguido.\n'
+                                    )  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif 'alfombra' in analize.lower():
+                            if myClues.key:
+                                text = (f'\nYa has tomado la llave.\n'
+                                        f'\nNo hay nada más.\n'
+                                        )  
+                                for char in text:
+                                    print(char, end='', flush=True)
+                                    time.sleep(0.040)
+                            else:
+                                myClues.key = True
+                                text = (f'\n¿Oh?\n'
+                                        )  
+                                for char in text:
+                                    print(char, end='', flush=True)
+                                    time.sleep(0.040)
+                                text = (f'\n...\n'
+                                        )  
+                                for char in text:
+                                    print(char, end='', flush=True)
+                                    time.sleep(0.060)
+                                text = (f'\n¡Una llave!\n'
+                                        f'\nSerá mejor guardarla. Me pregunto qué abrirá...\n'
+                                        )  
+                                for char in text:
+                                    print(char, end='', flush=True)
+                                    time.sleep(0.040)
+
+
+                        elif 'nada' in analize.lower():
+                            text = (f'\nBien, será mejor continuar.\n')  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                            time.sleep(2.4)
+                            text = (
+                                    f'\n¿A qué otra parte de la cabaña quieres ir?\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                            time.sleep(0.040)
+
+                            select_cabin()
+                        
+                        else:
+                            text = ('\nRevisa algo que esté en la sala... \n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+
+                        text = ('\n¿Qué otra cosa quisieras revisar?\n')
+                        for char in text:
+                            print(char, end='', flush=True)
+                            time.sleep(0.040)
+                        analize = input('\n> ')
+
                 elif 'cocina' in eleccion.lower():
                     cocina = True
                     time.sleep(1.5)
@@ -1781,6 +2976,14 @@ def cabin():
                     time.sleep(2.2)
                     cabin_kitchen()
                     time.sleep(1.8)
+                    text = (f'\nOh.\n'
+                            f'\nParece que aquí no hay nada...\n'
+                            f'\n¿A qué otra parte de la cabaña quieres ir?\n')
+                    for char in text:
+                        print(char, end='', flush=True)
+                        time.sleep(0.040)
+                    select_cabin()
+
 
                 elif 'cuarto' in eleccion.lower():
                     cuarto = True
@@ -1789,18 +2992,109 @@ def cabin():
                     time.sleep(2.2)
                     cabin_room()
                     time.sleep(1.8)
+                    text = (f'\n¿Cuál de estos lugares te gustaría analizar más de cerca?\n\n')  
+                    for char in text:
+                        print(char, end='', flush=True)
+                        time.sleep(0.040)
+                    time.sleep(1.5)
+                    print ( f'    - La ventana\n'
+                            f'    - La cama\n'
+                            f'    - La alfombra\n'
+                            f'    - El mueble\n'
+                            f'    - Mejor nada...\n')  
+                    analize = input('\n> ')
+                    while True: 
+                        if 'ventana' in analize.lower():
+                            text = (f'\nNo hay nada relevante.\n'
+                                    f'\nPero qué bonitas cortinas.\n'
+                                    )  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif 'cama' in analize.lower():
+                            text = (f'\nParece que no hay nada.\n'
+                                    f'\nNo queremos destender la cama.\n'
+                                    )  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif 'alfombra' in analize.lower():
+                            text = (f'\nMmmm...\n'
+                                    f'\nNo hay nada relevante.\n'
+                                    )  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                        elif 'mueble' in analize.lower():
+                            time.sleep(2)
+                            text = (f'\n¿Hmm?\n'
+                                    f'\nEstá cerrado con llave...\n'
+                                    )  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                            if myClues.key:
+                                myClues.wallet = True
+                                text = (f'\n...\n'
+                                        )  
+                                for char in text:
+                                    print(char, end='', flush=True)
+                                    time.sleep(0.060)
+                                text = (f'\n¡La llave!\n')                                    
+                                for char in text:
+                                    print(char, end='', flush=True)
+                                    time.sleep(0.040)
+                                time.sleep(2.5)
+                                text = (f'\nAdentro hay... una identificación.\n')                                    
+                                for char in text:
+                                    print(char, end='', flush=True)
+                                    time.sleep(0.040)
+                                time.sleep(1.8)
+                                wallet()
+                            else:
+                                text = (f'\nLo mejor será buscarla.\n'
+                                    )  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+
+
+                        elif 'nada' in analize.lower():
+                            text = (f'\nBien, será mejor continuar.\n')  
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+                            time.sleep(2.4)
+                            text = (
+                                    f'\n¿A qué otra parte de la cabaña quieres ir?\n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                            time.sleep(0.040)
+
+                            select_cabin()
+                        
+                        else:
+                            text = ('\nRevisa algo que esté en la sala... \n')
+                            for char in text:
+                                print(char, end='', flush=True)
+                                time.sleep(0.040)
+
+                        text = ('\n¿Qué otra cosa quisieras revisar?\n')
+                        for char in text:
+                            print(char, end='', flush=True)
+                            time.sleep(0.040)
+                        analize = input('\n> ')
                 
                 else:
                     text = (f'\nCreo que eso no está en la cabaña... \n')  
                     for char in text:
                         print(char, end='', flush=True)
                         time.sleep(0.040)
+                    eleccion = input('\n> ')
+
     
     select_cabin()
 
 
-#oficina()
-#title_screen()
-#cabin()
-#cabin_room()
 
+title_screen()
