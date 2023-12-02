@@ -5,7 +5,20 @@
 
 import sys
 import time
+import pygame
 
+# Inicializa pygame
+pygame.init()
+
+# Ruta de los archivos de música
+ruta_musica1 = r'C:\Users\Christopher Márquez\Documents\SEMESTRE 3\ALGORITMOS II\PARCIAL 3\PROYECTO FINAL JUEGO\Super Smash Bros Brawl Music - Main Menu - (HD).mp3'
+ruta_musica2 = r'C:\Users\Christopher Márquez\Documents\SEMESTRE 3\ALGORITMOS II\PARCIAL 3\PROYECTO FINAL JUEGO\MUSICA DE ESPIA - MUSICA DE DETECTIVES.mp3'
+ruta_musica3 = r"C:\Users\Christopher Márquez\Documents\SEMESTRE 3\ALGORITMOS II\PARCIAL 3\PROYECTO FINAL JUEGO\Spiderman Tokyo Ghoul Meme Full HD 60fps.mp3"
+ruta_musica4 = r"C:\Users\Christopher Márquez\Documents\SEMESTRE 3\ALGORITMOS II\PARCIAL 3\PROYECTO FINAL JUEGO\Música del Triunfo de Fondo Sin Copyright.mp3"
+ruta_musica5 = r"C:\Users\Christopher Márquez\Documents\SEMESTRE 3\ALGORITMOS II\PARCIAL 3\PROYECTO FINAL JUEGO\MUSICA PARA SUSPENSOACCION - MUSIC FOR SUSPENSEACTION.mp3"
+
+# Inicializa el reproductor de música
+pygame.mixer.init()
 
 # ---------------------------- Clases del código --------------------------------------------------------
 
@@ -21,15 +34,15 @@ class Player:
 
     def add_weapon(self, weapon):
         self.weapons.append(weapon)
-    
+
     def get_weapons(self):
         if len(self.weapons) == 1:
             print(f'\n        - Tomar tu {self.weapons[0]}.\n')
         else:
             print(f'\n        - Tomar tu {self.weapons[0]}.\n'
                   f'\n        - Tomar tu {self.weapons[1]}.\n')
-            
-                
+
+
     # Imprimimos la lista de items
     def get_items(self):
         return self.items
@@ -117,7 +130,7 @@ def obtener_lista_frutas():
 
 def marc_letter():
     text_to_display = (""" Carta de Marcus:"""
-    )
+                       )
 
     for char in text_to_display:
         print(char, end='', flush=True)
@@ -142,15 +155,15 @@ def marc_letter():
                             
 
     """
-    )
+                       )
 
     for char in text_to_display:
         print(char, end='', flush=True)
         time.sleep(0.040)
-    
+
     time.sleep(4)
 
-    
+
 
 def wallet():
     print(""" 
@@ -313,7 +326,7 @@ def cabin_map():
 
                     ,----------------------------------------------------.-----.    
                     |                                    |                     |    
-                    |    			         |                     |    
+                    |    			                     |                     |    
                     |                                    |                     |    
                     |             Sala                   |       Cocina        |    
                     |                                    |                     |    
@@ -321,7 +334,7 @@ def cabin_map():
                     |                                    |                     |    
                     |         ,----------"         ------:-----                |    
                     |         |                                                |    
-                    |---------:    		                               |    
+                    |---------:    		                                       |    
                     |    |                                  ,------------------:              
                     |    |.    ----------------.                               |    
                     |    |                     |                               |    
@@ -471,8 +484,8 @@ def cabin_room():
 def inv_bathroom():
     message = ()
     for char in message:
-                    print(char, end='', flush=True)
-                    time.sleep(0.040)
+        print(char, end='', flush=True)
+        time.sleep(0.040)
 
 
 # Pantalla que maneja las opciones de inicio
@@ -500,11 +513,14 @@ def title_screen_selections():
             help_menu()
         elif option.lower() == 'salir':
             time.sleep(1)
+            pygame.quit()
             sys.exit()
 
 
 # Pantalla de inicio del juego
 def title_screen():
+    pygame.mixer.music.load(ruta_musica1)
+    pygame.mixer.music.play(-1)
     time.sleep(1)
     print('\n▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄')
     print('''▄                                                                                                    ▄
@@ -553,6 +569,8 @@ def help_menu():
 
 # Pantalla de final malo
 def bad_ending():
+    pygame.mixer.music.load(ruta_musica3)
+    pygame.mixer.music.play(-1)
     print('+----------------------------------------------------------------------------------------------------+')
     print('''                                                                     
                 ██████╗  █████╗ ██████╗     ███████╗███╗   ██╗██████╗ ██╗███╗   ██╗ ██████╗ 
@@ -570,6 +588,7 @@ def bad_ending():
         prologo()
     elif option.lower() == 'no':
         time.sleep(1)
+        pygame.quit()
         sys.exit()
     while option.lower() not in ['yes', 'no']:
         print('Tienes que tomas una decisión...')
@@ -580,11 +599,16 @@ def bad_ending():
         if option.lower() == 'si':
             time.sleep(1)
             prologo()
+            pygame.mixer.music.stop()
         elif option.lower() == 'no':
             time.sleep(1)
+            pygame.quit()
             sys.exit()
 
+
 def good_ending():
+    pygame.mixer.music.load(ruta_musica1)
+    pygame.mixer.music.play(-1)
     print('+----------------------------------------------------------------------------------------------------+')
     print('''                                 
                                               
@@ -603,8 +627,10 @@ def good_ending():
     if option.lower() == 'si':
         time.sleep(1)
         prologo()
+        pygame.mixer.music.stop()
     elif option.lower() == 'no':
         time.sleep(1)
+        pygame.quit()
         sys.exit()
     while option.lower() not in ['yes', 'no']:
         print('Tienes que tomas una decisión...')
@@ -615,8 +641,10 @@ def good_ending():
         if option.lower() == 'si':
             time.sleep(1)
             prologo()
+            pygame.mixer.music.stop()
         elif option.lower() == 'no':
             time.sleep(1)
+            pygame.quit()
             sys.exit()
 
 
@@ -644,7 +672,7 @@ def start_game():
         print(f'\nEse es un grandioso nombre. ¡Bienvenido {myPlayer.name}!')
     time.sleep(1)
     while True:
-        print('\n¿Estás listo para comenzar (si/no)? ')
+        print('\n¿Estás list@ para comenzar (si/no)? ')
         option = input('\n> ')
         time.sleep(1)
         if any(keyword in option.lower() for keyword in ['si', 'no']):
@@ -658,7 +686,6 @@ def start_game():
             time.sleep(1)
 
     print('+----------------------------------------------------------------------------------------------------+\n')
-
     prologo()
 
 
@@ -666,22 +693,21 @@ def start_game():
 def prologo():
     time.sleep(2)
     print('\nCargando...\n')
+    pygame.mixer.music.stop()
+    pygame.mixer.music.load(ruta_musica2)
+    pygame.mixer.music.play(-1)
     time.sleep(2)
-    print('\n+----------------------------------------------------------------------------------------------------+')
-    print('''                                         ╔═╗╦═╗╔═╗╦  ╔═╗╔═╗╔═╗
-                                         ╠═╝╠╦╝║ ║║  ║ ║║ ╦║ ║
-                                         ╩  ╩╚═╚═╝╩═╝╚═╝╚═╝╚═╝''')
-    print('+----------------------------------------------------------------------------------------------------+\n')
+    print('\n+----------------------------------------------------------------------------------------------------+\n')
     print("""  \n
-                                     _____________ 
-                                    |             |  
-                   ,==.-------.     | *RING RING *|  
-                  (    ) ====  \    /_____________|    
-                  ||  | [][][] |
-                ,8||  | [][][] |
-                8 ||  | [][][] |
-                8 (    ) O O O /
-                '88`=='-------'            
+                                                         _____________ 
+                                                        |             |  
+                                       ,==.-------.     | *RING RING *|  
+                                      (    ) ====  \    /_____________|    
+                                      ||  | [][][] |
+                                    ,8||  | [][][] |
+                                    8 ||  | [][][] |
+                                    8 (    ) O O O /
+                                    '88`=='-------'            
             \n
 
             """ )
@@ -693,7 +719,7 @@ def prologo():
     for char in text_to_display:
         print(char, end='', flush=True)
         time.sleep(0.040)
-    
+
 
     while True:
         text = ('\n¿Quieres contestar (si/no)?\n')
@@ -755,8 +781,8 @@ def prologo():
                     print(char, end='', flush=True)
                     time.sleep(0.060)
                 message = (f'Oh, no. Parece que no puedes volver a conciliar el sueño.\n'
-                    f'Será mejor ir un rato a la cocina.\n'
-                    f'\n')
+                           f'Será mejor ir un rato a la cocina.\n'
+                           f'\n')
                 for char in message:
                     print(char, end='', flush=True)
                     time.sleep(0.040)
@@ -766,8 +792,8 @@ def prologo():
                 for char in message:
                     print(char, end='', flush=True)
                     time.sleep(0.070)
-                
-                
+
+
                 time.sleep(1.9)
                 print("""
                         \n
@@ -793,7 +819,7 @@ def prologo():
                         0================================================0
                         \n
                         """)
-                
+
                 time.sleep(1)
 
 
@@ -829,7 +855,7 @@ def prologo():
                                 time.sleep(0.040)
                         elif 'nada' in option.lower():
                             text = (f'\nEntiendo.., entonces no hay razón para estar en la cocina.\n'
-                                  f'\nSerá mejor ir a la habitación.\n')
+                                    f'\nSerá mejor ir a la habitación.\n')
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
@@ -850,7 +876,7 @@ def prologo():
                                 time.sleep(0.040)
                         elif 'dormir' in option.lower():
                             text = (f'\nEntendible...\n'
-                                  f'Será mejor ir a la habitación.\n')
+                                    f'Será mejor ir a la habitación.\n')
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
@@ -875,8 +901,8 @@ def prologo():
                     else:
                         text = ('\n(๏̯͡๏). Será mejor que hagas otra cosa...\n')
                         for char in text:
-                                print(char, end='', flush=True)
-                                time.sleep(0.040)
+                            print(char, end='', flush=True)
+                            time.sleep(0.040)
                         time.sleep(1)
 
                 note = (
@@ -890,48 +916,48 @@ def prologo():
                 print("""
                       \n
                       \n
-                           \  /
-                            \/
-                    .====================.
-                    | .----------------. |
-                    | |                | |
-                    | | Encendiendo... | |
-                    | |                | |   
-                    | '----------------'o|  
-                    |====================|  
-                    |####################|  
-                    '===================='  
+                                                   \  /
+                                                    \/
+                                            .====================.
+                                            | .----------------. |
+                                            | |                | |
+                                            | | Encendiendo... | |
+                                            | |                | |   
+                                            | '----------------'o|  
+                                            |====================|  
+                                            |####################|  
+                                            '===================='  
                       
                     \n
                     \n  
                       """)
-                
+
                 time.sleep(0.75)
 
 
                 note = (
-                    f'\n¡Oh! Parece que se ha encendido la televisión.\n' 
+                    f'\n¡Oh! Parece que se ha encendido la televisión.\n'
                     f'\nEn cuanto intentaste levantarte has movido la mesa tirando el control.\n\n'
-                    f'\nEstán pasando las noticias.\n\n' 
+                    f'\nEstán pasando las noticias.\n\n'
                     f'\nComo no es novedad, un crimen verdaderamente horrible se ha cometido en tu ciudad\n'
                     f'\nEl nombre de la víctima está escrito justo en la parte inferior de la pantalla.\n'
                     f'\n'
                     f'\n'
-                    
+
                 )
                 for char in note:
                     print(char, end='', flush=True)
                     time.sleep(0.040)
 
                 time.sleep(1.8)
-                
+
                 text = ('               Martín Arriaga Pérez\n\n\n')
                 for char in text:
                     print(char, end='', flush=True)
                     time.sleep(0.1)
-                
+
                 time.sleep(1.5)
-                
+
                 text = (f'\n\n'
                         f'Es el nombre de tu mejor amigo.\n\n'
                         f'¿Cómo...?\n\n')
@@ -963,7 +989,7 @@ def prologo():
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.075)
-                            
+
                             time.sleep(2)
 
                             bad_ending()
@@ -981,7 +1007,7 @@ def prologo():
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.075)
-                            
+
                             time.sleep(2)
 
                             bad_ending()
@@ -1029,14 +1055,14 @@ def prologo():
                                         f'Parece que al pasar los años no lograste sobrellevarlo\n'
                                         f'\n'
                                         f'\n...\n\n'
-                                        f'Mueres de una sobredosis el 17 de Julio de 1989.\n\n' 
+                                        f'Mueres de una sobredosis el 17 de Julio de 1989.\n\n'
                                         # Agregar una imagen ascii de drogadictos
                                         f'...\n\n'
                                     )
                                     for char in text:
                                         print(char, end='', flush=True)
                                         time.sleep(0.075)
-                                    
+
                                     time.sleep(1.8)
 
                                     bad_ending()
@@ -1069,22 +1095,22 @@ def oficina():
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.025)
-    
+
     time.sleep(2)
 
     print(""" \n
-           __________. 
-           |  < (_) >|
-           /==== =====
-          (.---._ _.-.)
-           |/   a` a |
-           (      _\ |
-            \    __  ;
-            |\   .  /
-         _.'\ '----;'-.
-     _.-'  O ;-.__.'\O `o.
-    /o \      \/-.-\/|    \\
-   |    ;,     '.|\| /     |
+                                           __________. 
+                                           |  < (_) >|
+                                           /==== =====
+                                          (.---._ _.-.)
+                                           |/   a` a |
+                                           (      _\ |
+                                            \    __  ;
+                                            |\   .  /
+                                         _.'\ '----;'-.
+                                     _.-'  O ;-.__.'\O `o.
+                                    /o \      \/-.-\/|    \\
+                                   |    ;,     '.|\| /     |
                                                               \n   """)
 
     time.sleep(2)
@@ -1101,15 +1127,15 @@ def oficina():
     time.sleep(2.5)
 
     text = ( f'\n ... \n\n'
-            f'Martin, ¿tu mejor amigo...?\n'
-            f'\nImposible.\n'
-            f'\n¿Quién sería capaz...?\n\n')
+             f'Martin, ¿tu mejor amigo...?\n'
+             f'\nImposible.\n'
+             f'\n¿Quién sería capaz...?\n\n')
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.078)
-    
+
     time.sleep(1.8)
-    
+
 
     print("""
                    |\____________________________________________________________             
@@ -1122,9 +1148,9 @@ def oficina():
           
 
                                                                    """)
-    
+
     time.sleep(4.5)
-    
+
     print("""
 
                    |\___________________________________________________________             
@@ -1309,7 +1335,7 @@ def oficina():
                 for char in text:
                     print(char, end='',flush=True)
                     time.sleep(0.040)
-    
+
 
 
     text = (
@@ -1318,7 +1344,7 @@ def oficina():
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.040)
-    
+
     time.sleep(1.5)
 
     text = (
@@ -1327,7 +1353,7 @@ def oficina():
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.040)
-    
+
     print('\n\nCargando armería...')
     time.sleep(2)
     print('\n')
@@ -1346,11 +1372,11 @@ def oficina():
                                                     
            +-----------------------------------------------------------------------------------------------------+
           """)
-    
+
     time.sleep(1.8)
-    
+
     text =(f'\nEscoge dos de las cosas que se encuentren en la armería.\n'
-            )
+           )
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.040)
@@ -1407,7 +1433,7 @@ def oficina():
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.040)
-    
+
     cabin()
 ##_---------------------------------------------------------------------------------------------
 
@@ -1420,46 +1446,46 @@ cuarto = False
 def cabin():
     text = (f'\n.\n'
             f'.\n'
-            f'.\n')    
+            f'.\n')
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.1)
     time.sleep(2.3)
     # Cambiar de musica en la cabaña
     print(f'\n'
-        f'\n+----------------------------------------------------------------------------------------------------+\n'
-        f'                                                        /\\\n'
-        f'                                               __      /%%\\\n'
-        f'                                             |_I_|     /%%\\\n'
-        f'                   _________________/,\'_____ |I_I|____/%%%%\\/\\\n'
-        f'                 /\\\'.___.\'____.\'__./\'/_\\\'.__.\'__.\'__.\'\\%%%%/%%\\\n'
-        f'                /%%\\_.\'___.\'___.\'./\\/_ _\\.\'__.\'__.\'__.\'\\%%/%%%%\\\n'
-        f'               /%%%%\\.__.\'___.\'._/\\/|_|_|\\.__.\'__.\'__.\'.\\%/%%%%\\   \n'
-        f'               /%%%%\\_.\'__.\'__.\'.\\/_|_|_|_\\\'.___.\'__.\'___\\%%%%%%\\                  \n'
-        f'              /%%%%%%\\____________________________________\\%%%%%%\\\n'
-        f'             /%%%%%%%%\\]== _ _ _ ============______======]%%%%%%%\\\n'
-        f'             /%%%%%%%/\]==|_|_|_|============|////|======]%%%%%%%%\\__\n'
-        f'          __/%%%%%%%/%%\\==|_|_|_|============|////|======]%%%%%%%%\\\n'
-        f'           /%%%%%%%/%%%%\\====================|&///|======]%%%%%%%%%\\\n'
-        f'           /%%%%%%%/%%%%\\====================|////|======]^^^^^^^^^^\n'
-        f'          /%%%%%%%/%%%%%%\\===================|////|======]  _ - _ -\n'
-        f'          /%%%%%%%/%%%%%%%\"""""""""""""""""""\'====\'"""""""""""""""""""\n'
-        f'          ^^^^^^^/%%%%%%%%\\   _ -   _ -              _-                   ---   __\n'
-        f'                 ^^^^^^^^^^                                           ---    \n'
-        f'+----------------------------------------------------------------------------------------------------+  \n\n      '           
-        f'        ')
+          f'\n+----------------------------------------------------------------------------------------------------+\n'
+          f'                                                        /\\\n'
+          f'                                               __      /%%\\\n'
+          f'                                             |_I_|     /%%\\\n'
+          f'                   _________________/,\'_____ |I_I|____/%%%%\\/\\\n'
+          f'                 /\\\'.___.\'____.\'__./\'/_\\\'.__.\'__.\'__.\'\\%%%%/%%\\\n'
+          f'                /%%\\_.\'___.\'___.\'./\\/_ _\\.\'__.\'__.\'__.\'\\%%/%%%%\\\n'
+          f'               /%%%%\\.__.\'___.\'._/\\/|_|_|\\.__.\'__.\'__.\'.\\%/%%%%\\   \n'
+          f'               /%%%%\\_.\'__.\'__.\'.\\/_|_|_|_\\\'.___.\'__.\'___\\%%%%%%\\                  \n'
+          f'              /%%%%%%\\____________________________________\\%%%%%%\\\n'
+          f'             /%%%%%%%%\\]== _ _ _ ============______======]%%%%%%%\\\n'
+          f'             /%%%%%%%/\]==|_|_|_|============|////|======]%%%%%%%%\\__\n'
+          f'          __/%%%%%%%/%%\\==|_|_|_|============|////|======]%%%%%%%%\\\n'
+          f'           /%%%%%%%/%%%%\\====================|&///|======]%%%%%%%%%\\\n'
+          f'           /%%%%%%%/%%%%\\====================|////|======]^^^^^^^^^^\n'
+          f'          /%%%%%%%/%%%%%%\\===================|////|======]  _ - _ -\n'
+          f'          /%%%%%%%/%%%%%%%\"""""""""""""""""""\'====\'"""""""""""""""""""\n'
+          f'          ^^^^^^^/%%%%%%%%\\   _ -   _ -              _-                   ---   __\n'
+          f'                 ^^^^^^^^^^                                           ---    \n'
+          f'+----------------------------------------------------------------------------------------------------+  \n\n      '
+          f'        ')
 
 
-    
+
     time.sleep(1.5)
-    
+
     text = (f'\nParece que tu compañero {myPartner.partner_name()} aún no ha llegado...\n'
             f'\nLo mejor será comenzar a recolectar pistas por tu cuenta.\n'
-            f'\nAquí tienes un pequeño mapa del interior de la cabaña.\n')    
+            f'\nAquí tienes un pequeño mapa del interior de la cabaña.\n')
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.040)
-    
+
     time.sleep(1.5)
     print('\n\nCargando mapa...\n')
     time.sleep(1.5)
@@ -1470,7 +1496,7 @@ def cabin():
     print('+----------------------------------------------------------------------------------------------------+  ')
     time.sleep(2.2)
 
-    text = (f'\n¿En qué parte de la cabaña te gustaría comenzar buscando?\n')  
+    text = (f'\n¿En qué parte de la cabaña te gustaría comenzar buscando?\n')
     for char in text:
         print(char, end='', flush=True)
         time.sleep(0.040)
@@ -1480,7 +1506,7 @@ def cabin():
         global baño, sala, cocina, cuarto
 
         eleccion = input('\n> ')
-        
+
         while True:
             if baño and sala and cocina and cuarto:
                 text = (f'\nMmmm, algo me dice que deberías revisar el baño otra vez... \n'
@@ -1495,14 +1521,14 @@ def cabin():
                 time.sleep(2.5)
 
             else:
-                if 'baño' in eleccion.lower(): 
+                if 'baño' in eleccion.lower():
                     baño = True
                     time.sleep(1.5)
                     print('\n\n\n Cargando baño... \n\n\n')
                     time.sleep(2.2)
                     cabin_bath()
                     time.sleep(1.8)
-                    text = (f'\n¿Cuál de estos lugares te gustaría analizar más de cerca?\n\n')  
+                    text = (f'\n¿Cuál de estos lugares te gustaría analizar más de cerca?\n\n')
                     for char in text:
                         print(char, end='', flush=True)
                         time.sleep(0.040)
@@ -1512,16 +1538,16 @@ def cabin():
                             f'    - El suelo\n'
                             f'    - El lavabo\n'
                             f'    - El inodoro\n'
-                            f'    - Mejor nada...\n')  
+                            f'    - Mejor nada...\n')
                     analize = input('\n> ')
 
-                    while True: 
+                    while True:
                         if 'tina' in analize.lower():
                             text = (f'\nAquí fue encontrado el cuerpo de Martin.\n'
                                     f'\n.'
                                     f'\n.'
                                     f'\n.\n'
-                                    f'\nParece que lo único que hay es un enorme charco de su sangre...\n')  
+                                    f'\nParece que lo único que hay es un enorme charco de su sangre...\n')
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
@@ -1531,7 +1557,7 @@ def cabin():
                             myClues.fingerprint = True
                             #myPlayer.add_item(fingerprint())
                             text = (f'\n¡Oh! Una huella.\n'
-                                    f'\nMe pregunto de quién será...\n')  
+                                    f'\nMe pregunto de quién será...\n')
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
@@ -1539,13 +1565,13 @@ def cabin():
                         elif 'inodoro' in analize.lower():
                             text = (f'\nMmmm...\n'
                                     f'\nNo hay nada relevante.\n'
-                                    )  
+                                    )
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
 
                         elif 'suelo' in analize.lower():
-                            text = (f'\nNo parece haber nada más que sangre...\n\n')  
+                            text = (f'\nNo parece haber nada más que sangre...\n\n')
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
@@ -1555,6 +1581,7 @@ def cabin():
                                 print(char, end='', flush=True)
                                 time.sleep(0.080)
                             time.sleep(1.5)
+
                             text = (f'\nSe acaba de escuchar una puerta abriéndose.\n'
                                     f'\nAlguien más acaba de entrar a la cabaña.\n')
                             for char in text:
@@ -1578,7 +1605,7 @@ def cabin():
                                             print(char, end='', flush=True)
                                             time.sleep(0.040)
                                         serious_op = ('\n> ')
-                                    else:    
+                                    else:
                                         if 'pistola' in serious_op.lower():
                                             text = (f'\nBien.\n'
                                                     f'\nEstás apuntando a la puerta del baño que por ahora estpá cerrada.\n')
@@ -1591,13 +1618,13 @@ def cabin():
                                                 time.sleep(0.080)
                                             time.sleep(3)
                                             print ("""
- ____    _    _   _  ____ _ 
-| __ )  / \  | \ | |/ ___| |
-|  _ \ / _ \ |  \| | |  _| |
-| |_) / ___ \| |\  | |_| |_|
-|____/_/   \_\_| \_|\____(_)
-                            
-                                                    """)  
+             ____    _    _   _  ____ _ 
+            | __ )  / \  | \ | |/ ___| |
+            |  _ \ / _ \ |  \| | |  _| |
+            | |_) / ___ \| |\  | |_| |_|
+            |____/_/   \_\_| \_|\____(_)
+                    
+                                                    """)
                                             if myPartner.jose:
                                                 time.sleep(3)
                                                 text = (f'\nDisparaste.\n')
@@ -1635,17 +1662,17 @@ def cabin():
                                                 for char in text:
                                                     print(char, end='', flush=True)
                                                     time.sleep(0.040)
-                                                
+
                                                 print (""" 
-  ,   /\   ,
- / '-'  '-' \\ 
-| DETECTIVE  |
-\    .--.    /
- |  ( 19 )  |
- \   '--'   /
-  '--.  .--'
-      \/
-                                                        
+                          ,   /\   ,
+                         / '-'  '-' \\ 
+                        | DETECTIVE  |
+                        \    .--.    /
+                         |  ( 19 )  |
+                         \   '--'   /
+                          '--.  .--'
+                              \/
+                                                                                
 
 """)
 
@@ -1662,7 +1689,7 @@ def cabin():
                                                 for char in text:
                                                     print(char, end='', flush=True)
                                                     time.sleep(0.1)
-                                                
+
                                                 text = (f'\nOh.\n'
                                                         f'\nLe has disparado a tu compañero.\n')
                                                 for char in text:
@@ -1671,10 +1698,11 @@ def cabin():
                                                 time.sleep(2.8)
                                                 text = (f'\n.\n'
                                                         f'.\n'
-                                                        f'.\n')    
+                                                        f'.\n')
                                                 for char in text:
                                                     print(char, end='', flush=True)
                                                     time.sleep(0.1)
+                                                pygame.mixer.music.stop()
                                                 time.sleep(3)
                                                 text = (f'\nNo duraste mucho, ¿verdad?\n'
                                                         f'\nDespués de este incidente te removieron en seguida del caso, {myPlayer.name}.\n'
@@ -1683,6 +1711,7 @@ def cabin():
                                                     print(char, end='', flush=True)
                                                     time.sleep(0.060)
                                                 time.sleep(2.5)
+                                                pygame.mixer.music.stop()
                                                 bad_ending()
 
                                             elif myPartner.marcus:
@@ -1706,13 +1735,13 @@ def cabin():
                                                         time.sleep(0.040)
                                                     time.sleep(1)
                                                     print ("""
-____    _    _   _  ____ _ 
-| __ )  / \  | \ | |/ ___| |
-|  _ \ / _ \ |  \| | |  _| |
-| |_) / ___ \| |\  | |_| |_|
-|____/_/   \_\_| \_|\____(_)
-                            
-                                                    """) 
+                ____    _    _   _  ____ _ 
+                | __ )  / \  | \ | |/ ___| |
+                |  _ \ / _ \ |  \| | |  _| |
+                | |_) / ___ \| |\  | |_| |_|
+                |____/_/   \_\_| \_|\____(_)
+                                            
+                                                    """)
                                                     text = (f'\nBien.\n'
                                                             f'\nDisparaste ahora tú sin pensarlo dos veces.\n'
                                                             f'\nLe has dado. Felicidades'
@@ -1726,16 +1755,16 @@ ____    _    _   _  ____ _
                                                     for char in text:
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.040)
-                                                    
+
                                                     print (""" 
- ,    /\   ,
- / '-'  '-' \\ 
-| DETECTIVE  |
-\    .--.    /
- |  ( 19 )  |
- \   '--'   /
-  '--.  .--'
-      \/
+                     ,    /\   ,
+                     / '-'  '-' \\ 
+                    | DETECTIVE  |
+                    \    .--.    /
+                     |  ( 19 )  |
+                     \   '--'   /
+                      '--.  .--'
+                          \/
                                                         
 
 """)
@@ -1753,7 +1782,7 @@ ____    _    _   _  ____ _
                                                     for char in text:
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.1)
-                                                
+
                                                     text = (f'\nOh.\n'
                                                             f'\nLe has disparado a tu compañero.\n')
                                                     for char in text:
@@ -1767,6 +1796,7 @@ ____    _    _   _  ____ _
                                                         time.sleep(0.040)
 
                                                     time.sleep(2.5)
+                                                    pygame.mixer.music.stop()
                                                     text = (f'\nInmediatamente te fusite y presentaste su nombre como posible culpable.\n')
                                                     for char in text:
                                                         print(char, end='', flush=True)
@@ -1781,8 +1811,9 @@ ____    _    _   _  ____ _
                                                         time.sleep(2.5)
 
                                                         marc_letter()
+                                                        pygame.mixer.music.stop()
                                                         good_ending()
-                                                
+
                                                     else:
                                                         text = (f'\nDebido a que no encontraste suficientes pruebas en la cabaña, Marcus no pudo ser declarado culpable y \n'
                                                                 f'te destituyeron de tu cargo.\n')
@@ -1791,21 +1822,22 @@ ____    _    _   _  ____ _
                                                             time.sleep(0.040)
                                                         time.sleep(2)
                                                         text = (
-                                                                f'\nQué pena. Tan cerca...\n')
+                                                            f'\nQué pena. Tan cerca...\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
                                                         time.sleep(2.5)
                                                         text = (
-                                                                f'\nDespués de esto te despidieron, sin lograr hacer nada por Martin.\n')
+                                                            f'\nDespués de esto te despidieron, sin lograr hacer nada por Martin.\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.040)
                                                         time.sleep(3)
+                                                        pygame.mixer.music.stop()
                                                         bad_ending()
 
                                                 else:
-                                                
+
                                                     text = (f'\n ...\n')
                                                     for char in text:
                                                         print(char, end='', flush=True)
@@ -1831,7 +1863,7 @@ ____    _    _   _  ____ _
                                                         time.sleep(0.040)
                                                     text = (f'\n.\n'
                                                             f'.\n'
-                                                            f'.\n')    
+                                                            f'.\n')
                                                     for char in text:
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.1)
@@ -1840,7 +1872,8 @@ ____    _    _   _  ____ _
                                                     for char in text:
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.075)
-                                                        bad_ending()                         
+                                                    pygame.mixer.music.stop()
+                                                    bad_ending()
 
                                         elif 'hacha' in serious_op.lower():
                                             text = (f'\nBien, sostenla fuerte.\n')
@@ -1848,6 +1881,8 @@ ____    _    _   _  ____ _
                                                 print(char, end='', flush=True)
                                                 time.sleep(0.040)
                                             time.sleep(2)
+                                            pygame.mixer.music.load(ruta_musica2)
+                                            pygame.mixer.music.play(-1)
 
                                             if myPartner.jose:
                                                 text = (f'\nLa puerta se ha abierto...\n'
@@ -1885,7 +1920,7 @@ ____    _    _   _  ____ _
                                                 for char in text:
                                                     print(char, end='', flush=True)
                                                     time.sleep(0.040)
-                                                
+
                                                 clues = input('\n> ')
 
                                                 while not any(keyword in clues.lower() for keyword in ['revisar']):
@@ -1895,23 +1930,23 @@ ____    _    _   _  ____ _
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.040)
                                                     clues = input('\n> ')
-                                                
+
                                                 time.sleep(2.5)
                                                 print('\n\n\nCargando pistas...\n\n\n')
                                                 time.sleep(2.8)
 
                                                 if myClues.file:
                                                     criminal_file()
-                                                
+
                                                 if myClues.porfile:
                                                     partner()
-                                                
+
                                                 if myClues.letter:
                                                     letter()
 
                                                 if myClues.fingerprint:
                                                     fingerprint()
-                                                
+
                                                 if myClues.wallet:
                                                     wallet()
 
@@ -1926,7 +1961,7 @@ ____    _    _   _  ____ _
              \_________________________________________________________/     
                                                             
                                                     """)
-                                                
+
                                                 time.sleep(3.5)
                                                 text = (f'\nPiensa bien tu respuesta.\n')
                                                 for char in text:
@@ -1945,7 +1980,7 @@ ____    _    _   _  ____ _
                                                         time.sleep(0.070)
                                                     text = (f'\n.\n'
                                                             f'.\n'
-                                                            f'.\n')    
+                                                            f'.\n')
                                                     for char in text:
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.1)
@@ -1962,6 +1997,7 @@ ____    _    _   _  ____ _
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.060)
                                                     time.sleep(2)
+                                                    pygame.mixer.music.stop()
                                                     bad_ending()
 
                                                 elif any(keyword in murder.lower() for keyword in ['marc', 'marcus', 'davidson']):
@@ -1977,6 +2013,8 @@ ____    _    _   _  ____ _
                                                             
                                                     """)
                                                     time.sleep(2)
+                                                    pygame.mixer.music.load(ruta_musica2)
+                                                    pygame.mixer.music.play(-1)
                                                     text = (f'\nClaro...\n'
                                                             f'\nTiene sentido.\n'
                                                             f'\nEl tipo de sangre coincide\n')
@@ -2016,20 +2054,21 @@ ____    _    _   _  ____ _
                                                         time.sleep(1.6)
 
                                                         text = (f'\nEl caso se archivó como caso sin resover.\n'
-                                                            f'Y, debido a no poder encontrar al culpable, te despidieron en cuestión de días.\n'
-                                                            f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                                                f'Y, debido a no poder encontrar al culpable, te despidieron en cuestión de días.\n'
+                                                                f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.060)
                                                         time.sleep(2)
+                                                        pygame.mixer.music.stop()
                                                         bad_ending()
 
                                                 else:
-                                                        text = (f'\nPareces no estar muy seguro...\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.040)
-                                                        print(f""" 
+                                                    text = (f'\nPareces no estar muy seguro...\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    print(f""" 
                                                         
             |\___________________________________________________________             
             |                                                            | 
@@ -2039,23 +2078,24 @@ ____    _    _   _  ____ _
              \_________________________________________________________/     
                                                             
                                                     """)
-                                                        time.sleep(2)
-                                                        text = (f'\n.\n'
-                                                                f'.\n'
-                                                                f'.\n')    
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.1)
-                                                        time.sleep(2)
-                                                        text = (f'\nUna vez más, no pudiste resolver el caso, ¿verdad?\n'
-                                                                f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.060)
-                                                        time.sleep(3)
-                                                        bad_ending()
+                                                    time.sleep(2)
+                                                    text = (f'\n.\n'
+                                                            f'.\n'
+                                                            f'.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.1)
+                                                    time.sleep(2)
+                                                    text = (f'\nUna vez más, no pudiste resolver el caso, ¿verdad?\n'
+                                                            f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.060)
+                                                    time.sleep(3)
+                                                    pygame.mixer.music.stop()
+                                                    bad_ending()
 
-                                            
+
                                             elif myPartner.marcus:
                                                 text = (f'\nBien, sostenla fuerte.\n')
                                                 for char in text:
@@ -2068,15 +2108,15 @@ ____    _    _   _  ____ _
                                                     time.sleep(0.080)
                                                 time.sleep(3)
                                                 print ("""
- ____    _    _   _  ____ _ 
-| __ )  / \  | \ | |/ ___| |
-|  _ \ / _ \ |  \| | |  _| |
-| |_) / ___ \| |\  | |_| |_|
-|____/_/   \_\_| \_|\____(_)
+                 ____    _    _   _  ____ _ 
+                | __ )  / \  | \ | |/ ___| |
+                |  _ \ / _ \ |  \| | |  _| |
+                | |_) / ___ \| |\  | |_| |_|
+                |____/_/   \_\_| \_|\____(_)
                             
                                                         """)
                                                 time.sleep(2)
-                                                if myPlayer.bulletproof:  
+                                                if myPlayer.bulletproof:
                                                     text = (f'\nDuele mucho...\n'
                                                             f'\nPero sabes que te dolería mucho más si no tuvieras el chaleco antibalas.\n')
                                                     for char in text:
@@ -2104,7 +2144,7 @@ ____    _    _   _  ____ _
                                                                 time.sleep(0.040)
                                                             text = (f'\n.\n'
                                                                     f'.\n'
-                                                                    f'.\n')    
+                                                                    f'.\n')
                                                             for char in text:
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.1)
@@ -2116,14 +2156,14 @@ ____    _    _   _  ____ _
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.040)
                                                             print (""" 
-    ,    /\   ,
-    / '-'  '-' \\ 
-   | DETECTIVE  |
-   \    .--.    /
-    |  ( 19 )  |
-    \   '--'   /
-     '--.  .--'
-         \/
+                        ,    /\   ,
+                        / '-'  '-' \\ 
+                       | DETECTIVE  |
+                       \    .--.    /
+                        |  ( 19 )  |
+                        \   '--'   /
+                         '--.  .--'
+                             \/
                                                             
 
     """)
@@ -2141,14 +2181,14 @@ ____    _    _   _  ____ _
                                                             for char in text:
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.1)
-                                                        
+
                                                             text = (f'\nOh.\n'
                                                                     f'\nEs tu compañero. O lo era... \n')
                                                             for char in text:
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.075)
                                                             text = (f'\nPero...\n'
-                                                                f'\n¿Por qué te había disparado primero?\n')
+                                                                    f'\n¿Por qué te había disparado primero?\n')
                                                             for char in text:
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.040)
@@ -2170,7 +2210,7 @@ ____    _    _   _  ____ _
                                                                 marc_letter()
 
                                                                 good_ending()
-                                                    
+
                                                             else:
                                                                 text = (f'\nDebido a que no encontraste suficientes pruebas en la cabaña, Marcus no pudo ser declarado culpable y \n'
                                                                         f'te destituyeron de tu cargo.\n')
@@ -2179,13 +2219,13 @@ ____    _    _   _  ____ _
                                                                     time.sleep(0.040)
                                                                 time.sleep(2)
                                                                 text = (
-                                                                        f'\nQué pena. Tan cerca...\n')
+                                                                    f'\nQué pena. Tan cerca...\n')
                                                                 for char in text:
                                                                     print(char, end='', flush=True)
                                                                     time.sleep(0.040)
                                                                 time.sleep(2.5)
                                                                 text = (
-                                                                        f'\nDespués de esto te despidieron, sin lograr hacer nada por Martin.\n')
+                                                                    f'\nDespués de esto te despidieron, sin lograr hacer nada por Martin.\n')
                                                                 for char in text:
                                                                     print(char, end='', flush=True)
                                                                     time.sleep(0.040)
@@ -2199,22 +2239,22 @@ ____    _    _   _  ____ _
                                                                 time.sleep(0.040)
                                                             time.sleep(3)
                                                             print ("""
-     ____    _    _   _  ____ _ 
-    | __ )  / \  | \ | |/ ___| |
-    |  _ \ / _ \ |  \| | |  _| |
-    | |_) / ___ \| |\  | |_| |_|
-    |____/_/   \_\_| \_|\____(_)
+                 ____    _    _   _  ____ _ 
+                | __ )  / \  | \ | |/ ___| |
+                |  _ \ / _ \ |  \| | |  _| |
+                | |_) / ___ \| |\  | |_| |_|
+                |____/_/   \_\_| \_|\____(_)
                                 
                                                             """)
                                                             time.sleep(2)
                                                             text = (f'\nMoriste por un disparo el 17 de Noviembre de 1986.\n'
-                                                                f'\n')
+                                                                    f'\n')
                                                             for char in text:
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.075)
                                                             bad_ending()
 
-                                                        else: 
+                                                        else:
                                                             text = (f'\nElige correctamente...\n')
                                                             for char in text:
                                                                 print(char, end='', flush=True)
@@ -2249,7 +2289,7 @@ ____    _    _   _  ____ _
                                                         time.sleep(0.040)
                                                     text = (f'\n.\n'
                                                             f'.\n'
-                                                            f'.\n')    
+                                                            f'.\n')
                                                     for char in text:
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.1)
@@ -2258,8 +2298,8 @@ ____    _    _   _  ____ _
                                                     for char in text:
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.075)
-                                                        bad_ending()                   
-                                                    
+                                                        bad_ending()
+
 
                                         elif 'navaja' in serious_op.lower():
                                             text = (f'\nBien, sostenla fuerte.\n')
@@ -2304,7 +2344,7 @@ ____    _    _   _  ____ _
                                                 for char in text:
                                                     print(char, end='', flush=True)
                                                     time.sleep(0.040)
-                                                
+
                                                 clues = input('\n> ')
 
                                                 while not any(keyword in clues.lower() for keyword in ['revisar', 'pistas']):
@@ -2314,26 +2354,26 @@ ____    _    _   _  ____ _
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.040)
                                                     clues = input('\n> ')
-                                                
+
                                                 time.sleep(2.5)
                                                 print('\n\n\nCargando pistas...\n\n\n')
                                                 time.sleep(2.8)
 
                                                 if myClues.file:
                                                     criminal_file()
-                                                
+
                                                 if myClues.porfile:
                                                     partner()
-                                                
+
                                                 if myClues.letter:
                                                     letter()
 
                                                 if myClues.fingerprint:
                                                     fingerprint()
-                                                
+
                                                 if myClues.wallet:
                                                     wallet()
-                                                    
+
 
                                                 time.sleep(6)
                                                 print(f""" 
@@ -2346,8 +2386,8 @@ ____    _    _   _  ____ _
              \_________________________________________________________/     
                                                             
                                                     """)
-                                                
-                                                
+
+
                                                 time.sleep(3.5)
                                                 text = (f'\nPiensa bien tu respuesta.\n')
                                                 for char in text:
@@ -2365,7 +2405,7 @@ ____    _    _   _  ____ _
                                                         time.sleep(0.070)
                                                     text = (f'\n.\n'
                                                             f'.\n'
-                                                            f'.\n')    
+                                                            f'.\n')
                                                     for char in text:
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.1)
@@ -2437,8 +2477,8 @@ ____    _    _   _  ____ _
                                                         time.sleep(1.6)
 
                                                         text = (f'\nEl caso se archivó como caso sin resover.\n'
-                                                            f'Y, debido a no poder encontrar al culpable, te despidieron en cuestión de días.\n'
-                                                            f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                                                f'Y, debido a no poder encontrar al culpable, te despidieron en cuestión de días.\n'
+                                                                f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
                                                         for char in text:
                                                             print(char, end='', flush=True)
                                                             time.sleep(0.060)
@@ -2446,11 +2486,11 @@ ____    _    _   _  ____ _
                                                         bad_ending()
 
                                                 else:
-                                                        text = (f'\nPareces no estar muy seguro...\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.040)
-                                                        print(f""" 
+                                                    text = (f'\nPareces no estar muy seguro...\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.040)
+                                                    print(f""" 
                                                         
             |\___________________________________________________________             
             |                                                            | 
@@ -2460,23 +2500,23 @@ ____    _    _   _  ____ _
              \_________________________________________________________/     
                                                             
                                                     """)
-                                                        time.sleep(2)
-                                                        text = (f'\n.\n'
-                                                                f'.\n'
-                                                                f'.\n')    
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.1)
-                                                        time.sleep(2)
-                                                        text = (f'\nUna vez más, no pudiste resolver el caso, ¿verdad?\n'
-                                                                f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
-                                                        for char in text:
-                                                            print(char, end='', flush=True)
-                                                            time.sleep(0.060)
-                                                        time.sleep(3)
-                                                        bad_ending()
+                                                    time.sleep(2)
+                                                    text = (f'\n.\n'
+                                                            f'.\n'
+                                                            f'.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.1)
+                                                    time.sleep(2)
+                                                    text = (f'\nUna vez más, no pudiste resolver el caso, ¿verdad?\n'
+                                                            f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                                    for char in text:
+                                                        print(char, end='', flush=True)
+                                                        time.sleep(0.060)
+                                                    time.sleep(3)
+                                                    bad_ending()
 
-                                            
+
                                             elif myPartner.marcus:
                                                 text = (f'\nBien, sostenla fuerte.\n')
                                                 for char in text:
@@ -2489,15 +2529,15 @@ ____    _    _   _  ____ _
                                                     time.sleep(0.080)
                                                 time.sleep(3)
                                                 print ("""
- ____    _    _   _  ____ _ 
-| __ )  / \  | \ | |/ ___| |
-|  _ \ / _ \ |  \| | |  _| |
-| |_) / ___ \| |\  | |_| |_|
-|____/_/   \_\_| \_|\____(_)
+                 ____    _    _   _  ____ _ 
+                | __ )  / \  | \ | |/ ___| |
+                |  _ \ / _ \ |  \| | |  _| |
+                | |_) / ___ \| |\  | |_| |_|
+                |____/_/   \_\_| \_|\____(_)
                             
                                                         """)
                                                 time.sleep(2)
-                                                if myPlayer.bulletproof:  
+                                                if myPlayer.bulletproof:
                                                     text = (f'\nDuele mucho...\n'
                                                             f'\nPero sabes que te dolería mucho más si no tuvieras el chaleco antibalas.\n')
                                                     for char in text:
@@ -2525,7 +2565,7 @@ ____    _    _   _  ____ _
                                                                 time.sleep(0.040)
                                                             text = (f'\n.\n'
                                                                     f'.\n'
-                                                                    f'.\n')    
+                                                                    f'.\n')
                                                             for char in text:
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.1)
@@ -2537,14 +2577,14 @@ ____    _    _   _  ____ _
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.040)
                                                             print (""" 
-     ,    /\   ,
-     / '-'  '-' \\ 
-    | DETECTIVE  |
-    \    .--.    /
-     |  ( 19 )  |
-     \   '--'   /
-      '--.  .--'
-          \/
+                         ,    /\   ,
+                         / '-'  '-' \\ 
+                        | DETECTIVE  |
+                        \    .--.    /
+                         |  ( 19 )  |
+                         \   '--'   /
+                          '--.  .--'
+                              \/
                                                             
 
     """)
@@ -2562,14 +2602,14 @@ ____    _    _   _  ____ _
                                                             for char in text:
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.1)
-                                                        
+
                                                             text = (f'\nOh.\n'
                                                                     f'\nEs tu compañero. O lo era... \n')
                                                             for char in text:
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.075)
                                                             text = (f'\nPero...\n'
-                                                                f'\n¿Por qué te había disparado primero?\n')
+                                                                    f'\n¿Por qué te había disparado primero?\n')
                                                             for char in text:
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.040)
@@ -2590,7 +2630,7 @@ ____    _    _   _  ____ _
 
                                                                 marc_letter()
                                                                 good_ending()
-                                                    
+
                                                             else:
                                                                 text = (f'\nDebido a que no encontraste suficientes pruebas en la cabaña, Marcus no pudo ser declarado culpable y \n'
                                                                         f'te destituyeron de tu cargo.\n')
@@ -2599,13 +2639,13 @@ ____    _    _   _  ____ _
                                                                     time.sleep(0.040)
                                                                 time.sleep(2)
                                                                 text = (
-                                                                        f'\nQué pena. Tan cerca...\n')
+                                                                    f'\nQué pena. Tan cerca...\n')
                                                                 for char in text:
                                                                     print(char, end='', flush=True)
                                                                     time.sleep(0.040)
                                                                 time.sleep(2.5)
                                                                 text = (
-                                                                        f'\nDespués de esto te despidieron, sin lograr hacer nada por Martin.\n')
+                                                                    f'\nDespués de esto te despidieron, sin lograr hacer nada por Martin.\n')
                                                                 for char in text:
                                                                     print(char, end='', flush=True)
                                                                     time.sleep(0.040)
@@ -2619,22 +2659,22 @@ ____    _    _   _  ____ _
                                                                 time.sleep(0.040)
                                                             time.sleep(3)
                                                             print ("""
-     ____    _    _   _  ____ _ 
-    | __ )  / \  | \ | |/ ___| |
-    |  _ \ / _ \ |  \| | |  _| |
-    | |_) / ___ \| |\  | |_| |_|
-    |____/_/   \_\_| \_|\____(_)
+                     ____    _    _   _  ____ _ 
+                    | __ )  / \  | \ | |/ ___| |
+                    |  _ \ / _ \ |  \| | |  _| |
+                    | |_) / ___ \| |\  | |_| |_|
+                    |____/_/   \_\_| \_|\____(_)
                                 
                                                             """)
                                                             time.sleep(2)
                                                             text = (f'\nMoriste por un disparo el 17 de Noviembre de 1986.\n'
-                                                                f'\n')
+                                                                    f'\n')
                                                             for char in text:
                                                                 print(char, end='', flush=True)
                                                                 time.sleep(0.075)
                                                             bad_ending()
 
-                                                        else: 
+                                                        else:
                                                             text = (f'\nElige correctamente...\n')
                                                             for char in text:
                                                                 print(char, end='', flush=True)
@@ -2669,7 +2709,7 @@ ____    _    _   _  ____ _
                                                         time.sleep(0.040)
                                                     text = (f'\n.\n'
                                                             f'.\n'
-                                                            f'.\n')    
+                                                            f'.\n')
                                                     for char in text:
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.1)
@@ -2678,7 +2718,7 @@ ____    _    _   _  ____ _
                                                     for char in text:
                                                         print(char, end='', flush=True)
                                                         time.sleep(0.075)
-                                                        bad_ending()              
+                                                        bad_ending()
 
                             elif 'nada' in serious_op.lower():
                                 time.sleep(2)
@@ -2719,7 +2759,7 @@ ____    _    _   _  ____ _
                                     for char in text:
                                         print(char, end='', flush=True)
                                         time.sleep(0.040)
-                                    
+
                                     clues = input('\n> ')
 
                                     while not any(keyword in clues.lower() for keyword in ['revisar']):
@@ -2729,23 +2769,23 @@ ____    _    _   _  ____ _
                                             print(char, end='', flush=True)
                                             time.sleep(0.040)
                                         clues = input('\n> ')
-                                    
+
                                     time.sleep(2.5)
                                     print('\n\n\nCargando pistas...\n\n\n')
                                     time.sleep(2.8)
 
                                     if myClues.file:
                                         criminal_file()
-                                    
+
                                     if myClues.porfile:
                                         partner()
-                                    
+
                                     if myClues.letter:
                                         letter()
 
                                     if myClues.fingerprint:
                                         fingerprint()
-                                    
+
                                     if myClues.wallet:
                                         wallet()
 
@@ -2760,7 +2800,7 @@ ____    _    _   _  ____ _
              \_________________________________________________________/     
                                                 
                                         """)
-                                    
+
                                     time.sleep(3.5)
                                     text = (f'\nPiensa bien tu respuesta.\n')
                                     for char in text:
@@ -2779,7 +2819,7 @@ ____    _    _   _  ____ _
                                             time.sleep(0.070)
                                         text = (f'\n.\n'
                                                 f'.\n'
-                                                f'.\n')    
+                                                f'.\n')
                                         for char in text:
                                             print(char, end='', flush=True)
                                             time.sleep(0.1)
@@ -2849,10 +2889,10 @@ ____    _    _   _  ____ _
                                                 time.sleep(0.040)
 
                                             time.sleep(1.6)
-    
+
                                             text = (f'\nEl caso se archivó como caso sin resover.\n'
-                                                f'Y, debido a no poder encontrar al culpable, te despidieron en cuestión de días.\n'
-                                                f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                                    f'\nY, debido a no poder encontrar al culpable, te despidieron en cuestión de días.\n'
+                                                    f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
                                             for char in text:
                                                 print(char, end='', flush=True)
                                                 time.sleep(0.060)
@@ -2860,11 +2900,11 @@ ____    _    _   _  ____ _
                                             bad_ending()
 
                                     else:
-                                            text = (f'\nPareces no estar muy seguro...\n')
-                                            for char in text:
-                                                print(char, end='', flush=True)
-                                                time.sleep(0.040)
-                                            print(f""" 
+                                        text = (f'\nPareces no estar muy seguro...\n')
+                                        for char in text:
+                                            print(char, end='', flush=True)
+                                            time.sleep(0.040)
+                                        print(f""" 
                                                     
             |\___________________________________________________________             
             |                                                            | 
@@ -2874,32 +2914,32 @@ ____    _    _   _  ____ _
              \_________________________________________________________/     
                                                         
                                         """)
-                                            time.sleep(2)
-                                            text = (f'\n.\n'
-                                                    f'.\n'
-                                                    f'.\n')    
-                                            for char in text:
-                                                print(char, end='', flush=True)
-                                                time.sleep(0.1)
-                                            time.sleep(2)
-                                            text = (f'\nUna vez más, no pudiste resolver el caso, ¿verdad?\n'
-                                                    f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
-                                            for char in text:
-                                                print(char, end='', flush=True)
-                                                time.sleep(0.060)
-                                            time.sleep(3)
-                                            bad_ending()
+                                        time.sleep(2)
+                                        text = (f'\n.\n'
+                                                f'.\n'
+                                                f'.\n')
+                                        for char in text:
+                                            print(char, end='', flush=True)
+                                            time.sleep(0.1)
+                                        time.sleep(2)
+                                        text = (f'\nUna vez más, no pudiste resolver el caso, ¿verdad?\n'
+                                                f'\nNo encontraste al culpable y no pudiste hacer nada por Martin.\n')
+                                        for char in text:
+                                            print(char, end='', flush=True)
+                                            time.sleep(0.060)
+                                        time.sleep(3)
+                                        bad_ending()
 
-                                       
+
 
                         elif 'nada' in analize.lower():
-                            text = (f'\nBien, será mejor continuar.\n')  
+                            text = (f'\nBien, será mejor continuar.\n')
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
                             time.sleep(2.4)
                             text = (
-                                    f'\n¿A qué otra parte de la cabaña quieres ir?\n')
+                                f'\n¿A qué otra parte de la cabaña quieres ir?\n')
                             for char in text:
                                 print(char, end='', flush=True)
                             time.sleep(0.040)
@@ -2912,14 +2952,14 @@ ____    _    _   _  ____ _
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
 
-                        
+
                         text = ('\n¿Qué otra cosa quisieras revisar?\n')
                         for char in text:
                             print(char, end='', flush=True)
                             time.sleep(0.040)
                         analize = input('\n> ')
 
-                
+
                 elif 'sala' in eleccion.lower():
                     sala = True
                     time.sleep(1.5)
@@ -2927,7 +2967,7 @@ ____    _    _   _  ____ _
                     time.sleep(2.2)
                     cabin_living()
                     time.sleep(1.8)
-                    text = (f'\n¿Cuál de estos lugares te gustaría analizar más de cerca?\n\n')  
+                    text = (f'\n¿Cuál de estos lugares te gustaría analizar más de cerca?\n\n')
                     for char in text:
                         print(char, end='', flush=True)
                         time.sleep(0.040)
@@ -2936,28 +2976,28 @@ ____    _    _   _  ____ _
                             f'    - El sillon\n'
                             f'    - La alfombra\n'
                             f'    - El mueble\n'
-                            f'    - Mejor nada...\n')  
+                            f'    - Mejor nada...\n')
                     analize = input('\n> ')
 
-                    while True: 
+                    while True:
                         if 'chimenea' in analize.lower():
                             text = (f'\nMmmm...\n'
                                     f'\nNo hay nada relevante.\n'
-                                    )  
+                                    )
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
                         elif 'sillon' in analize.lower():
                             text = (f'\nQué hermoso sillón...\n'
                                     f'\nPero igual parece no tener ninguna pista.\n'
-                                    )  
+                                    )
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
                         elif 'mueble' in analize.lower():
                             text = (f'\nHay unos libros viejos adentro.\n'
                                     f'\nDeberían limpiar más seguido.\n'
-                                    )  
+                                    )
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
@@ -2965,7 +3005,7 @@ ____    _    _   _  ____ _
                             if myClues.key:
                                 text = (f'\nYa has tomado la llave.\n'
                                         f'\nNo hay nada más.\n'
-                                        )  
+                                        )
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.040)
@@ -2973,39 +3013,39 @@ ____    _    _   _  ____ _
                                 time.sleep(2)
                                 myClues.key = True
                                 text = (f'\n¿Oh?\n'
-                                        )  
+                                        )
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.040)
                                 time.sleep(3)
                                 text = (f'\n...\n'
-                                        )  
+                                        )
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.060)
                                 time.sleep(2)
                                 text = (f'\n¡Una llave!\n'
                                         f'\nSerá mejor guardarla. Me pregunto qué abrirá...\n'
-                                        )  
+                                        )
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.040)
                                 time.sleep(2)
 
                         elif 'nada' in analize.lower():
-                            text = (f'\nBien, será mejor continuar.\n')  
+                            text = (f'\nBien, será mejor continuar.\n')
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
                             time.sleep(2.4)
                             text = (
-                                    f'\n¿A qué otra parte de la cabaña quieres ir?\n')
+                                f'\n¿A qué otra parte de la cabaña quieres ir?\n')
                             for char in text:
                                 print(char, end='', flush=True)
                             time.sleep(0.040)
 
                             select_cabin()
-                        
+
                         else:
                             text = ('\nRevisa algo que esté en la sala... \n')
                             for char in text:
@@ -3041,7 +3081,7 @@ ____    _    _   _  ____ _
                     time.sleep(2.2)
                     cabin_room()
                     time.sleep(1.8)
-                    text = (f'\n¿Cuál de estos lugares te gustaría analizar más de cerca?\n\n')  
+                    text = (f'\n¿Cuál de estos lugares te gustaría analizar más de cerca?\n\n')
                     for char in text:
                         print(char, end='', flush=True)
                         time.sleep(0.040)
@@ -3050,27 +3090,27 @@ ____    _    _   _  ____ _
                             f'    - La cama\n'
                             f'    - La alfombra\n'
                             f'    - El mueble\n'
-                            f'    - Mejor nada...\n')  
+                            f'    - Mejor nada...\n')
                     analize = input('\n> ')
-                    while True: 
+                    while True:
                         if 'ventana' in analize.lower():
                             text = (f'\nNo hay nada relevante.\n'
                                     f'\nPero qué bonitas cortinas.\n'
-                                    )  
+                                    )
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
                         elif 'cama' in analize.lower():
                             text = (f'\nParece que no hay nada.\n'
                                     f'\nNo queremos destender la cama.\n'
-                                    )  
+                                    )
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
                         elif 'alfombra' in analize.lower():
                             text = (f'\nMmmm...\n'
                                     f'\nNo hay nada relevante.\n'
-                                    )  
+                                    )
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
@@ -3078,63 +3118,63 @@ ____    _    _   _  ____ _
                             time.sleep(2)
                             text = (f'\n¿Hmm?\n'
                                     f'\nEstá cerrado con llave...\n'
-                                    )  
+                                    )
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
                             if myClues.key:
                                 myClues.wallet = True
                                 text = (f'\n...\n'
-                                        )  
+                                        )
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.060)
                                 time.sleep(2)
                                 text = (f'\n¡Tienes la llave!\n'
-                                        f'\nÚsala para abrir el seguro.\n')                                    
+                                        f'\nÚsala para abrir el seguro.\n')
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.040)
                                 text = (f'\n.\n'
                                         f'.\n'
-                                        f'.\n')    
+                                        f'.\n')
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.1)
                                 time.sleep(2)
-                                text = (f'\nAdentro hay... una identificación.\n')                                    
+                                text = (f'\nAdentro hay... una identificación.\n')
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.040)
                                 time.sleep(2)
                                 wallet()
                                 time.sleep(2)
-                                text = (f'\nHa sido guardada en pistas\n')                                    
+                                text = (f'\nHa sido guardada en pistas\n')
                                 for char in text:
                                     print(char, end='', flush=True)
                                     time.sleep(0.040)
                             else:
                                 text = (f'\nLo mejor será buscarla.\n'
-                                    )  
+                                        )
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
 
 
                         elif 'nada' in analize.lower():
-                            text = (f'\nBien, será mejor continuar.\n')  
+                            text = (f'\nBien, será mejor continuar.\n')
                             for char in text:
                                 print(char, end='', flush=True)
                                 time.sleep(0.040)
                             time.sleep(2.4)
                             text = (
-                                    f'\n¿A qué otra parte de la cabaña quieres ir?\n')
+                                f'\n¿A qué otra parte de la cabaña quieres ir?\n')
                             for char in text:
                                 print(char, end='', flush=True)
                             time.sleep(0.040)
 
                             select_cabin()
-                        
+
                         else:
                             text = ('\nRevisa algo que esté en la sala... \n')
                             for char in text:
@@ -3146,17 +3186,16 @@ ____    _    _   _  ____ _
                             print(char, end='', flush=True)
                             time.sleep(0.040)
                         analize = input('\n> ')
-                
+
                 else:
-                    text = (f'\nCreo que eso no está en la cabaña... \n')  
+                    text = (f'\nCreo que eso no está en la cabaña... \n')
                     for char in text:
                         print(char, end='', flush=True)
                         time.sleep(0.040)
                     eleccion = input('\n> ')
 
-    
-    select_cabin()
 
+    select_cabin()
 
 
 title_screen()
